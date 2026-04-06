@@ -1,0 +1,1172 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>For Creators — Vessels</title>
+  <meta name="description" content="Vessels works with creators from 50k to 1M+ followers — not just for brand deals, but to build and monetize your own platform, product, and brand." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet" />
+
+  <style>
+    /* ── Reset & Base ── */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+
+    /* ── Design Tokens ── */
+    :root {
+      --cream:        #F5F0E8;
+      --cream-dark:   #EDE7D9;
+      --cream-mid:    #F0EBE0;
+      --charcoal:     #1A1814;
+      --charcoal-60:  rgba(26,24,20,0.6);
+      --charcoal-30:  rgba(26,24,20,0.3);
+      --charcoal-10:  rgba(26,24,20,0.08);
+      --gold:         #B8975A;
+      --gold-light:   #D4B478;
+      --gold-pale:    rgba(184,151,90,0.12);
+      --white:        #FDFCFA;
+      --black:        #0D0C0A;
+      --font-display: 'Playfair Display', Georgia, serif;
+      --font-body:    'DM Sans', system-ui, sans-serif;
+      --radius-sm:    6px;
+      --radius-md:    12px;
+      --radius-lg:    20px;
+      --ease-out:     cubic-bezier(0.22, 1, 0.36, 1);
+    }
+
+    body {
+      font-family: var(--font-body);
+      background: var(--cream);
+      color: var(--charcoal);
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* ── Typography ── */
+    h1, h2, h3, h4 { font-family: var(--font-display); line-height: 1.15; }
+
+    .display-xl {
+      font-size: clamp(2.6rem, 6vw, 4.8rem);
+      font-weight: 600;
+      letter-spacing: -0.02em;
+    }
+    .display-lg {
+      font-size: clamp(2rem, 4.5vw, 3.4rem);
+      font-weight: 600;
+      letter-spacing: -0.02em;
+    }
+    .display-md {
+      font-size: clamp(1.5rem, 3vw, 2.2rem);
+      font-weight: 500;
+    }
+    .label-overline {
+      font-family: var(--font-body);
+      font-size: 0.72rem;
+      font-weight: 600;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--gold);
+    }
+    .body-lg { font-size: 1.125rem; line-height: 1.75; }
+    .body-md { font-size: 1rem; line-height: 1.7; }
+
+    /* ── Layout Utilities ── */
+    .container {
+      max-width: 1160px;
+      margin: 0 auto;
+      padding: 0 clamp(1.25rem, 5vw, 2.5rem);
+    }
+    .section { padding: clamp(4rem, 9vw, 7rem) 0; }
+    .section-sm { padding: clamp(2.5rem, 5vw, 4rem) 0; }
+    .text-center { text-align: center; }
+    .text-gold { color: var(--gold); }
+    .text-muted { color: var(--charcoal-60); }
+
+    /* ── Gold Divider ── */
+    .gold-rule {
+      display: block;
+      width: 48px;
+      height: 2px;
+      background: var(--gold);
+      margin: 1.25rem auto;
+    }
+    .gold-rule-left { margin-left: 0; }
+
+    /* ── Buttons ── */
+    .btn-primary {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      background: var(--gold);
+      color: var(--white);
+      border: none;
+      padding: 0.875rem 2rem;
+      border-radius: var(--radius-sm);
+      font-family: var(--font-body);
+      font-size: 0.95rem;
+      font-weight: 500;
+      letter-spacing: 0.02em;
+      cursor: pointer;
+      transition: background 0.2s var(--ease-out), transform 0.2s var(--ease-out);
+      text-decoration: none;
+    }
+    .btn-primary:hover { background: var(--gold-light); transform: translateY(-1px); }
+
+    .btn-ghost {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      background: transparent;
+      color: var(--charcoal);
+      border: 1.5px solid var(--charcoal-30);
+      padding: 0.875rem 2rem;
+      border-radius: var(--radius-sm);
+      font-family: var(--font-body);
+      font-size: 0.95rem;
+      font-weight: 500;
+      cursor: pointer;
+      transition: border-color 0.2s, color 0.2s;
+      text-decoration: none;
+    }
+    .btn-ghost:hover { border-color: var(--gold); color: var(--gold); }
+
+    /* ── Navigation ── */
+    .nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      padding: 1.25rem 0;
+      transition: background 0.3s, backdrop-filter 0.3s, box-shadow 0.3s;
+    }
+    .nav.scrolled {
+      background: rgba(245, 240, 232, 0.92);
+      backdrop-filter: blur(12px);
+      box-shadow: 0 1px 0 var(--charcoal-10);
+    }
+    .nav-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .nav-logo {
+      font-family: var(--font-display);
+      font-size: 1.35rem;
+      font-weight: 600;
+      color: var(--charcoal);
+      text-decoration: none;
+      letter-spacing: -0.01em;
+    }
+    .nav-logo span { color: var(--gold); }
+    .nav-cta { font-size: 0.875rem; padding: 0.625rem 1.4rem; }
+
+    /* ── Hero ── */
+    .hero {
+      padding: clamp(7rem, 14vw, 11rem) 0 clamp(4rem, 8vw, 7rem);
+      position: relative;
+      overflow: hidden;
+    }
+    .hero::before {
+      content: '';
+      position: absolute;
+      top: -20%;
+      right: -10%;
+      width: 600px;
+      height: 600px;
+      background: radial-gradient(circle, var(--gold-pale) 0%, transparent 70%);
+      pointer-events: none;
+    }
+    .hero-eyebrow {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      margin-bottom: 1.75rem;
+    }
+    .hero-eyebrow-line {
+      width: 32px;
+      height: 1.5px;
+      background: var(--gold);
+    }
+    .hero-headline { max-width: 840px; margin-bottom: 1.5rem; }
+    .hero-headline em { font-style: italic; color: var(--gold); }
+    .hero-sub {
+      max-width: 580px;
+      font-size: 1.15rem;
+      color: var(--charcoal-60);
+      line-height: 1.75;
+      margin-bottom: 2.5rem;
+    }
+    .hero-actions { display: flex; gap: 1rem; flex-wrap: wrap; }
+    .hero-tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      font-size: 0.8rem;
+      color: var(--charcoal-60);
+      font-weight: 500;
+      margin-top: 1.5rem;
+    }
+    .hero-tag::before {
+      content: '✓';
+      color: var(--gold);
+      font-weight: 700;
+    }
+
+    /* ── Stats Bar ── */
+    .stats-bar {
+      background: var(--charcoal);
+      color: var(--white);
+      padding: clamp(2rem, 4vw, 3rem) 0;
+    }
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+      gap: 2rem;
+      text-align: center;
+    }
+    .stat-item {}
+    .stat-number {
+      font-family: var(--font-display);
+      font-size: clamp(1.8rem, 4vw, 2.8rem);
+      font-weight: 600;
+      color: var(--gold-light);
+      letter-spacing: -0.02em;
+      line-height: 1;
+      margin-bottom: 0.4rem;
+    }
+    .stat-label {
+      font-size: 0.82rem;
+      color: rgba(255,255,255,0.55);
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      font-weight: 500;
+    }
+
+    /* ── Problem Section ── */
+    .problem { background: var(--cream-mid); }
+    .problem-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 4rem;
+      align-items: center;
+    }
+    @media (max-width: 768px) { .problem-grid { grid-template-columns: 1fr; gap: 2.5rem; } }
+
+    .problem-cards { display: flex; flex-direction: column; gap: 1rem; }
+    .problem-card {
+      background: var(--white);
+      border-radius: var(--radius-md);
+      padding: 1.5rem;
+      border-left: 3px solid var(--charcoal-10);
+      transition: border-color 0.25s;
+    }
+    .problem-card:hover { border-color: var(--gold); }
+    .problem-card-title {
+      font-family: var(--font-display);
+      font-size: 1.05rem;
+      font-weight: 500;
+      margin-bottom: 0.4rem;
+      color: var(--charcoal);
+    }
+    .problem-card p { font-size: 0.9rem; color: var(--charcoal-60); }
+
+    /* ── Solution Section ── */
+    .solution-intro { max-width: 680px; margin: 0 auto; }
+
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 1.5rem;
+      margin-top: 3rem;
+    }
+    .service-card {
+      background: var(--white);
+      border-radius: var(--radius-lg);
+      padding: 2rem 1.75rem;
+      border: 1px solid var(--charcoal-10);
+      transition: transform 0.25s var(--ease-out), box-shadow 0.25s var(--ease-out);
+      position: relative;
+      overflow: hidden;
+    }
+    .service-card::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 3px;
+      background: linear-gradient(90deg, var(--gold), var(--gold-light));
+      transform: scaleX(0);
+      transform-origin: left;
+      transition: transform 0.3s var(--ease-out);
+    }
+    .service-card:hover { transform: translateY(-4px); box-shadow: 0 12px 40px rgba(26,24,20,0.08); }
+    .service-card:hover::before { transform: scaleX(1); }
+    .service-icon {
+      width: 44px;
+      height: 44px;
+      background: var(--gold-pale);
+      border-radius: var(--radius-sm);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.3rem;
+      margin-bottom: 1.25rem;
+    }
+    .service-card h3 {
+      font-family: var(--font-display);
+      font-size: 1.15rem;
+      font-weight: 500;
+      margin-bottom: 0.6rem;
+    }
+    .service-card p { font-size: 0.9rem; color: var(--charcoal-60); line-height: 1.65; }
+
+    /* ── How It Works ── */
+    .how-it-works { background: var(--cream-dark); }
+    .steps-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 2rem;
+      margin-top: 3.5rem;
+      position: relative;
+    }
+    .steps-grid::before {
+      content: '';
+      position: absolute;
+      top: 28px;
+      left: 10%;
+      right: 10%;
+      height: 1px;
+      background: var(--charcoal-10);
+    }
+    @media (max-width: 640px) { .steps-grid::before { display: none; } }
+
+    .step {
+      text-align: center;
+      position: relative;
+    }
+    .step-number {
+      width: 56px;
+      height: 56px;
+      border-radius: 50%;
+      background: var(--charcoal);
+      color: var(--gold-light);
+      font-family: var(--font-display);
+      font-size: 1.15rem;
+      font-weight: 600;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 1.25rem;
+      position: relative;
+      z-index: 1;
+    }
+    .step h3 {
+      font-family: var(--font-display);
+      font-size: 1.05rem;
+      font-weight: 500;
+      margin-bottom: 0.5rem;
+    }
+    .step p { font-size: 0.875rem; color: var(--charcoal-60); }
+
+    /* ── Why Vessels Section ── */
+    .why-vessels { background: var(--charcoal); color: var(--white); }
+    .why-vessels .label-overline { color: var(--gold-light); }
+    .why-vessels .display-lg { color: var(--white); }
+
+    .pillars-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 1.5rem;
+      margin-top: 3rem;
+    }
+    .pillar {
+      padding: 2rem;
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: var(--radius-md);
+      transition: background 0.25s, border-color 0.25s;
+    }
+    .pillar:hover { background: rgba(255,255,255,0.04); border-color: var(--gold); }
+    .pillar-icon { font-size: 1.5rem; margin-bottom: 1rem; }
+    .pillar h3 {
+      font-family: var(--font-display);
+      font-size: 1.1rem;
+      color: var(--white);
+      margin-bottom: 0.5rem;
+    }
+    .pillar p { font-size: 0.875rem; color: rgba(255,255,255,0.5); line-height: 1.65; }
+
+    /* ── Who We Work With ── */
+    .who-section {}
+    .tiers-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 1.25rem;
+      margin-top: 3rem;
+    }
+    .tier-card {
+      background: var(--white);
+      border: 1px solid var(--charcoal-10);
+      border-radius: var(--radius-md);
+      padding: 1.75rem 1.5rem;
+      text-align: center;
+      transition: transform 0.2s, border-color 0.2s;
+    }
+    .tier-card:hover { transform: translateY(-3px); border-color: var(--gold); }
+    .tier-range {
+      font-family: var(--font-display);
+      font-size: 1.4rem;
+      color: var(--gold);
+      font-weight: 600;
+      margin-bottom: 0.35rem;
+    }
+    .tier-label { font-size: 0.82rem; color: var(--charcoal-60); font-weight: 500; }
+    .tier-desc { font-size: 0.85rem; color: var(--charcoal); margin-top: 0.75rem; }
+
+    /* ── FAQ ── */
+    .faq { background: var(--cream-mid); }
+    .faq-list { max-width: 720px; margin: 3rem auto 0; }
+    .faq-item {
+      border-bottom: 1px solid var(--charcoal-10);
+    }
+    .faq-trigger {
+      width: 100%;
+      background: none;
+      border: none;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 1.4rem 0;
+      cursor: pointer;
+      font-family: var(--font-display);
+      font-size: 1.05rem;
+      color: var(--charcoal);
+      text-align: left;
+      gap: 1rem;
+    }
+    .faq-icon {
+      width: 24px;
+      height: 24px;
+      border-radius: 50%;
+      background: var(--gold-pale);
+      border: 1px solid var(--gold);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      font-size: 0.85rem;
+      color: var(--gold);
+      transition: transform 0.25s var(--ease-out), background 0.2s;
+    }
+    .faq-item.open .faq-icon { transform: rotate(45deg); background: var(--gold); color: var(--white); }
+    .faq-body {
+      overflow: hidden;
+      max-height: 0;
+      transition: max-height 0.35s var(--ease-out);
+    }
+    .faq-body-inner {
+      padding: 0 0 1.4rem;
+      font-size: 0.95rem;
+      color: var(--charcoal-60);
+      line-height: 1.75;
+    }
+
+    /* ── Contact / Apply Form ── */
+    .apply { background: var(--cream); }
+    .apply-inner {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: clamp(2.5rem, 6vw, 5rem);
+      align-items: start;
+    }
+    @media (max-width: 840px) { .apply-inner { grid-template-columns: 1fr; } }
+
+    .apply-copy {}
+    .apply-copy .display-lg { margin-bottom: 1rem; }
+    .apply-copy p { color: var(--charcoal-60); margin-bottom: 2rem; }
+
+    .apply-proof {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+    .proof-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 0.75rem;
+      font-size: 0.9rem;
+      color: var(--charcoal-60);
+    }
+    .proof-check {
+      width: 20px;
+      height: 20px;
+      border-radius: 50%;
+      background: var(--gold-pale);
+      border: 1px solid var(--gold);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.65rem;
+      color: var(--gold);
+      flex-shrink: 0;
+      margin-top: 1px;
+    }
+
+    /* ── Form ── */
+    .apply-form-wrap {
+      background: var(--white);
+      border-radius: var(--radius-lg);
+      padding: clamp(1.75rem, 4vw, 2.5rem);
+      box-shadow: 0 4px 40px rgba(26,24,20,0.07);
+      border: 1px solid var(--charcoal-10);
+    }
+    .form-title {
+      font-family: var(--font-display);
+      font-size: 1.35rem;
+      font-weight: 500;
+      margin-bottom: 0.35rem;
+    }
+    .form-subtitle { font-size: 0.875rem; color: var(--charcoal-60); margin-bottom: 1.75rem; }
+
+    .contact-form { display: flex; flex-direction: column; gap: 1.15rem; }
+    .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+    @media (max-width: 580px) { .form-row { grid-template-columns: 1fr; } }
+
+    .form-group { display: flex; flex-direction: column; gap: 0.35rem; }
+    .form-group label {
+      font-size: 0.8rem;
+      font-weight: 600;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      color: var(--charcoal-60);
+    }
+    .form-group input,
+    .form-group select,
+    .form-group textarea {
+      width: 100%;
+      padding: 0.75rem 1rem;
+      border: 1.5px solid var(--charcoal-10);
+      border-radius: var(--radius-sm);
+      background: var(--cream);
+      color: var(--charcoal);
+      font-family: var(--font-body);
+      font-size: 0.95rem;
+      transition: border-color 0.2s, box-shadow 0.2s;
+      outline: none;
+      appearance: none;
+    }
+    .form-group input:focus,
+    .form-group select:focus,
+    .form-group textarea:focus {
+      border-color: var(--gold);
+      box-shadow: 0 0 0 3px var(--gold-pale);
+    }
+    .form-group textarea { resize: vertical; min-height: 110px; }
+    .form-group select { background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%23B8975A' d='M6 8L1 3h10z'/%3E%3C/svg%3E"); background-repeat: no-repeat; background-position: right 1rem center; padding-right: 2.5rem; }
+
+    .form-submit {
+      width: 100%;
+      justify-content: center;
+      padding: 1rem;
+      font-size: 1rem;
+      font-weight: 600;
+      margin-top: 0.5rem;
+    }
+
+    .form-success {
+      display: none;
+      text-align: center;
+      padding: 2rem 1rem;
+    }
+    .form-success-icon {
+      width: 56px;
+      height: 56px;
+      border-radius: 50%;
+      background: var(--gold-pale);
+      border: 2px solid var(--gold);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.5rem;
+      margin: 0 auto 1rem;
+    }
+    .form-success h3 {
+      font-family: var(--font-display);
+      font-size: 1.4rem;
+      margin-bottom: 0.5rem;
+    }
+    .form-success p { font-size: 0.9rem; color: var(--charcoal-60); }
+
+    /* ── Final CTA ── */
+    .final-cta {
+      background: var(--charcoal);
+      text-align: center;
+      color: var(--white);
+    }
+    .final-cta .display-lg { color: var(--white); max-width: 640px; margin: 0 auto 1rem; }
+    .final-cta p { color: rgba(255,255,255,0.5); max-width: 480px; margin: 0 auto 2.5rem; }
+
+    /* ── Footer ── */
+    .footer {
+      background: var(--black);
+      color: rgba(255,255,255,0.35);
+      padding: 2.5rem 0;
+    }
+    .footer-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 1rem;
+    }
+    .footer-logo {
+      font-family: var(--font-display);
+      font-size: 1.1rem;
+      font-weight: 600;
+      color: rgba(255,255,255,0.6);
+    }
+    .footer-logo span { color: var(--gold); }
+    .footer-links { display: flex; gap: 1.5rem; }
+    .footer-links a {
+      color: rgba(255,255,255,0.35);
+      text-decoration: none;
+      font-size: 0.82rem;
+      transition: color 0.2s;
+    }
+    .footer-links a:hover { color: var(--gold); }
+    .footer-copy { font-size: 0.78rem; }
+
+    /* ── Scroll Reveal ── */
+    .reveal {
+      opacity: 0;
+      transform: translateY(24px);
+      transition: opacity 0.6s var(--ease-out), transform 0.6s var(--ease-out);
+    }
+    .reveal.visible { opacity: 1; transform: none; }
+    .reveal-delay-1 { transition-delay: 0.1s; }
+    .reveal-delay-2 { transition-delay: 0.2s; }
+    .reveal-delay-3 { transition-delay: 0.3s; }
+    .reveal-delay-4 { transition-delay: 0.4s; }
+  </style>
+</head>
+
+<body>
+
+  <!-- ── Navigation ── -->
+  <nav class="nav" id="nav">
+    <div class="container nav-inner">
+      <a href="/" class="nav-logo">Vessels<span>.</span></a>
+      <a href="#apply" class="btn-primary nav-cta">Apply Now →</a>
+    </div>
+  </nav>
+
+  <!-- ── Hero ── -->
+  <section class="hero">
+    <div class="container">
+      <div class="hero-eyebrow reveal">
+        <span class="hero-eyebrow-line"></span>
+        <span class="label-overline">For Creators</span>
+      </div>
+      <h1 class="display-xl hero-headline reveal reveal-delay-1">
+        Build More Than<br>an Audience.<br><em>Build a Brand.</em>
+      </h1>
+      <p class="hero-sub reveal reveal-delay-2">
+        Vessels works with creators from 50k to 1M+ followers — not just to land brand deals, but to help you build and monetize your own platform, plug into our network, and launch products or brands that are truly yours.
+      </p>
+      <div class="hero-actions reveal reveal-delay-3">
+        <a href="#apply" class="btn-primary">Apply to Work With Us →</a>
+        <a href="#how-it-works" class="btn-ghost">See How It Works</a>
+      </div>
+      <div class="reveal reveal-delay-4" style="display:flex;gap:2rem;flex-wrap:wrap;margin-top:2rem;">
+        <span class="hero-tag">50k – 1M+ followers</span>
+        <span class="hero-tag">All niches welcome</span>
+        <span class="hero-tag">Full-service partnership</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── Stats Bar ── -->
+  <div class="stats-bar">
+    <div class="container">
+      <div class="stats-grid">
+        <div class="stat-item reveal">
+          <div class="stat-number">50k+</div>
+          <div class="stat-label">Min. Following</div>
+        </div>
+        <div class="stat-item reveal reveal-delay-1">
+          <div class="stat-number">1M+</div>
+          <div class="stat-label">Top Creators We Work With</div>
+        </div>
+        <div class="stat-item reveal reveal-delay-2">
+          <div class="stat-number">Full</div>
+          <div class="stat-label">Service Model</div>
+        </div>
+        <div class="stat-item reveal reveal-delay-3">
+          <div class="stat-number">0</div>
+          <div class="stat-label">Cookie-Cutter Deals</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── Problem ── -->
+  <section class="section problem">
+    <div class="container">
+      <div class="problem-grid">
+        <div>
+          <span class="label-overline reveal">The Problem</span>
+          <span class="gold-rule gold-rule-left reveal"></span>
+          <h2 class="display-lg reveal">You're Leaving Money on the Table.</h2>
+          <p class="body-md text-muted reveal" style="margin-top:1rem;margin-bottom:1.5rem;">
+            Brand deals are a starting point — not a ceiling. Most creator management stops there. We don't.
+          </p>
+          <p class="body-md text-muted reveal">
+            Your audience trusts you. That trust is worth far more than a one-off sponsored post. Vessels helps you turn that trust into a business — one you actually own.
+          </p>
+        </div>
+        <div class="problem-cards">
+          <div class="problem-card reveal">
+            <div class="problem-card-title">Brand deals that don't match your value</div>
+            <p>You're getting paid fractions of what brands actually make from your audience. We negotiate differently — or we build so you don't need to rely on them.</p>
+          </div>
+          <div class="problem-card reveal reveal-delay-1">
+            <div class="problem-card-title">No strategy, just content</div>
+            <p>Posting consistently is table stakes. A real business needs a roadmap — platform, product, distribution, monetization layers beyond AdSense and sponsored posts.</p>
+          </div>
+          <div class="problem-card reveal reveal-delay-2">
+            <div class="problem-card-title">No infrastructure to scale</div>
+            <p>You don't have a website that converts. You don't have a product funnel. You don't have a team or network that can execute when you're ready to grow.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── Solution / Services ── -->
+  <section class="section" id="services">
+    <div class="container">
+      <div class="text-center solution-intro">
+        <span class="label-overline reveal">What We Do</span>
+        <span class="gold-rule reveal"></span>
+        <h2 class="display-lg reveal">A Full Partnership,<br>Not Just Management.</h2>
+        <p class="body-md text-muted reveal" style="margin-top:1rem;">
+          We plug you into the Vessels network and build everything you need to monetize your audience on your own terms.
+        </p>
+      </div>
+      <div class="services-grid">
+        <div class="service-card reveal">
+          <div class="service-icon">💼</div>
+          <h3>Brand Deal Strategy</h3>
+          <p>We handle outreach, negotiation, and deal structure — ensuring every partnership is on-brand and actually worth your time. This is just the beginning.</p>
+        </div>
+        <div class="service-card reveal reveal-delay-1">
+          <div class="service-icon">🌐</div>
+          <h3>Website & Platform Builds</h3>
+          <p>Your social profile is rented land. We build you a home base — a site that converts followers into subscribers, customers, and community members.</p>
+        </div>
+        <div class="service-card reveal reveal-delay-2">
+          <div class="service-icon">🚀</div>
+          <h3>Product & Brand Launches</h3>
+          <p>From ideation to launch — we help you create and bring to market your own product line, merchandise, digital products, or fully branded company.</p>
+        </div>
+        <div class="service-card reveal reveal-delay-3">
+          <div class="service-icon">🔗</div>
+          <h3>Network Access</h3>
+          <p>Plug into the Vessels network of brands, operators, creators, and distribution partners. Collaboration opportunities, co-ventures, and introductions that actually move the needle.</p>
+        </div>
+        <div class="service-card reveal">
+          <div class="service-icon">📈</div>
+          <h3>Monetization Strategy</h3>
+          <p>Subscriptions, communities, digital products, licensing, equity deals — we map out every income stream available to you and build a plan to activate them.</p>
+        </div>
+        <div class="service-card reveal reveal-delay-1">
+          <div class="service-icon">🎯</div>
+          <h3>Creative Direction</h3>
+          <p>Positioning, messaging, brand identity — we help you define who you are beyond the content so your audience knows exactly what you stand for.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── How It Works ── -->
+  <section class="section how-it-works" id="how-it-works">
+    <div class="container">
+      <div class="text-center">
+        <span class="label-overline reveal">The Process</span>
+        <span class="gold-rule reveal"></span>
+        <h2 class="display-lg reveal">From Creator to Empire.</h2>
+        <p class="body-md text-muted reveal" style="margin-top:1rem;max-width:560px;margin-left:auto;margin-right:auto;">
+          We move through a deliberate process — no fluff, no wasted months. Here's how we work.
+        </p>
+      </div>
+      <div class="steps-grid">
+        <div class="step reveal">
+          <div class="step-number">01</div>
+          <h3>Strategy Session</h3>
+          <p>We learn your audience, your goals, your current monetization, and where the biggest opportunities are. We map a 12-month plan.</p>
+        </div>
+        <div class="step reveal reveal-delay-1">
+          <div class="step-number">02</div>
+          <h3>Platform Build</h3>
+          <p>We design and launch your owned platform — website, email list, and community infrastructure that you control.</p>
+        </div>
+        <div class="step reveal reveal-delay-2">
+          <div class="step-number">03</div>
+          <h3>Network Integration</h3>
+          <p>We plug you into Vessels — brands, partners, and collaborators that are the right fit for where you're going.</p>
+        </div>
+        <div class="step reveal reveal-delay-3">
+          <div class="step-number">04</div>
+          <h3>Launch & Scale</h3>
+          <p>We execute product and brand launches with you — managing the business side so you stay focused on creating.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── Why Vessels ── -->
+  <section class="section why-vessels">
+    <div class="container">
+      <div class="text-center">
+        <span class="label-overline reveal">Why Vessels</span>
+        <span class="gold-rule reveal"></span>
+        <h2 class="display-lg reveal" style="color:var(--white);">We're Operators,<br>Not Just Managers.</h2>
+        <p class="reveal" style="margin-top:1rem;max-width:560px;margin-left:auto;margin-right:auto;color:rgba(255,255,255,0.5);">
+          Most management companies book deals and take a cut. We build alongside you — because your success is our business.
+        </p>
+      </div>
+      <div class="pillars-grid">
+        <div class="pillar reveal">
+          <div class="pillar-icon">⚡</div>
+          <h3>Execution-First</h3>
+          <p>We don't just advise — we build. Websites, product launches, campaign execution. We're in the trenches with you.</p>
+        </div>
+        <div class="pillar reveal reveal-delay-1">
+          <div class="pillar-icon">🌐</div>
+          <h3>Real Network</h3>
+          <p>Access to a curated network of brands and operators actively looking for creator partners — not a cold email list.</p>
+        </div>
+        <div class="pillar reveal reveal-delay-2">
+          <div class="pillar-icon">🎯</div>
+          <h3>Long-Term Thinking</h3>
+          <p>We're not optimizing for the next deal. We're building something that grows with you — and outlasts any single campaign.</p>
+        </div>
+        <div class="pillar reveal reveal-delay-3">
+          <div class="pillar-icon">🤝</div>
+          <h3>Aligned Incentives</h3>
+          <p>Our partnership model means we win when you win. No high retainers for low output — results are how we measure success.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── Who We Work With ── -->
+  <section class="section who-section">
+    <div class="container">
+      <div class="text-center">
+        <span class="label-overline reveal">Who This Is For</span>
+        <span class="gold-rule reveal"></span>
+        <h2 class="display-lg reveal">Creators at Every Stage<br>of the Build.</h2>
+        <p class="body-md text-muted reveal" style="margin-top:1rem;max-width:600px;margin-left:auto;margin-right:auto;">
+          Whether you're just hitting 50k or already past 1M, we have a path for you — as long as you're serious about building something real.
+        </p>
+      </div>
+      <div class="tiers-grid">
+        <div class="tier-card reveal">
+          <div class="tier-range">50k – 100k</div>
+          <div class="tier-label">Rising Creator</div>
+          <div class="tier-desc">You have traction. Now build the foundation — platform, positioning, and your first owned revenue stream.</div>
+        </div>
+        <div class="tier-card reveal reveal-delay-1">
+          <div class="tier-range">100k – 250k</div>
+          <div class="tier-label">Breakout Creator</div>
+          <div class="tier-desc">Proven audience, ready to diversify. We launch products and owned platforms to reduce brand deal dependency.</div>
+        </div>
+        <div class="tier-card reveal reveal-delay-2">
+          <div class="tier-range">250k – 500k</div>
+          <div class="tier-label">Established Creator</div>
+          <div class="tier-desc">You're a business. Time to act like one — brand launches, premium deals, and real infrastructure.</div>
+        </div>
+        <div class="tier-card reveal reveal-delay-3">
+          <div class="tier-range">500k – 1M+</div>
+          <div class="tier-label">Industry Player</div>
+          <div class="tier-desc">Your leverage is significant. We help you put it to work — equity deals, brand ownership, category leadership.</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── FAQ ── -->
+  <section class="section faq">
+    <div class="container">
+      <div class="text-center">
+        <span class="label-overline reveal">FAQ</span>
+        <span class="gold-rule reveal"></span>
+        <h2 class="display-lg reveal">Questions We Get<br>All the Time.</h2>
+      </div>
+      <div class="faq-list">
+        <div class="faq-item reveal">
+          <button class="faq-trigger">
+            Do I need to have a certain follower count to apply?
+            <span class="faq-icon">+</span>
+          </button>
+          <div class="faq-body">
+            <div class="faq-body-inner">We work with creators from 50k followers and up. Follower count matters less than audience engagement, niche alignment, and your ambition to build something bigger. Apply and we'll tell you honestly if we're a fit.</div>
+          </div>
+        </div>
+        <div class="faq-item reveal">
+          <button class="faq-trigger">
+            Do I have to give up creative control?
+            <span class="faq-icon">+</span>
+          </button>
+          <div class="faq-body">
+            <div class="faq-body-inner">Never. Your content and creative voice are yours. We handle strategy, business development, and execution — so you can stay focused on creating. We advise, you decide.</div>
+          </div>
+        </div>
+        <div class="faq-item reveal">
+          <button class="faq-trigger">
+            I already have a manager. Can Vessels still help?
+            <span class="faq-icon">+</span>
+          </button>
+          <div class="faq-body">
+            <div class="faq-body-inner">Possibly. Depending on the structure of your existing deal, we may be able to collaborate or supplement. Reach out and we'll talk through it — no obligation.</div>
+          </div>
+        </div>
+        <div class="faq-item reveal">
+          <button class="faq-trigger">
+            What platforms do you work across?
+            <span class="faq-icon">+</span>
+          </button>
+          <div class="faq-body">
+            <div class="faq-body-inner">All of them — Instagram, TikTok, YouTube, X, LinkedIn, Substack, podcasts. We're platform-agnostic. What matters is your audience and your goals, not which app you're on.</div>
+          </div>
+        </div>
+        <div class="faq-item reveal">
+          <button class="faq-trigger">
+            How does the application process work?
+            <span class="faq-icon">+</span>
+          </button>
+          <div class="faq-body">
+            <div class="faq-body-inner">Fill out the form below. We review every submission and reach out within a few business days if there's a fit. If we move forward, we'll schedule a strategy call to go deeper.</div>
+          </div>
+        </div>
+        <div class="faq-item reveal">
+          <button class="faq-trigger">
+            What does Vessels charge?
+            <span class="faq-icon">+</span>
+          </button>
+          <div class="faq-body">
+            <div class="faq-body-inner">Our model varies based on the scope of the partnership. We discuss all of that on the strategy call — no surprises. Our goal is to structure deals that make sense for both sides.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── Apply Form ── -->
+  <section class="section apply" id="apply">
+    <div class="container">
+      <div class="apply-inner">
+        <div class="apply-copy">
+          <span class="label-overline reveal">Apply Now</span>
+          <span class="gold-rule gold-rule-left reveal"></span>
+          <h2 class="display-lg reveal">Ready to Build<br>Something Real?</h2>
+          <p class="reveal" style="margin-top:1rem;margin-bottom:2rem;">
+            Fill out the form and we'll be in touch within a few business days. Every application is reviewed personally — no auto-responders, no form letters.
+          </p>
+          <div class="apply-proof">
+            <div class="proof-item reveal">
+              <div class="proof-check">✓</div>
+              <span>Platform builds — website, email, community infrastructure</span>
+            </div>
+            <div class="proof-item reveal reveal-delay-1">
+              <div class="proof-check">✓</div>
+              <span>Product and brand launches from concept to market</span>
+            </div>
+            <div class="proof-item reveal reveal-delay-2">
+              <div class="proof-check">✓</div>
+              <span>Access to the Vessels brand and creator network</span>
+            </div>
+            <div class="proof-item reveal reveal-delay-3">
+              <div class="proof-check">✓</div>
+              <span>Deal strategy and monetization beyond brand deals</span>
+            </div>
+            <div class="proof-item reveal reveal-delay-4">
+              <div class="proof-check">✓</div>
+              <span>Long-term partnership — we grow when you grow</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="apply-form-wrap reveal">
+          <div class="form-title">Creator Application</div>
+          <div class="form-subtitle">Tell us about yourself and your goals.</div>
+
+          <form class="contact-form" id="creator-form">
+            <div class="form-row">
+              <div class="form-group">
+                <label for="c-name">Your Name</label>
+                <input type="text" id="c-name" name="name" placeholder="Alex Johnson" required />
+              </div>
+              <div class="form-group">
+                <label for="c-email">Email</label>
+                <input type="email" id="c-email" name="email" placeholder="alex@example.com" required />
+              </div>
+            </div>
+            <div class="form-row">
+              <div class="form-group">
+                <label for="c-platform">Primary Platform</label>
+                <select id="c-platform" name="primary_platform">
+                  <option value="" disabled selected>Select platform</option>
+                  <option>Instagram</option>
+                  <option>TikTok</option>
+                  <option>YouTube</option>
+                  <option>X / Twitter</option>
+                  <option>LinkedIn</option>
+                  <option>Substack / Newsletter</option>
+                  <option>Podcast</option>
+                  <option>Multiple Platforms</option>
+                </select>
+              </div>
+              <div class="form-group">
+                <label for="c-handle">Your Handle / Channel</label>
+                <input type="text" id="c-handle" name="handle" placeholder="@yourhandle" />
+              </div>
+            </div>
+            <div class="form-row">
+              <div class="form-group">
+                <label for="c-followers">Follower Count</label>
+                <select id="c-followers" name="follower_count">
+                  <option value="" disabled selected>Select range</option>
+                  <option>50k – 100k</option>
+                  <option>100k – 250k</option>
+                  <option>250k – 500k</option>
+                  <option>500k – 1M</option>
+                  <option>1M+</option>
+                </select>
+              </div>
+              <div class="form-group">
+                <label for="c-niche">Content Niche</label>
+                <input type="text" id="c-niche" name="content_niche" placeholder="e.g. fitness, finance, lifestyle" />
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="c-goals">What do you want to build?</label>
+              <textarea id="c-goals" name="message" placeholder="Tell us about your goals — whether that's launching a product, building a website, monetizing your audience, or something else entirely." required></textarea>
+            </div>
+            <button type="submit" class="btn-primary form-submit">Submit Application →</button>
+          </form>
+
+          <div class="form-success" id="form-success">
+            <div class="form-success-icon">✓</div>
+            <h3>Application Received</h3>
+            <p>We'll review your application and reach out within a few business days. Talk soon.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── Final CTA ── -->
+  <section class="section final-cta">
+    <div class="container">
+      <span class="label-overline reveal" style="color:var(--gold-light);">Your Move</span>
+      <span class="gold-rule reveal"></span>
+      <h2 class="display-lg reveal" style="color:var(--white);max-width:640px;margin:0 auto 1rem;">
+        The Best Time to Build Was Yesterday.<br><em style="color:var(--gold-light);">The Second Best Is Now.</em>
+      </h2>
+      <p class="reveal" style="color:rgba(255,255,255,0.5);max-width:480px;margin:0 auto 2.5rem;">
+        Your audience is waiting for more from you. Let's give it to them.
+      </p>
+      <div class="reveal">
+        <a href="#apply" class="btn-primary" style="font-size:1rem;padding:1rem 2.25rem;">Apply to Work With Vessels →</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── Footer ── -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-inner">
+        <div class="footer-logo">Vessels<span>.</span></div>
+        <div class="footer-links">
+          <a href="/">For Brands</a>
+          <a href="/creators">For Creators</a>
+          <a href="mailto:hello@vssls.co">hello@vssls.co</a>
+        </div>
+        <div class="footer-copy">© 2025 Vessels. All rights reserved.</div>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // ── Nav scroll ──
+    const nav = document.getElementById('nav');
+    window.addEventListener('scroll', () => {
+      nav.classList.toggle('scrolled', window.scrollY > 40);
+    }, { passive: true });
+
+    // ── Scroll Reveal ──
+    const reveals = document.querySelectorAll('.reveal');
+    const revealObserver = new IntersectionObserver((entries) => {
+      entries.forEach(e => {
+        if (e.isIntersecting) { e.target.classList.add('visible'); revealObserver.unobserve(e.target); }
+      });
+    }, { threshold: 0.08, rootMargin: '0px 0px -40px 0px' });
+    reveals.forEach(el => revealObserver.observe(el));
+
+    // ── FAQ Accordion ──
+    document.querySelectorAll('.faq-trigger').forEach(trigger => {
+      trigger.addEventListener('click', () => {
+        const item = trigger.closest('.faq-item');
+        const body = item.querySelector('.faq-body');
+        const isOpen = item.classList.contains('open');
+
+        // Close all
+        document.querySelectorAll('.faq-item').forEach(i => {
+          i.classList.remove('open');
+          i.querySelector('.faq-body').style.maxHeight = null;
+        });
+
+        // Toggle clicked
+        if (!isOpen) {
+          item.classList.add('open');
+          body.style.maxHeight = body.scrollHeight + 'px';
+        }
+      });
+    });
+
+    // ── Form Submission ──
+    const form = document.getElementById('creator-form');
+    const successEl = document.getElementById('form-success');
+
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const btn = form.querySelector('.form-submit');
+      btn.textContent = 'Submitting…';
+      btn.disabled = true;
+
+      const data = new FormData(form);
+      data.append('_subject', '[CREATOR] New Creator Application – Vessels');
+      data.append('_captcha', 'false');
+
+      try {
+        const res = await fetch('https://formsubmit.co/ajax/3d6e21d74712a6047b69ba5e2aff79d9', {
+          method: 'POST',
+          headers: { 'Accept': 'application/json' },
+          body: data
+        });
+        const json = await res.json();
+        if (json.success === 'true' || json.success === true) {
+          form.style.display = 'none';
+          successEl.style.display = 'block';
+        } else {
+          throw new Error('Submission failed');
+        }
+      } catch {
+        btn.textContent = 'Something went wrong — try again';
+        btn.disabled = false;
+      }
+    });
+  </script>
+</body>
+</html>
