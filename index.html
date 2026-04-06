@@ -123,7 +123,42 @@
       margin-bottom: 0.4rem;
       position: relative;
     }
-    #scramble-word { color: var(--white); }
+    #scramble-word { color: var(--white); display: inline-block; }
+    #scramble-word .letter {
+      display: inline-block;
+      opacity: 0;
+      transform: translateY(16px);
+      filter: blur(6px);
+      transition:
+        opacity  0.6s cubic-bezier(0.22,1,0.36,1),
+        transform 0.6s cubic-bezier(0.22,1,0.36,1),
+        filter   0.6s cubic-bezier(0.22,1,0.36,1);
+    }
+    #scramble-word .letter.visible {
+      opacity: 1;
+      transform: translateY(0);
+      filter: blur(0);
+    }
+    /* Gold shimmer sweep after reveal */
+    @keyframes shimmerSweep {
+      0%   { background-position: -300% center; }
+      100% { background-position: 300% center; }
+    }
+    #scramble-word.shimmering {
+      background: linear-gradient(
+        90deg,
+        var(--white) 30%,
+        var(--gold-light) 47%,
+        #fff8ec 50%,
+        var(--gold-light) 53%,
+        var(--white) 70%
+      );
+      background-size: 300% auto;
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      animation: shimmerSweep 1s ease forwards;
+    }
     .title-period {
       color: var(--gold-light);
       display: inline-block;
@@ -615,27 +650,37 @@ document.addEventListener('mousemove', e => { mouseX = e.clientX; mouseY = e.cli
 resize(); init(); loop();
 window.addEventListener('resize', () => { resize(); init(); });
 
-/* ── Text scramble ── */
-const chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz';
+/* ── Smooth letter reveal ── */
 const word = 'Vessels';
 const scramEl = document.getElementById('scramble-word');
-let iter = 0, intv = null;
 
-function runScramble() {
-  if (intv) clearInterval(intv);
-  iter = 0;
-  intv = setInterval(() => {
-    scramEl.textContent = word.split('').map((c, i) =>
-      i < iter ? word[i] : chars[Math.floor(Math.random()*chars.length)]
-    ).join('');
-    if (iter >= word.length) clearInterval(intv);
-    iter += .35;
-  }, 38);
+// Build letter spans
+scramEl.innerHTML = word.split('').map(c =>
+  `<span class="letter">${c}</span>`
+).join('');
+
+const letters = scramEl.querySelectorAll('.letter');
+
+function revealLetters(startDelay) {
+  // Reset
+  letters.forEach(l => l.classList.remove('visible'));
+  // Stagger each letter in
+  letters.forEach((l, i) => {
+    setTimeout(() => l.classList.add('visible'), startDelay + i * 65);
+  });
+  // Shimmer sweep after all letters are in
+  const totalReveal = startDelay + word.length * 65 + 200;
+  setTimeout(() => {
+    scramEl.classList.add('shimmering');
+    setTimeout(() => scramEl.classList.remove('shimmering'), 1100);
+  }, totalReveal);
 }
-setTimeout(runScramble, 800);
 
-// Re-scramble on logo hover
-scramEl.closest('h1').addEventListener('mouseenter', () => runScramble());
+// Initial reveal
+revealLetters(750);
+
+// Replay on hover
+scramEl.closest('h1').addEventListener('mouseenter', () => revealLetters(0));
 
 /* ── 3D card tilt ── */
 document.querySelectorAll('.path-card').forEach(card => {
