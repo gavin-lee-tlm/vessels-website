@@ -1,0 +1,2146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Vessels — Creator Growth & Influencer Marketing</title>
+  <meta name="description" content="Vessels builds creator ecosystems for ecommerce brands. Influencer seeding, affiliate programs, UGC content, and performance marketing — all done for you." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet" />
+
+  <style>
+    /* ─────────────────────────────────────────
+       TOKENS & RESET
+    ───────────────────────────────────────── */
+    :root {
+      --cream:       #F5F0E8;
+      --cream-dark:  #EDE7D9;
+      --cream-mid:   #F0EBE0;
+      --charcoal:    #1A1814;
+      --charcoal-60: rgba(26,24,20,0.6);
+      --charcoal-30: rgba(26,24,20,0.3);
+      --charcoal-10: rgba(26,24,20,0.08);
+      --gold:        #B8975A;
+      --gold-light:  #D4B478;
+      --gold-pale:   rgba(184,151,90,0.12);
+      --white:       #FDFCFA;
+      --black:       #0D0C0A;
+
+      --font-display: 'Playfair Display', Georgia, serif;
+      --font-body:    'DM Sans', system-ui, sans-serif;
+
+      --radius-sm:   6px;
+      --radius-md:   12px;
+      --radius-lg:   20px;
+      --radius-pill: 999px;
+
+      --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    html { scroll-behavior: smooth; font-size: 16px; }
+
+    body {
+      background: var(--cream);
+      color: var(--charcoal);
+      font-family: var(--font-body);
+      font-weight: 400;
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+      overflow-x: hidden;
+    }
+
+    /* ─────────────────────────────────────────
+       GLOBAL UTILITY
+    ───────────────────────────────────────── */
+    .container {
+      max-width: 1140px;
+      margin: 0 auto;
+      padding: 0 32px;
+    }
+
+    .label {
+      display: inline-block;
+      font-family: var(--font-body);
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 20px;
+    }
+
+    .section-eyebrow {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 20px;
+    }
+
+    .section-eyebrow::before {
+      content: '';
+      display: block;
+      width: 28px;
+      height: 1px;
+      background: var(--gold);
+    }
+
+    h1, h2, h3, h4 {
+      font-family: var(--font-display);
+      font-weight: 600;
+      line-height: 1.15;
+      letter-spacing: -0.02em;
+    }
+
+    p { color: var(--charcoal-60); line-height: 1.75; }
+
+    a { text-decoration: none; color: inherit; }
+
+    /* Fade-in on scroll */
+    .reveal {
+      opacity: 0;
+      transform: translateY(28px);
+      transition: opacity 0.7s var(--ease-out), transform 0.7s var(--ease-out);
+    }
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* ─────────────────────────────────────────
+       NOISE TEXTURE OVERLAY
+    ───────────────────────────────────────── */
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      z-index: 999;
+      opacity: 0.025;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+      background-size: 128px;
+    }
+
+    /* ─────────────────────────────────────────
+       NAVIGATION
+    ───────────────────────────────────────── */
+    nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 100;
+      padding: 20px 0;
+      transition: background 0.4s ease, backdrop-filter 0.4s ease, border-color 0.4s ease;
+      border-bottom: 1px solid transparent;
+    }
+
+    nav.scrolled {
+      background: rgba(245, 240, 232, 0.88);
+      backdrop-filter: blur(18px);
+      -webkit-backdrop-filter: blur(18px);
+      border-color: var(--charcoal-10);
+    }
+
+    .nav-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .nav-logo {
+      font-family: var(--font-display);
+      font-size: 22px;
+      font-weight: 700;
+      color: var(--charcoal);
+      letter-spacing: -0.03em;
+    }
+
+    .nav-logo span {
+      color: var(--gold);
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 36px;
+      list-style: none;
+    }
+
+    .nav-links a {
+      font-size: 14px;
+      font-weight: 500;
+      color: var(--charcoal-60);
+      transition: color 0.2s;
+    }
+
+    .nav-links a:hover { color: var(--charcoal); }
+
+    .btn-nav {
+      background: var(--charcoal);
+      color: var(--cream);
+      font-family: var(--font-body);
+      font-size: 13px;
+      font-weight: 600;
+      padding: 10px 22px;
+      border-radius: var(--radius-pill);
+      border: none;
+      cursor: pointer;
+      transition: background 0.2s, transform 0.15s;
+      letter-spacing: 0.01em;
+    }
+
+    .btn-nav:hover {
+      background: var(--black);
+      transform: translateY(-1px);
+    }
+
+    .hamburger {
+      display: none;
+      flex-direction: column;
+      gap: 5px;
+      cursor: pointer;
+      padding: 4px;
+    }
+
+    .hamburger span {
+      display: block;
+      width: 22px;
+      height: 1.5px;
+      background: var(--charcoal);
+      transition: 0.3s;
+    }
+
+    /* ─────────────────────────────────────────
+       HERO
+    ───────────────────────────────────────── */
+    #hero {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 140px 32px 80px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    /* Decorative radial glow */
+    #hero::after {
+      content: '';
+      position: absolute;
+      top: -10%;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 800px;
+      height: 800px;
+      background: radial-gradient(ellipse at center, rgba(184,151,90,0.13) 0%, transparent 70%);
+      pointer-events: none;
+    }
+
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: var(--gold-pale);
+      border: 1px solid rgba(184,151,90,0.3);
+      border-radius: var(--radius-pill);
+      padding: 6px 16px;
+      font-size: 12px;
+      font-weight: 600;
+      color: var(--gold);
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      margin-bottom: 36px;
+    }
+
+    .hero-badge::before {
+      content: '';
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: var(--gold);
+      animation: pulse 2s ease-in-out infinite;
+    }
+
+    @keyframes pulse {
+      0%, 100% { opacity: 1; transform: scale(1); }
+      50% { opacity: 0.5; transform: scale(0.8); }
+    }
+
+    #hero h1 {
+      font-size: clamp(46px, 7vw, 84px);
+      max-width: 860px;
+      margin: 0 auto 28px;
+      color: var(--charcoal);
+      line-height: 1.08;
+    }
+
+    #hero h1 em {
+      font-style: italic;
+      color: var(--gold);
+    }
+
+    .hero-sub {
+      font-size: clamp(16px, 2vw, 20px);
+      color: var(--charcoal-60);
+      max-width: 560px;
+      margin: 0 auto 48px;
+      font-weight: 400;
+      line-height: 1.65;
+    }
+
+    .hero-ctas {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+
+    .btn-primary {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: var(--charcoal);
+      color: var(--cream);
+      font-family: var(--font-body);
+      font-size: 15px;
+      font-weight: 600;
+      padding: 15px 32px;
+      border-radius: var(--radius-pill);
+      border: none;
+      cursor: pointer;
+      transition: background 0.2s, transform 0.2s, box-shadow 0.2s;
+      letter-spacing: 0.01em;
+    }
+
+    .btn-primary:hover {
+      background: var(--black);
+      transform: translateY(-2px);
+      box-shadow: 0 12px 32px rgba(26,24,20,0.18);
+    }
+
+    .btn-primary .arrow {
+      display: inline-block;
+      transition: transform 0.2s;
+    }
+
+    .btn-primary:hover .arrow { transform: translateX(3px); }
+
+    .btn-secondary {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: transparent;
+      color: var(--charcoal);
+      font-family: var(--font-body);
+      font-size: 15px;
+      font-weight: 500;
+      padding: 15px 28px;
+      border-radius: var(--radius-pill);
+      border: 1.5px solid var(--charcoal-30);
+      cursor: pointer;
+      transition: border-color 0.2s, background 0.2s;
+    }
+
+    .btn-secondary:hover {
+      border-color: var(--charcoal);
+      background: var(--charcoal-10);
+    }
+
+    .hero-trust {
+      margin-top: 56px;
+      font-size: 12px;
+      font-weight: 500;
+      color: var(--charcoal-30);
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+    }
+
+    /* ─────────────────────────────────────────
+       STATS STRIP
+    ───────────────────────────────────────── */
+    #stats {
+      background: var(--charcoal);
+      padding: 60px 0;
+    }
+
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 0;
+    }
+
+    .stat-item {
+      text-align: center;
+      padding: 20px 24px;
+      position: relative;
+    }
+
+    .stat-item:not(:last-child)::after {
+      content: '';
+      position: absolute;
+      right: 0;
+      top: 20%;
+      height: 60%;
+      width: 1px;
+      background: rgba(245,240,232,0.1);
+    }
+
+    .stat-number {
+      font-family: var(--font-display);
+      font-size: clamp(36px, 4vw, 52px);
+      font-weight: 700;
+      color: var(--cream);
+      letter-spacing: -0.03em;
+      display: block;
+    }
+
+    .stat-number span { color: var(--gold-light); }
+
+    .stat-label {
+      font-size: 13px;
+      font-weight: 400;
+      color: rgba(245,240,232,0.5);
+      margin-top: 6px;
+      letter-spacing: 0.04em;
+    }
+
+    /* ─────────────────────────────────────────
+       PROBLEM
+    ───────────────────────────────────────── */
+    #problem {
+      padding: 120px 0;
+    }
+
+    .problem-layout {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 80px;
+      align-items: start;
+    }
+
+    .problem-left h2 {
+      font-size: clamp(34px, 3.5vw, 52px);
+      margin-bottom: 24px;
+    }
+
+    .problem-left p {
+      font-size: 17px;
+      max-width: 440px;
+    }
+
+    .pain-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+
+    .pain-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 16px;
+      padding: 20px 24px;
+      background: var(--white);
+      border: 1px solid var(--charcoal-10);
+      border-radius: var(--radius-md);
+      transition: border-color 0.2s, box-shadow 0.2s;
+    }
+
+    .pain-item:hover {
+      border-color: var(--charcoal-30);
+      box-shadow: 0 4px 20px rgba(26,24,20,0.06);
+    }
+
+    .pain-icon {
+      width: 36px;
+      height: 36px;
+      border-radius: var(--radius-sm);
+      background: var(--cream-dark);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      font-size: 16px;
+    }
+
+    .pain-item h4 {
+      font-family: var(--font-body);
+      font-size: 15px;
+      font-weight: 600;
+      color: var(--charcoal);
+      margin-bottom: 4px;
+      letter-spacing: 0;
+    }
+
+    .pain-item p {
+      font-size: 13px;
+      color: var(--charcoal-60);
+      line-height: 1.55;
+    }
+
+    /* ─────────────────────────────────────────
+       SOLUTION
+    ───────────────────────────────────────── */
+    #solution {
+      background: var(--charcoal);
+      padding: 120px 0;
+      position: relative;
+      overflow: hidden;
+    }
+
+    #solution::before {
+      content: '';
+      position: absolute;
+      top: -200px;
+      right: -200px;
+      width: 600px;
+      height: 600px;
+      background: radial-gradient(ellipse, rgba(184,151,90,0.1) 0%, transparent 65%);
+      pointer-events: none;
+    }
+
+    .solution-header {
+      text-align: center;
+      margin-bottom: 72px;
+    }
+
+    .solution-header .label { color: var(--gold-light); }
+
+    .solution-header h2 {
+      font-size: clamp(36px, 4vw, 58px);
+      color: var(--cream);
+      max-width: 680px;
+      margin: 0 auto 20px;
+    }
+
+    .solution-header p {
+      color: rgba(245,240,232,0.5);
+      font-size: 17px;
+      max-width: 520px;
+      margin: 0 auto;
+    }
+
+    .solution-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 2px;
+      background: rgba(245,240,232,0.06);
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+    }
+
+    .solution-card {
+      background: rgba(26,24,20,0.6);
+      padding: 36px 32px;
+      transition: background 0.3s;
+    }
+
+    .solution-card:hover {
+      background: rgba(26,24,20,0.9);
+    }
+
+    .sol-icon {
+      width: 44px;
+      height: 44px;
+      border-radius: var(--radius-sm);
+      background: var(--gold-pale);
+      border: 1px solid rgba(184,151,90,0.25);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 20px;
+      margin-bottom: 20px;
+    }
+
+    .solution-card h3 {
+      font-family: var(--font-body);
+      font-size: 16px;
+      font-weight: 600;
+      color: var(--cream);
+      margin-bottom: 10px;
+      letter-spacing: 0;
+    }
+
+    .solution-card p {
+      font-size: 14px;
+      color: rgba(245,240,232,0.45);
+      line-height: 1.65;
+    }
+
+    /* ─────────────────────────────────────────
+       HOW IT WORKS
+    ───────────────────────────────────────── */
+    #how {
+      padding: 120px 0;
+    }
+
+    .how-header {
+      text-align: center;
+      margin-bottom: 72px;
+    }
+
+    .how-header h2 {
+      font-size: clamp(34px, 3.5vw, 52px);
+      max-width: 600px;
+      margin: 0 auto 20px;
+    }
+
+    .how-header p {
+      font-size: 17px;
+      max-width: 480px;
+      margin: 0 auto;
+    }
+
+    .steps {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 0;
+      position: relative;
+    }
+
+    .steps::before {
+      content: '';
+      position: absolute;
+      top: 36px;
+      left: 12.5%;
+      right: 12.5%;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, var(--gold-light), var(--gold-light), transparent);
+      opacity: 0.35;
+    }
+
+    .step {
+      padding: 0 24px;
+      text-align: center;
+      position: relative;
+    }
+
+    .step-num {
+      width: 72px;
+      height: 72px;
+      border-radius: 50%;
+      background: var(--white);
+      border: 1px solid var(--charcoal-10);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 28px;
+      font-family: var(--font-display);
+      font-size: 26px;
+      font-weight: 600;
+      color: var(--charcoal);
+      position: relative;
+      z-index: 1;
+      transition: background 0.3s, border-color 0.3s;
+    }
+
+    .step:hover .step-num {
+      background: var(--gold-pale);
+      border-color: var(--gold);
+    }
+
+    .step h3 {
+      font-family: var(--font-body);
+      font-size: 16px;
+      font-weight: 700;
+      color: var(--charcoal);
+      margin-bottom: 10px;
+      letter-spacing: 0;
+    }
+
+    .step p {
+      font-size: 14px;
+      color: var(--charcoal-60);
+    }
+
+    /* ─────────────────────────────────────────
+       CREATOR ENGINE
+    ───────────────────────────────────────── */
+    #engine {
+      background: var(--cream-dark);
+      padding: 120px 0;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .engine-layout {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 80px;
+      align-items: center;
+    }
+
+    .engine-left h2 {
+      font-size: clamp(34px, 3.5vw, 52px);
+      margin-bottom: 24px;
+    }
+
+    .engine-left p {
+      font-size: 17px;
+      margin-bottom: 32px;
+      max-width: 440px;
+    }
+
+    .engine-points {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+    }
+
+    .engine-point {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      font-size: 15px;
+      font-weight: 500;
+      color: var(--charcoal);
+    }
+
+    .engine-point::before {
+      content: '';
+      width: 20px;
+      height: 20px;
+      border-radius: 50%;
+      background: var(--gold-pale);
+      border: 1px solid var(--gold);
+      display: flex;
+      flex-shrink: 0;
+      background-image: url("data:image/svg+xml,%3Csvg width='10' height='8' viewBox='0 0 10 8' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M1 4L3.5 6.5L9 1' stroke='%23B8975A' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+      background-repeat: no-repeat;
+      background-position: center;
+    }
+
+    .engine-visual {
+      position: relative;
+    }
+
+    .engine-card-stack {
+      position: relative;
+      height: 380px;
+    }
+
+    .e-card {
+      position: absolute;
+      border-radius: var(--radius-lg);
+      padding: 28px 32px;
+    }
+
+    .e-card-back {
+      background: var(--charcoal);
+      width: 85%;
+      right: 0;
+      top: 24px;
+      bottom: 24px;
+      opacity: 0.15;
+    }
+
+    .e-card-mid {
+      background: var(--charcoal);
+      width: 92%;
+      right: 4%;
+      top: 12px;
+      bottom: 12px;
+      opacity: 0.35;
+    }
+
+    .e-card-front {
+      background: var(--charcoal);
+      width: 100%;
+      right: 0;
+      top: 0;
+      bottom: 0;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    .e-card-label {
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--gold-light);
+      margin-bottom: 20px;
+    }
+
+    .e-metric {
+      margin-bottom: 16px;
+    }
+
+    .e-metric-num {
+      font-family: var(--font-display);
+      font-size: 40px;
+      font-weight: 700;
+      color: var(--cream);
+      letter-spacing: -0.03em;
+    }
+
+    .e-metric-label {
+      font-size: 13px;
+      color: rgba(245,240,232,0.45);
+      margin-top: 2px;
+    }
+
+    .e-bars {
+      display: flex;
+      gap: 5px;
+      align-items: flex-end;
+      height: 56px;
+      margin-top: 20px;
+    }
+
+    .e-bar {
+      flex: 1;
+      border-radius: 3px 3px 0 0;
+      background: rgba(184,151,90,0.3);
+      transition: height 0.5s;
+    }
+
+    .e-bar.active { background: var(--gold-light); }
+
+    /* ─────────────────────────────────────────
+       RESULTS
+    ───────────────────────────────────────── */
+    #results {
+      padding: 120px 0;
+    }
+
+    .results-header {
+      text-align: center;
+      margin-bottom: 64px;
+    }
+
+    .results-header h2 {
+      font-size: clamp(34px, 3.5vw, 52px);
+      max-width: 580px;
+      margin: 0 auto 20px;
+    }
+
+    .results-header p {
+      font-size: 17px;
+      max-width: 460px;
+      margin: 0 auto;
+    }
+
+    .results-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 24px;
+    }
+
+    .result-card {
+      background: var(--white);
+      border: 1px solid var(--charcoal-10);
+      border-radius: var(--radius-lg);
+      padding: 44px 40px;
+      transition: border-color 0.3s, box-shadow 0.3s;
+    }
+
+    .result-card:hover {
+      border-color: var(--gold);
+      box-shadow: 0 0 0 4px var(--gold-pale);
+    }
+
+    .result-card.featured {
+      background: var(--charcoal);
+      border-color: transparent;
+      grid-row: span 2;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    .result-tag {
+      display: inline-block;
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      padding: 5px 12px;
+      border-radius: var(--radius-pill);
+      background: var(--gold-pale);
+      color: var(--gold);
+      border: 1px solid rgba(184,151,90,0.3);
+      margin-bottom: 24px;
+    }
+
+    .result-card.featured .result-tag {
+      background: rgba(184,151,90,0.15);
+    }
+
+    .result-stat {
+      font-family: var(--font-display);
+      font-size: clamp(40px, 4vw, 60px);
+      font-weight: 700;
+      color: var(--charcoal);
+      letter-spacing: -0.03em;
+      line-height: 1;
+      margin-bottom: 12px;
+    }
+
+    .result-card.featured .result-stat { color: var(--cream); }
+
+    .result-desc {
+      font-size: 15px;
+      color: var(--charcoal-60);
+      line-height: 1.6;
+    }
+
+    .result-card.featured .result-desc { color: rgba(245,240,232,0.5); }
+
+    .result-card.featured .result-bottom {
+      margin-top: 40px;
+      padding-top: 32px;
+      border-top: 1px solid rgba(245,240,232,0.1);
+    }
+
+    .result-brand {
+      font-family: var(--font-body);
+      font-size: 12px;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--gold-light);
+    }
+
+    .result-quote {
+      font-family: var(--font-display);
+      font-size: 18px;
+      font-style: italic;
+      color: rgba(245,240,232,0.75);
+      line-height: 1.55;
+      margin-top: 10px;
+    }
+
+    /* ─────────────────────────────────────────
+       WHY VESSELS
+    ───────────────────────────────────────── */
+    #why {
+      background: var(--cream-dark);
+      padding: 120px 0;
+    }
+
+    .why-header {
+      text-align: center;
+      margin-bottom: 64px;
+    }
+
+    .why-header h2 {
+      font-size: clamp(34px, 3.5vw, 52px);
+      max-width: 580px;
+      margin: 0 auto 20px;
+    }
+
+    .why-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 24px;
+    }
+
+    .why-card {
+      background: var(--white);
+      border: 1px solid var(--charcoal-10);
+      border-radius: var(--radius-lg);
+      padding: 36px;
+      display: flex;
+      gap: 24px;
+      transition: border-color 0.3s;
+    }
+
+    .why-card:hover { border-color: var(--charcoal-30); }
+
+    .why-num {
+      font-family: var(--font-display);
+      font-size: 48px;
+      font-weight: 700;
+      color: var(--gold);
+      opacity: 0.35;
+      line-height: 1;
+      flex-shrink: 0;
+      width: 40px;
+    }
+
+    .why-content h3 {
+      font-family: var(--font-body);
+      font-size: 16px;
+      font-weight: 700;
+      color: var(--charcoal);
+      margin-bottom: 10px;
+      letter-spacing: 0;
+    }
+
+    .why-content p {
+      font-size: 14px;
+      color: var(--charcoal-60);
+      line-height: 1.65;
+    }
+
+    /* ─────────────────────────────────────────
+       PRICING POSITIONING
+    ───────────────────────────────────────── */
+    #pricing {
+      padding: 120px 0;
+    }
+
+    .pricing-header {
+      text-align: center;
+      margin-bottom: 64px;
+    }
+
+    .pricing-header h2 {
+      font-size: clamp(34px, 3.5vw, 52px);
+      max-width: 580px;
+      margin: 0 auto 20px;
+    }
+
+    .pricing-header p {
+      font-size: 17px;
+      max-width: 480px;
+      margin: 0 auto;
+    }
+
+    .pricing-cards {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+      max-width: 900px;
+      margin: 0 auto;
+    }
+
+    .pricing-card {
+      background: var(--white);
+      border: 1px solid var(--charcoal-10);
+      border-radius: var(--radius-lg);
+      padding: 36px 32px;
+      text-align: center;
+      transition: border-color 0.3s, box-shadow 0.3s;
+    }
+
+    .pricing-card:hover {
+      border-color: var(--charcoal-30);
+      box-shadow: 0 8px 32px rgba(26,24,20,0.08);
+    }
+
+    .pricing-card.popular {
+      background: var(--charcoal);
+      border-color: transparent;
+      position: relative;
+    }
+
+    .popular-badge {
+      position: absolute;
+      top: -14px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: var(--gold);
+      color: var(--charcoal);
+      font-size: 11px;
+      font-weight: 700;
+      padding: 4px 14px;
+      border-radius: var(--radius-pill);
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      white-space: nowrap;
+    }
+
+    .pricing-tier {
+      font-size: 12px;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 12px;
+    }
+
+    .pricing-card.popular .pricing-tier { color: var(--gold-light); }
+
+    .pricing-price {
+      font-family: var(--font-display);
+      font-size: 32px;
+      font-weight: 700;
+      color: var(--charcoal);
+      margin-bottom: 6px;
+    }
+
+    .pricing-card.popular .pricing-price { color: var(--cream); }
+
+    .pricing-desc {
+      font-size: 13px;
+      color: var(--charcoal-60);
+      margin-bottom: 24px;
+      line-height: 1.55;
+    }
+
+    .pricing-card.popular .pricing-desc { color: rgba(245,240,232,0.5); }
+
+    .pricing-features {
+      list-style: none;
+      text-align: left;
+      margin-bottom: 28px;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .pricing-feature {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 13px;
+      color: var(--charcoal-60);
+    }
+
+    .pricing-card.popular .pricing-feature { color: rgba(245,240,232,0.6); }
+
+    .pricing-feature::before {
+      content: '✓';
+      font-size: 11px;
+      font-weight: 700;
+      color: var(--gold);
+      flex-shrink: 0;
+    }
+
+    .btn-pricing-dark {
+      display: block;
+      width: 100%;
+      padding: 13px 20px;
+      background: var(--charcoal);
+      color: var(--cream);
+      border: none;
+      border-radius: var(--radius-pill);
+      font-family: var(--font-body);
+      font-size: 14px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: background 0.2s;
+    }
+
+    .btn-pricing-dark:hover { background: var(--black); }
+
+    .btn-pricing-light {
+      display: block;
+      width: 100%;
+      padding: 13px 20px;
+      background: transparent;
+      color: var(--charcoal);
+      border: 1.5px solid var(--charcoal-30);
+      border-radius: var(--radius-pill);
+      font-family: var(--font-body);
+      font-size: 14px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: border-color 0.2s;
+    }
+
+    .btn-pricing-light:hover { border-color: var(--charcoal); }
+
+    .btn-pricing-gold {
+      display: block;
+      width: 100%;
+      padding: 13px 20px;
+      background: var(--gold);
+      color: var(--charcoal);
+      border: none;
+      border-radius: var(--radius-pill);
+      font-family: var(--font-body);
+      font-size: 14px;
+      font-weight: 700;
+      cursor: pointer;
+      transition: background 0.2s;
+    }
+
+    .btn-pricing-gold:hover { background: var(--gold-light); }
+
+    /* ─────────────────────────────────────────
+       MID CTA BAND
+    ───────────────────────────────────────── */
+    #mid-cta {
+      background: var(--charcoal);
+      padding: 80px 0;
+      text-align: center;
+    }
+
+    #mid-cta h2 {
+      font-size: clamp(28px, 3vw, 44px);
+      color: var(--cream);
+      max-width: 560px;
+      margin: 0 auto 20px;
+    }
+
+    #mid-cta p {
+      color: rgba(245,240,232,0.5);
+      font-size: 16px;
+      margin-bottom: 36px;
+    }
+
+    .btn-gold {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: var(--gold);
+      color: var(--charcoal);
+      font-family: var(--font-body);
+      font-size: 15px;
+      font-weight: 700;
+      padding: 15px 34px;
+      border-radius: var(--radius-pill);
+      border: none;
+      cursor: pointer;
+      transition: background 0.2s, transform 0.2s;
+    }
+
+    .btn-gold:hover {
+      background: var(--gold-light);
+      transform: translateY(-2px);
+    }
+
+    /* ─────────────────────────────────────────
+       FAQ
+    ───────────────────────────────────────── */
+    #faq {
+      padding: 120px 0;
+    }
+
+    .faq-header {
+      text-align: center;
+      margin-bottom: 64px;
+    }
+
+    .faq-header h2 {
+      font-size: clamp(34px, 3.5vw, 52px);
+      max-width: 520px;
+      margin: 0 auto 20px;
+    }
+
+    .faq-list {
+      max-width: 720px;
+      margin: 0 auto;
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+      border: 1px solid var(--charcoal-10);
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+    }
+
+    .faq-item {
+      border-bottom: 1px solid var(--charcoal-10);
+      background: var(--white);
+    }
+
+    .faq-item:last-child { border-bottom: none; }
+
+    .faq-question {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 24px 28px;
+      cursor: pointer;
+      user-select: none;
+      gap: 20px;
+    }
+
+    .faq-question h4 {
+      font-family: var(--font-body);
+      font-size: 15px;
+      font-weight: 600;
+      color: var(--charcoal);
+      letter-spacing: 0;
+    }
+
+    .faq-icon {
+      width: 28px;
+      height: 28px;
+      border-radius: 50%;
+      background: var(--cream-dark);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      font-size: 18px;
+      color: var(--charcoal);
+      transition: transform 0.3s, background 0.2s;
+      font-weight: 300;
+    }
+
+    .faq-item.open .faq-icon {
+      transform: rotate(45deg);
+      background: var(--gold-pale);
+      color: var(--gold);
+    }
+
+    .faq-answer {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.4s var(--ease-out), padding 0.3s;
+      padding: 0 28px;
+    }
+
+    .faq-item.open .faq-answer {
+      max-height: 200px;
+      padding-bottom: 24px;
+    }
+
+    .faq-answer p {
+      font-size: 14px;
+      color: var(--charcoal-60);
+      line-height: 1.75;
+    }
+
+    /* ─────────────────────────────────────────
+       FINAL CTA
+    ───────────────────────────────────────── */
+    #final-cta {
+      padding: 120px 0;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    #final-cta::before {
+      content: '';
+      position: absolute;
+      bottom: -100px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 700px;
+      height: 700px;
+      background: radial-gradient(ellipse, rgba(184,151,90,0.1) 0%, transparent 70%);
+      pointer-events: none;
+    }
+
+    .final-cta-inner {
+      max-width: 640px;
+      margin: 0 auto;
+    }
+
+    .final-cta-inner h2 {
+      font-size: clamp(40px, 5vw, 68px);
+      margin-bottom: 24px;
+      line-height: 1.08;
+    }
+
+    .final-cta-inner h2 em {
+      font-style: italic;
+      color: var(--gold);
+    }
+
+    .final-cta-inner p {
+      font-size: 17px;
+      margin-bottom: 44px;
+      max-width: 440px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    /* ─────────────────────────────────────────
+       FOOTER
+    ───────────────────────────────────────── */
+    footer {
+      background: var(--charcoal);
+      padding: 64px 0 40px;
+    }
+
+    .footer-top {
+      display: grid;
+      grid-template-columns: 2fr 1fr 1fr 1fr;
+      gap: 48px;
+      padding-bottom: 48px;
+      border-bottom: 1px solid rgba(245,240,232,0.08);
+    }
+
+    .footer-brand .nav-logo {
+      display: block;
+      margin-bottom: 16px;
+    }
+
+    .footer-brand p {
+      font-size: 14px;
+      color: rgba(245,240,232,0.4);
+      max-width: 260px;
+      line-height: 1.7;
+    }
+
+    .footer-col h5 {
+      font-family: var(--font-body);
+      font-size: 12px;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: rgba(245,240,232,0.35);
+      margin-bottom: 20px;
+    }
+
+    .footer-col ul {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .footer-col a {
+      font-size: 14px;
+      color: rgba(245,240,232,0.5);
+      transition: color 0.2s;
+    }
+
+    .footer-col a:hover { color: var(--cream); }
+
+    .footer-bottom {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding-top: 32px;
+    }
+
+    .footer-copy {
+      font-size: 13px;
+      color: rgba(245,240,232,0.25);
+    }
+
+    .footer-social {
+      display: flex;
+      gap: 20px;
+    }
+
+    .footer-social a {
+      font-size: 13px;
+      color: rgba(245,240,232,0.4);
+      transition: color 0.2s;
+    }
+
+    .footer-social a:hover { color: var(--cream); }
+
+    /* ─────────────────────────────────────────
+       RESPONSIVE
+    ───────────────────────────────────────── */
+    @media (max-width: 900px) {
+      .nav-links, .btn-nav { display: none; }
+      .hamburger { display: flex; }
+
+      .stats-grid { grid-template-columns: repeat(2, 1fr); }
+      .stat-item:nth-child(2)::after { display: none; }
+
+      .problem-layout,
+      .engine-layout { grid-template-columns: 1fr; gap: 48px; }
+
+      .solution-grid { grid-template-columns: 1fr 1fr; }
+
+      .steps { grid-template-columns: 1fr 1fr; row-gap: 48px; }
+      .steps::before { display: none; }
+
+      .results-grid { grid-template-columns: 1fr; }
+      .result-card.featured { grid-row: span 1; }
+
+      .why-grid { grid-template-columns: 1fr; }
+
+      .pricing-cards { grid-template-columns: 1fr; max-width: 400px; }
+
+      .footer-top { grid-template-columns: 1fr 1fr; }
+
+      .engine-card-stack { height: 280px; }
+    }
+
+    @media (max-width: 600px) {
+      .container { padding: 0 20px; }
+
+      .hero-ctas { flex-direction: column; }
+
+      .solution-grid { grid-template-columns: 1fr; }
+
+      .steps { grid-template-columns: 1fr; }
+
+      .footer-top { grid-template-columns: 1fr; }
+      .footer-bottom { flex-direction: column; gap: 16px; text-align: center; }
+    }
+  
+    /* ── Contact Form ── */
+    .contact-form { 
+      max-width: 520px; 
+      margin: 40px auto 0;
+      text-align: left;
+    }
+    .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin-bottom: 14px; }
+    .form-group { display: flex; flex-direction: column; gap: 6px; margin-bottom: 14px; }
+    .form-group label { font-size: 11px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--charcoal-50); font-weight: 600; }
+    .form-group input, .form-group select, .form-group textarea {
+      background: rgba(0,0,0,0.04);
+      border: 1px solid rgba(62,50,42,0.18);
+      border-radius: 6px;
+      padding: 12px 16px;
+      font-family: 'DM Sans', sans-serif;
+      font-size: 14px;
+      color: var(--charcoal);
+      outline: none;
+      transition: border-color 0.2s;
+      width: 100%;
+      box-sizing: border-box;
+    }
+    .form-group input:focus, .form-group select:focus, .form-group textarea:focus {
+      border-color: var(--gold);
+    }
+    .form-group textarea { resize: vertical; min-height: 100px; }
+    .form-group select {
+      appearance: none;
+      -webkit-appearance: none;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%23666' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");
+      background-repeat: no-repeat;
+      background-position: right 14px center;
+      padding-right: 40px;
+      cursor: pointer;
+    }
+    .form-submit { width: 100%; margin-top: 6px; cursor: pointer; border: none; font-size: 15px; }
+    .form-success { 
+      display: none;
+      background: rgba(62,50,42,0.06); 
+      border: 1px solid var(--gold); 
+      border-radius: 8px; 
+      padding: 24px 32px; 
+      text-align: center;
+      margin-top: 20px;
+    }
+    .form-success h4 { font-family: 'Playfair Display', serif; font-size: 22px; margin-bottom: 8px; color: var(--charcoal); }
+    .form-success p { font-size: 14px; color: var(--charcoal-50); margin: 0; }
+    @media(max-width:540px){ .form-row { grid-template-columns: 1fr; } }
+
+  </style>
+</head>
+<body>
+
+  <!-- ──────────────── NAV ──────────────── -->
+  <nav id="navbar">
+    <div class="container nav-inner">
+      <a href="/" class="nav-logo">Vessels<span>.</span></a>
+      <ul class="nav-links">
+        <li><a href="#how">How It Works</a></li>
+        <li><a href="#results">Results</a></li>
+        <li><a href="#pricing">Pricing</a></li>
+        <li><a href="#faq">FAQ</a></li>
+        <li><a href="/creators" style="color:var(--gold);font-weight:600;">For Creators →</a></li>
+      </ul>
+      <a href="#final-cta" class="btn-nav">Book a Call</a>
+      <div class="hamburger" id="hamburger">
+        <span></span><span></span><span></span>
+      </div>
+    </div>
+  </nav>
+
+  <!-- ──────────────── HERO ──────────────── -->
+  <section id="hero">
+    <div class="hero-badge">Creator Marketing, Engineered</div>
+    <h1>Turn creators into your<br/><em>most powerful</em> growth channel.</h1>
+    <p class="hero-sub">We build end-to-end influencer programs that drive real, measurable revenue for ecommerce brands — without the chaos.</p>
+    <div class="hero-ctas">
+      <a href="#final-cta" class="btn-primary">Book a Strategy Call <span class="arrow">→</span></a>
+      <a href="#how" class="btn-secondary">See How It Works</a>
+    </div>
+    <p class="hero-trust">Trusted by fast-growing ecommerce brands worldwide</p>
+  </section>
+
+  <!-- ──────────────── STATS ──────────────── -->
+  <section id="stats">
+    <div class="container">
+      <div class="stats-grid">
+        <div class="stat-item reveal">
+          <span class="stat-number">10<span>k+</span></span>
+          <div class="stat-label">Creators activated</div>
+        </div>
+        <div class="stat-item reveal" style="transition-delay:0.1s">
+          <span class="stat-number">$4<span>M+</span></span>
+          <div class="stat-label">Creator-driven revenue</div>
+        </div>
+        <div class="stat-item reveal" style="transition-delay:0.2s">
+          <span class="stat-number">500<span>+</span></span>
+          <div class="stat-label">Campaigns launched</div>
+        </div>
+        <div class="stat-item reveal" style="transition-delay:0.3s">
+          <span class="stat-number">98<span>%</span></span>
+          <div class="stat-label">Client retention rate</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ──────────────── PROBLEM ──────────────── -->
+  <section id="problem">
+    <div class="container">
+      <div class="problem-layout">
+        <div class="problem-left reveal">
+          <div class="section-eyebrow">
+            <span class="label">The Problem</span>
+          </div>
+          <h2>Influencer marketing shouldn't feel this chaotic.</h2>
+          <p>Most brands try to piece together creator marketing themselves — and burn budget, time, and energy with nothing to show for it. Sound familiar?</p>
+        </div>
+        <ul class="pain-list">
+          <li class="pain-item reveal" style="transition-delay:0.05s">
+            <div class="pain-icon">📣</div>
+            <div>
+              <h4>Outreach goes nowhere</h4>
+              <p>Cold DMs to creators rarely convert. Without relationships and systems, you're wasting hours for one reply.</p>
+            </div>
+          </li>
+          <li class="pain-item reveal" style="transition-delay:0.1s">
+            <div class="pain-icon">💸</div>
+            <div>
+              <h4>Ad costs keep climbing</h4>
+              <p>Meta and Google CPMs are at all-time highs. Creator-led content consistently outperforms paid ads — at a fraction of the cost.</p>
+            </div>
+          </li>
+          <li class="pain-item reveal" style="transition-delay:0.15s">
+            <div class="pain-icon">🔀</div>
+            <div>
+              <h4>Managing creators is a full-time job</h4>
+              <p>Tracking shipments, follow-ups, content deadlines, affiliate links — it's a mess without the right infrastructure.</p>
+            </div>
+          </li>
+          <li class="pain-item reveal" style="transition-delay:0.2s">
+            <div class="pain-icon">📊</div>
+            <div>
+              <h4>ROI is invisible</h4>
+              <p>Without proper attribution and tracking, you never know what's actually working — so you can't double down.</p>
+            </div>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- ──────────────── SOLUTION ──────────────── -->
+  <section id="solution">
+    <div class="container">
+      <div class="solution-header reveal">
+        <div class="section-eyebrow" style="justify-content:center">
+          <span class="label">The Vessels System</span>
+        </div>
+        <h2>We build your entire creator engine.</h2>
+        <p>One integrated system for recruiting creators, seeding product, generating content, and tracking what drives revenue.</p>
+      </div>
+      <div class="solution-grid">
+        <div class="solution-card reveal">
+          <div class="sol-icon">🔍</div>
+          <h3>Creator Recruitment</h3>
+          <p>We identify and vet creators who genuinely align with your brand — micro to macro — and handle all outreach and onboarding.</p>
+        </div>
+        <div class="solution-card reveal" style="transition-delay:0.07s">
+          <div class="sol-icon">📦</div>
+          <h3>Product Seeding</h3>
+          <p>Strategic gifting programs that get your product into the hands of the right creators, with fulfillment handled end-to-end.</p>
+        </div>
+        <div class="solution-card reveal" style="transition-delay:0.14s">
+          <div class="sol-icon">🔗</div>
+          <h3>Affiliate Programs</h3>
+          <p>We architect and manage affiliate ecosystems that generate recurring, trackable revenue — not one-off posts.</p>
+        </div>
+        <div class="solution-card reveal" style="transition-delay:0.07s">
+          <div class="sol-icon">🎬</div>
+          <h3>UGC Content Creation</h3>
+          <p>A steady stream of authentic content — repurposable for paid ads, organic posts, and product pages.</p>
+        </div>
+        <div class="solution-card reveal" style="transition-delay:0.14s">
+          <div class="sol-icon">🚀</div>
+          <h3>Campaign Management</h3>
+          <p>Full campaign execution — briefs, timelines, approvals, and publishing — with zero management required from your team.</p>
+        </div>
+        <div class="solution-card reveal" style="transition-delay:0.21s">
+          <div class="sol-icon">📈</div>
+          <h3>Performance Tracking</h3>
+          <p>Real-time dashboards showing exactly which creators, content, and campaigns are generating revenue for your brand.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ──────────────── HOW IT WORKS ──────────────── -->
+  <section id="how">
+    <div class="container">
+      <div class="how-header reveal">
+        <div class="section-eyebrow" style="justify-content:center">
+          <span class="label">The Process</span>
+        </div>
+        <h2>From zero to creator ecosystem in 4 steps.</h2>
+        <p>A systematic approach that turns creator marketing from a guessing game into a scalable growth channel.</p>
+      </div>
+      <div class="steps">
+        <div class="step reveal">
+          <div class="step-num">1</div>
+          <h3>Creator Discovery</h3>
+          <p>We map your ideal creator profile and source high-potential talent across TikTok, Instagram, YouTube, and beyond — prioritising fit over follower count.</p>
+        </div>
+        <div class="step reveal" style="transition-delay:0.1s">
+          <div class="step-num">2</div>
+          <h3>Product Seeding</h3>
+          <p>We handle gifting logistics from start to finish — personalised outreach, packaging, shipping, and follow-up to maximise post rates.</p>
+        </div>
+        <div class="step reveal" style="transition-delay:0.2s">
+          <div class="step-num">3</div>
+          <h3>Content Creation</h3>
+          <p>Creators post authentic content on their channels. We manage briefs, approvals, and repurposing rights so you can run it as paid media.</p>
+        </div>
+        <div class="step reveal" style="transition-delay:0.3s">
+          <div class="step-num">4</div>
+          <h3>Revenue Tracking</h3>
+          <p>Every affiliate link, promo code, and campaign is tracked. You get a clear ROI dashboard showing exactly what's driving sales.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ──────────────── CREATOR ENGINE ──────────────── -->
+  <section id="engine">
+    <div class="container">
+      <div class="engine-layout">
+        <div class="engine-left reveal">
+          <div class="section-eyebrow">
+            <span class="label">The Creator Engine</span>
+          </div>
+          <h2>Not a campaign. A compounding system.</h2>
+          <p>Random one-off influencer deals don't scale. Vessels builds a creator ecosystem that generates momentum over time — content compounds, affiliates keep earning, and your brand grows on autopilot.</p>
+          <ul class="engine-points">
+            <li class="engine-point">Creators promote your brand consistently, not just once</li>
+            <li class="engine-point">UGC content gets repurposed as high-converting paid ads</li>
+            <li class="engine-point">Affiliate links generate ongoing passive revenue</li>
+            <li class="engine-point">Creator relationships deepen and compound over time</li>
+            <li class="engine-point">Every campaign feeds data back into the system</li>
+          </ul>
+        </div>
+        <div class="engine-visual reveal" style="transition-delay:0.2s">
+          <div class="engine-card-stack">
+            <div class="e-card e-card-back"></div>
+            <div class="e-card e-card-mid"></div>
+            <div class="e-card e-card-front">
+              <div>
+                <div class="e-card-label">Creator Engine Dashboard</div>
+                <div class="e-metric">
+                  <div class="e-metric-num">$47,280</div>
+                  <div class="e-metric-label">Creator-driven revenue this month</div>
+                </div>
+              </div>
+              <div>
+                <div class="e-metric-label" style="margin-bottom:8px">Monthly Revenue Growth</div>
+                <div class="e-bars">
+                  <div class="e-bar" style="height:30%"></div>
+                  <div class="e-bar" style="height:40%"></div>
+                  <div class="e-bar" style="height:35%"></div>
+                  <div class="e-bar" style="height:55%"></div>
+                  <div class="e-bar" style="height:48%"></div>
+                  <div class="e-bar" style="height:70%"></div>
+                  <div class="e-bar active" style="height:88%"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ──────────────── RESULTS ──────────────── -->
+  <section id="results">
+    <div class="container">
+      <div class="results-header reveal">
+        <div class="section-eyebrow" style="justify-content:center">
+          <span class="label">Results</span>
+        </div>
+        <h2>Numbers that speak for themselves.</h2>
+        <p>Real outcomes from real brands. These aren't vanity metrics — they're the numbers that matter to your business.</p>
+      </div>
+      <div class="results-grid">
+        <div class="result-card featured reveal">
+          <div>
+            <div class="result-tag">Featured Case</div>
+            <div class="result-stat">$250k</div>
+            <p class="result-desc">In creator-driven revenue generated in a single quarter for a DTC skincare brand — starting from zero creator infrastructure.</p>
+          </div>
+          <div class="result-bottom">
+            <div class="result-brand">DTC Skincare Brand</div>
+            <p class="result-quote">"Vessels built something we couldn't have built ourselves in two years. They did it in 90 days."</p>
+          </div>
+        </div>
+        <div class="result-card reveal" style="transition-delay:0.1s">
+          <div class="result-tag">Creator Activation</div>
+          <div class="result-stat">150</div>
+          <p class="result-desc">Creators recruited, seeded, and activated within 90 days for a consumer goods brand entering a new category.</p>
+        </div>
+        <div class="result-card reveal" style="transition-delay:0.2s">
+          <div class="result-tag">UGC Output</div>
+          <div class="result-stat">300+</div>
+          <p class="result-desc">Pieces of authentic UGC content created in 60 days — repurposed across paid ads and organic social to drive down CPAs.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ──────────────── MID CTA ──────────────── -->
+  <section id="mid-cta">
+    <div class="container reveal">
+      <h2>Ready to stop guessing and start growing?</h2>
+      <p>Join ecommerce brands using Vessels to build creator ecosystems that compound.</p>
+      <a href="#final-cta" class="btn-gold">Book a Free Strategy Call →</a>
+    </div>
+  </section>
+
+  <!-- ──────────────── WHY VESSELS ──────────────── -->
+  <section id="why">
+    <div class="container">
+      <div class="why-header reveal">
+        <div class="section-eyebrow" style="justify-content:center">
+          <span class="label">Why Vessels</span>
+        </div>
+        <h2>Built differently, for a reason.</h2>
+      </div>
+      <div class="why-grid">
+        <div class="why-card reveal">
+          <div class="why-num">01</div>
+          <div class="why-content">
+            <h3>Performance-First, Always</h3>
+            <p>We tie everything back to revenue. Not impressions, not reach — actual sales. Every decision we make is optimised for measurable ROI for your brand.</p>
+          </div>
+        </div>
+        <div class="why-card reveal" style="transition-delay:0.1s">
+          <div class="why-num">02</div>
+          <div class="why-content">
+            <h3>Ecosystem Thinking, Not Campaign Thinking</h3>
+            <p>We build long-term creator relationships, not single-post transactions. Your creator network becomes a compounding brand asset over time.</p>
+          </div>
+        </div>
+        <div class="why-card reveal" style="transition-delay:0.05s">
+          <div class="why-num">03</div>
+          <div class="why-content">
+            <h3>Built for Ecommerce Brands</h3>
+            <p>We specialise in Shopify, Amazon, and DTC brands. We understand your margins, your inventory, and what it takes to make creator marketing profitable at your scale.</p>
+          </div>
+        </div>
+        <div class="why-card reveal" style="transition-delay:0.15s">
+          <div class="why-num">04</div>
+          <div class="why-content">
+            <h3>Fully Managed. Zero Chaos.</h3>
+            <p>You don't manage a single creator. We handle outreach, seeding, approvals, reporting — everything. You show up to the monthly review and see results.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ──────────────── PRICING ──────────────── -->
+  <section id="pricing">
+    <div class="container">
+      <div class="pricing-header reveal">
+        <div class="section-eyebrow" style="justify-content:center">
+          <span class="label">Pricing</span>
+        </div>
+        <h2>Simple, transparent, performance-aligned.</h2>
+        <p>No hidden fees. No long lock-in contracts. Plans built to grow as your creator program scales.</p>
+      </div>
+      <div class="pricing-cards">
+        <div class="pricing-card reveal">
+          <div class="pricing-tier">Starter</div>
+          <div class="pricing-price">Custom</div>
+          <p class="pricing-desc">For brands just launching their creator program and testing the channel.</p>
+          <ul class="pricing-features">
+            <li class="pricing-feature">Up to 25 creator activations/mo</li>
+            <li class="pricing-feature">Product seeding management</li>
+            <li class="pricing-feature">Affiliate link setup</li>
+            <li class="pricing-feature">Monthly performance report</li>
+          </ul>
+          <button class="btn-pricing-light" onclick="document.getElementById('final-cta').scrollIntoView({behavior:'smooth'})">Get Started</button>
+        </div>
+        <div class="pricing-card popular reveal" style="transition-delay:0.1s">
+          <div class="popular-badge">Most Popular</div>
+          <div class="pricing-tier">Growth</div>
+          <div class="pricing-price">Custom</div>
+          <p class="pricing-desc">For scaling brands ready to build a serious creator ecosystem.</p>
+          <ul class="pricing-features">
+            <li class="pricing-feature">Up to 100 creator activations/mo</li>
+            <li class="pricing-feature">Full affiliate program management</li>
+            <li class="pricing-feature">UGC content rights included</li>
+            <li class="pricing-feature">Dedicated campaign manager</li>
+            <li class="pricing-feature">Real-time ROI dashboard</li>
+          </ul>
+          <button class="btn-pricing-gold" onclick="document.getElementById('final-cta').scrollIntoView({behavior:'smooth'})">Book a Call</button>
+        </div>
+        <div class="pricing-card reveal" style="transition-delay:0.2s">
+          <div class="pricing-tier">Scale</div>
+          <div class="pricing-price">Custom</div>
+          <p class="pricing-desc">For brands ready to build a world-class creator growth engine.</p>
+          <ul class="pricing-features">
+            <li class="pricing-feature">Unlimited creator activations</li>
+            <li class="pricing-feature">Full creator ecosystem strategy</li>
+            <li class="pricing-feature">Paid media repurposing</li>
+            <li class="pricing-feature">Executive strategy sessions</li>
+            <li class="pricing-feature">Priority access & dedicated team</li>
+          </ul>
+          <button class="btn-pricing-dark" onclick="document.getElementById('final-cta').scrollIntoView({behavior:'smooth'})">Let's Talk</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ──────────────── FAQ ──────────────── -->
+  <section id="faq">
+    <div class="container">
+      <div class="faq-header reveal">
+        <div class="section-eyebrow" style="justify-content:center">
+          <span class="label">FAQ</span>
+        </div>
+        <h2>Questions, answered.</h2>
+      </div>
+      <div class="faq-list">
+        <div class="faq-item">
+          <div class="faq-question" onclick="toggleFaq(this)">
+            <h4>Do you work with smaller brands?</h4>
+            <div class="faq-icon">+</div>
+          </div>
+          <div class="faq-answer">
+            <p>Yes. We work with ecommerce brands from $100k/year and up. Our Starter plan is specifically designed to help brands in early growth stages test and prove out the creator channel before scaling. Book a call and we'll tell you honestly if we're the right fit.</p>
+          </div>
+        </div>
+        <div class="faq-item">
+          <div class="faq-question" onclick="toggleFaq(this)">
+            <h4>How quickly can campaigns start?</h4>
+            <div class="faq-icon">+</div>
+          </div>
+          <div class="faq-answer">
+            <p>Onboarding takes 1–2 weeks, after which we move fast. Most brands see their first batch of creators activated and posting within 30 days of kickoff. Timelines vary based on product availability and campaign scope.</p>
+          </div>
+        </div>
+        <div class="faq-item">
+          <div class="faq-question" onclick="toggleFaq(this)">
+            <h4>Do we need to manage the creators ourselves?</h4>
+            <div class="faq-icon">+</div>
+          </div>
+          <div class="faq-answer">
+            <p>No. That's the whole point. We handle creator outreach, briefing, communication, content approval, and follow-up. Your team reviews a monthly report — that's it. We act as a fully embedded creator marketing department.</p>
+          </div>
+        </div>
+        <div class="faq-item">
+          <div class="faq-question" onclick="toggleFaq(this)">
+            <h4>Do we need to send product for every creator?</h4>
+            <div class="faq-icon">+</div>
+          </div>
+          <div class="faq-answer">
+            <p>Typically yes — product seeding is the foundation of authentic creator content. We work with your team to manage inventory allocation smartly, targeting creators with the highest probability of posting and performance. We can also run paid UGC programs if product availability is limited.</p>
+          </div>
+        </div>
+        <div class="faq-item">
+          <div class="faq-question" onclick="toggleFaq(this)">
+            <h4>How do you track revenue and ROI?</h4>
+            <div class="faq-icon">+</div>
+          </div>
+          <div class="faq-answer">
+            <p>Every creator gets a unique affiliate link and promo code. We track clicks, conversions, and revenue through your Shopify or attribution platform. You receive a real-time dashboard and detailed monthly reports showing creator-level performance.</p>
+          </div>
+        </div>
+        <div class="faq-item">
+          <div class="faq-question" onclick="toggleFaq(this)">
+            <h4>What platforms do creators post on?</h4>
+            <div class="faq-icon">+</div>
+          </div>
+          <div class="faq-answer">
+            <p>We work across TikTok, Instagram Reels, YouTube Shorts, and long-form YouTube depending on your audience and category. We recommend the best channel mix based on your product and where your target customers actually spend time.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ──────────────── FINAL CTA ──────────────── -->
+  <section id="final-cta">
+    <div class="container">
+      <div class="final-cta-inner reveal">
+        <div class="section-eyebrow" style="justify-content:center">
+          <span class="label">Get Started</span>
+        </div>
+        <h2>Ready to build your <em>creator engine?</em></h2>
+        <p>Book a free 30-minute strategy call. We'll walk through your brand, your goals, and exactly how a creator program would work for you.</p>
+        
+        <form class="contact-form" id="vessels-form">
+          <div class="form-row">
+            <div class="form-group">
+              <label for="v-name">Your Name</label>
+              <input type="text" id="v-name" name="name" placeholder="Alex Johnson" required />
+            </div>
+            <div class="form-group">
+              <label for="v-email">Email</label>
+              <input type="email" id="v-email" name="email" placeholder="alex@brand.com" required />
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="form-group">
+              <label for="v-brand">Brand / Company</label>
+              <input type="text" id="v-brand" name="brand" placeholder="Your Brand" required />
+            </div>
+            <div class="form-group">
+              <label for="v-revenue">Monthly Revenue</label>
+              <select id="v-revenue" name="monthly_revenue">
+                <option value="" disabled selected>Select range</option>
+                <option>Under $10k/mo</option>
+                <option>$10k – $50k/mo</option>
+                <option>$50k – $200k/mo</option>
+                <option>$200k – $500k/mo</option>
+                <option>$500k – $1M/mo</option>
+                <option>$1M+/mo</option>
+              </select>
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="v-goals">What are your creator marketing goals?</label>
+            <textarea id="v-goals" name="message" placeholder="Tell us about your brand, current creator efforts, and what you're looking to achieve..." required></textarea>
+          </div>
+          <button type="submit" class="btn-primary form-submit">Book a Strategy Call →</button>
+        </form>
+        
+        <div class="form-success" id="vessels-success">
+          <h4>You're on the list.</h4>
+          <p>We'll reach out within 24 hours to schedule your free strategy call.</p>
+        </div>
+        
+        <p style="margin-top:20px; font-size:13px; color:var(--charcoal-30)">No commitment required. We'll tell you honestly if we're a fit.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ──────────────── FOOTER ──────────────── -->
+  <footer>
+    <div class="container">
+      <div class="footer-top">
+        <div class="footer-brand">
+          <span class="nav-logo">Vessels<span>.</span></span>
+          <p>We build creator ecosystems for modern ecommerce brands — turning influencer marketing from chaos into a compounding growth channel.</p>
+        </div>
+        <div class="footer-col">
+          <h5>Services</h5>
+          <ul>
+            <li><a href="#solution">Creator Recruitment</a></li>
+            <li><a href="#solution">Product Seeding</a></li>
+            <li><a href="#solution">Affiliate Programs</a></li>
+            <li><a href="#solution">UGC Content</a></li>
+            <li><a href="#solution">Campaign Management</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h5>Company</h5>
+          <ul>
+            <li><a href="#why">Why Vessels</a></li>
+            <li><a href="#results">Results</a></li>
+            <li><a href="#how">How It Works</a></li>
+            <li><a href="#faq">FAQ</a></li>
+            <li><a href="/creators">For Creators</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h5>Contact</h5>
+          <ul>
+            <li><a href="mailto:hello@vssls.co">hello@vssls.co</a></li>
+            <li><a href="#final-cta">Book a Call</a></li>
+            <li><a href="https://instagram.com" target="_blank">Instagram</a></li>
+            <li><a href="https://linkedin.com" target="_blank">LinkedIn</a></li>
+            <li><a href="https://twitter.com" target="_blank">Twitter / X</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p class="footer-copy">© 2025 Vessels. All rights reserved.</p>
+        <div class="footer-social">
+          <a href="https://instagram.com" target="_blank">Instagram</a>
+          <a href="https://linkedin.com" target="_blank">LinkedIn</a>
+          <a href="https://twitter.com" target="_blank">Twitter</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // ── Navbar scroll ──
+    const navbar = document.getElementById('navbar');
+    window.addEventListener('scroll', () => {
+      navbar.classList.toggle('scrolled', window.scrollY > 40);
+    });
+
+    // ── Scroll reveal ──
+    const reveals = document.querySelectorAll('.reveal');
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(e => {
+        if (e.isIntersecting) {
+          e.target.classList.add('visible');
+          observer.unobserve(e.target);
+        }
+      });
+    }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
+    reveals.forEach(el => observer.observe(el));
+
+    // ── FAQ accordion ──
+    function toggleFaq(btn) {
+      const item = btn.closest('.faq-item');
+      const isOpen = item.classList.contains('open');
+      document.querySelectorAll('.faq-item.open').forEach(el => el.classList.remove('open'));
+      if (!isOpen) item.classList.add('open');
+    }
+
+    // ── Bar chart animation ──
+    const bars = document.querySelectorAll('.e-bar');
+    const barObserver = new IntersectionObserver((entries) => {
+      entries.forEach(e => {
+        if (e.isIntersecting) {
+          bars.forEach((bar, i) => {
+            setTimeout(() => {
+              bar.style.transition = `height 0.6s cubic-bezier(0.16,1,0.3,1) ${i * 0.06}s`;
+            }, 100);
+          });
+        }
+      });
+    }, { threshold: 0.5 });
+    if (bars.length) barObserver.observe(bars[0].closest('.e-card-front'));
+
+    // ── Smooth scroll for all anchor links ──
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function(e) {
+        const target = document.querySelector(this.getAttribute('href'));
+        if (target) {
+          e.preventDefault();
+          target.scrollIntoView({ behavior: 'smooth' });
+        }
+      });
+    });
+  
+    // ── Contact Form Submission ──
+    const vesselsForm = document.getElementById('vessels-form');
+    if (vesselsForm) {
+      vesselsForm.addEventListener('submit', async function(e) {
+        e.preventDefault();
+        const btn = this.querySelector('button[type="submit"]');
+        btn.textContent = 'Sending…';
+        btn.disabled = true;
+        const data = new FormData(this);
+        data.append('_subject', 'New Strategy Call Request – Vessels');
+        try {
+          const res = await fetch('https://formsubmit.co/ajax/3d6e21d74712a6047b69ba5e2aff79d9', {
+            method: 'POST',
+            headers: { 'Accept': 'application/json' },
+            body: data
+          });
+          const json = await res.json();
+          if (json.success === 'true' || json.success === true) {
+            this.style.display = 'none';
+            document.getElementById('vessels-success').style.display = 'block';
+          } else {
+            btn.textContent = 'Try Again';
+            btn.disabled = false;
+          }
+        } catch(err) {
+          btn.textContent = 'Try Again';
+          btn.disabled = false;
+        }
+      });
+    }
+
+  </script>
+</body>
+</html>
