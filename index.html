@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Vessels — Build Brands. Build Creators.</title>
-  <meta name="description" content="Vessels is a full-service growth partner for brands and creators. Choose your path." />
+  <title>Vessels — Build Brands. Build Creators. Deploy AI. Multiply Missions.</title>
+  <meta name="description" content="Vessels is a full-service creative and technology agency. We build creator ecosystems for brands, full partnerships for creators, AI infrastructure for businesses, and mission technology for nonprofits." />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,600&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet" />
@@ -19,6 +19,9 @@
       --gold-pale:   rgba(184,151,90,0.12);
       --white:       #FDFCFA;
       --black:       #0D0C0A;
+      --teal:        #22d3d3;
+      --purple:      #a78bfa;
+      --green:       #86efac;
       --font-display:'Playfair Display', Georgia, serif;
       --font-body:   'DM Sans', system-ui, sans-serif;
     }
@@ -34,7 +37,6 @@
       -webkit-font-smoothing: antialiased;
     }
 
-    /* ── Canvas background ── */
     #particle-canvas {
       position: fixed;
       inset: 0;
@@ -42,7 +44,6 @@
       pointer-events: none;
     }
 
-    /* ── Cursor glow ── */
     #cursor-glow {
       position: fixed;
       width: 500px;
@@ -55,7 +56,6 @@
       transition: left 0.08s ease, top 0.08s ease;
     }
 
-    /* ── Layout ── */
     .page {
       position: relative;
       z-index: 2;
@@ -139,7 +139,6 @@
       transform: translateY(0);
       filter: blur(0);
     }
-    /* Gold shimmer sweep after reveal */
     @keyframes shimmerSweep {
       0%   { background-position: -300% center; }
       100% { background-position: 300% center; }
@@ -184,7 +183,7 @@
     .paths-wrap {
       position: relative;
       width: 100%;
-      max-width: 860px;
+      max-width: 920px;
       opacity: 0;
       animation: fadeUp 0.9s 1.2s ease forwards;
     }
@@ -194,9 +193,8 @@
       grid-template-columns: 1fr 1fr;
       gap: 1.25rem;
     }
-    @media (max-width: 620px) {
+    @media (max-width: 640px) {
       .paths { grid-template-columns: 1fr; }
-      .path-divider { display: none; }
     }
 
     .path-card {
@@ -216,7 +214,6 @@
       transform-style: preserve-3d;
     }
 
-    /* Gradient border glow on hover */
     .path-card::before {
       content: '';
       position: absolute;
@@ -224,7 +221,7 @@
       border-radius: 23px;
       background: conic-gradient(
         from 180deg at 50% 50%,
-        var(--gold) 0deg, transparent 80deg, transparent 280deg, var(--gold-light) 360deg
+        var(--card-accent, var(--gold)) 0deg, transparent 80deg, transparent 280deg, var(--card-accent-light, var(--gold-light)) 360deg
       );
       opacity: 0;
       transition: opacity 0.4s;
@@ -245,7 +242,12 @@
     }
     .path-card:hover::before { opacity: 1; }
 
-    /* Mouse-follow inner glow */
+    /* Per-card accent colors */
+    .card-brands   { --card-accent: #B8975A; --card-accent-light: #D4B478; }
+    .card-creators { --card-accent: #D4B478; --card-accent-light: #e8c87a; }
+    .card-ai       { --card-accent: #7c3aed; --card-accent-light: #a78bfa; }
+    .card-nonprofit{ --card-accent: #16a34a; --card-accent-light: #86efac; }
+
     .card-inner-glow {
       position: absolute;
       inset: 0;
@@ -267,13 +269,17 @@
       font-weight: 600;
       letter-spacing: 0.2em;
       text-transform: uppercase;
-      color: var(--gold);
-      background: var(--gold-pale);
-      border: 1px solid rgba(184,151,90,0.2);
+      color: var(--tag-color, var(--gold));
+      background: var(--tag-bg, var(--gold-pale));
+      border: 1px solid var(--tag-border, rgba(184,151,90,0.2));
       padding: 0.28rem 0.7rem;
       border-radius: 999px;
       margin-bottom: 1.35rem;
     }
+    .card-brands   .card-tag { --tag-color: #D4B478; --tag-bg: rgba(184,151,90,0.12); --tag-border: rgba(184,151,90,0.25); }
+    .card-creators .card-tag { --tag-color: #e8c87a; --tag-bg: rgba(212,180,120,0.1); --tag-border: rgba(212,180,120,0.25); }
+    .card-ai       .card-tag { --tag-color: #a78bfa; --tag-bg: rgba(124,58,237,0.12); --tag-border: rgba(167,139,250,0.3); }
+    .card-nonprofit .card-tag { --tag-color: #86efac; --tag-bg: rgba(22,163,74,0.1); --tag-border: rgba(134,239,172,0.3); }
 
     .card-title {
       font-family: var(--font-display);
@@ -284,6 +290,9 @@
       letter-spacing: -0.02em;
     }
     .card-title em { font-style: italic; color: var(--gold-light); }
+    .card-ai .card-title em    { color: #a78bfa; }
+    .card-nonprofit .card-title em { color: #86efac; }
+    .card-creators .card-title em { color: #e8c87a; }
 
     .card-desc {
       font-size: 0.875rem;
@@ -308,9 +317,13 @@
     .card-feature-dot {
       width: 4px; height: 4px;
       border-radius: 50%;
-      background: var(--gold);
+      background: var(--dot-color, var(--gold));
       flex-shrink: 0;
     }
+    .card-brands   .card-feature-dot { --dot-color: #B8975A; }
+    .card-creators .card-feature-dot { --dot-color: #D4B478; }
+    .card-ai       .card-feature-dot { --dot-color: #a78bfa; }
+    .card-nonprofit .card-feature-dot { --dot-color: #86efac; }
 
     .card-cta {
       display: inline-flex;
@@ -318,38 +331,19 @@
       gap: 0.45rem;
       font-size: 0.875rem;
       font-weight: 600;
-      color: var(--gold-light);
+      color: var(--cta-color, var(--gold-light));
       letter-spacing: 0.03em;
     }
+    .card-brands   .card-cta { --cta-color: #D4B478; }
+    .card-creators .card-cta { --cta-color: #e8c87a; }
+    .card-ai       .card-cta { --cta-color: #a78bfa; }
+    .card-nonprofit .card-cta { --cta-color: #86efac; }
+
     .card-arrow {
       display: inline-block;
       transition: transform 0.3s cubic-bezier(0.22,1,0.36,1);
     }
     .path-card:hover .card-arrow { transform: translateX(5px); }
-
-    /* OR divider */
-    .path-divider {
-      position: absolute;
-      top: 50%; left: 50%;
-      transform: translate(-50%, -50%);
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 0.4rem;
-      pointer-events: none;
-      z-index: 10;
-    }
-    .div-line {
-      width: 1px; height: 52px;
-      background: linear-gradient(to bottom, transparent, rgba(184,151,90,0.35), transparent);
-    }
-    .div-or {
-      font-size: 0.62rem;
-      letter-spacing: 0.15em;
-      text-transform: uppercase;
-      color: rgba(255,255,255,0.2);
-      font-weight: 600;
-    }
 
     /* ── Stats ── */
     .stats {
@@ -359,6 +353,8 @@
       margin-top: clamp(1.75rem, 4vw, 2.75rem);
       opacity: 0;
       animation: fadeUp 0.8s 1.5s ease forwards;
+      flex-wrap: wrap;
+      justify-content: center;
     }
     .stat-item { text-align: center; }
     .stat-num {
@@ -433,7 +429,7 @@
       color: rgba(255,255,255,0.35);
     }
     .footer-logo span { color: var(--gold); }
-    .footer-links { display: flex; gap: 1.5rem; }
+    .footer-links { display: flex; gap: 1.5rem; flex-wrap: wrap; }
     .footer-links a {
       font-size: 0.78rem;
       color: rgba(255,255,255,0.22);
@@ -443,13 +439,11 @@
     .footer-links a:hover { color: var(--gold); }
     .footer-copy { font-size: 0.72rem; color: rgba(255,255,255,0.15); }
 
-    /* ── Keyframes ── */
     @keyframes fadeUp {
       from { opacity: 0; transform: translateY(22px); }
       to   { opacity: 1; transform: translateY(0); }
     }
 
-    /* Scanlines */
     body::after {
       content: '';
       position: fixed;
@@ -460,6 +454,160 @@
       );
       pointer-events: none;
       z-index: 999;
+    }
+
+    /* ── VESS ORB ── */
+    .vess-orb-container {
+      position: fixed;
+      bottom: 28px;
+      right: 28px;
+      z-index: 9998;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 10px;
+      cursor: pointer;
+    }
+    .vess-label-tag {
+      font-family: var(--font-body);
+      font-size: 0.62rem;
+      font-weight: 600;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.4);
+      transition: color 0.3s;
+      opacity: 0;
+      transform: translateY(4px);
+      transition: opacity 0.3s, transform 0.3s;
+    }
+    .vess-orb-container:hover .vess-label-tag {
+      opacity: 1;
+      transform: translateY(0);
+      color: var(--gold-light);
+    }
+    .vess-orb {
+      width: 64px;
+      height: 64px;
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: transform 0.4s cubic-bezier(0.22,1,0.36,1);
+    }
+    .vess-orb-container:hover .vess-orb { transform: scale(1.12); }
+
+    .vess-sphere {
+      width: 48px;
+      height: 48px;
+      border-radius: 50%;
+      position: relative;
+      z-index: 3;
+      background: radial-gradient(
+        circle at 35% 30%,
+        rgba(255,255,255,0.85) 0%,
+        rgba(212,180,120,0.9) 20%,
+        rgba(184,151,90,0.75) 40%,
+        rgba(34,211,211,0.5) 65%,
+        rgba(10,8,6,0.9) 100%
+      );
+      box-shadow:
+        0 0 18px rgba(184,151,90,0.7),
+        0 0 36px rgba(184,151,90,0.35),
+        0 0 72px rgba(34,211,211,0.15),
+        inset 0 2px 8px rgba(255,255,255,0.3),
+        inset 0 -2px 8px rgba(0,0,0,0.5);
+      animation: vessPulse 3s ease-in-out infinite;
+    }
+    @keyframes vessPulse {
+      0%, 100% {
+        box-shadow: 0 0 18px rgba(184,151,90,0.7), 0 0 36px rgba(184,151,90,0.35), 0 0 72px rgba(34,211,211,0.15), inset 0 2px 8px rgba(255,255,255,0.3);
+      }
+      50% {
+        box-shadow: 0 0 28px rgba(184,151,90,0.9), 0 0 56px rgba(184,151,90,0.5), 0 0 100px rgba(34,211,211,0.25), inset 0 2px 8px rgba(255,255,255,0.4);
+      }
+    }
+
+    /* Highlight on sphere */
+    .vess-sphere::after {
+      content: '';
+      position: absolute;
+      top: 12%;
+      left: 18%;
+      width: 35%;
+      height: 25%;
+      border-radius: 50%;
+      background: radial-gradient(ellipse, rgba(255,255,255,0.65) 0%, transparent 80%);
+      filter: blur(2px);
+    }
+
+    /* Rotating rings */
+    .vess-ring {
+      position: absolute;
+      border-radius: 50%;
+      top: 50%;
+      left: 50%;
+      pointer-events: none;
+    }
+    .vess-ring-1 {
+      width: 62px; height: 62px;
+      border: 1px solid rgba(184,151,90,0.5);
+      margin-top: -31px; margin-left: -31px;
+      animation: ring1 4s linear infinite;
+    }
+    .vess-ring-2 {
+      width: 82px; height: 82px;
+      border: 1px dashed rgba(34,211,211,0.3);
+      margin-top: -41px; margin-left: -41px;
+      animation: ring2 7s linear infinite reverse;
+    }
+    .vess-ring-3 {
+      width: 100px; height: 100px;
+      border: 1px solid rgba(167,139,250,0.15);
+      margin-top: -50px; margin-left: -50px;
+      animation: ring3 11s linear infinite;
+    }
+    @keyframes ring1 {
+      from { transform: rotate(0deg) rotateX(72deg); }
+      to   { transform: rotate(360deg) rotateX(72deg); }
+    }
+    @keyframes ring2 {
+      from { transform: rotate(0deg) rotateY(65deg); }
+      to   { transform: rotate(360deg) rotateY(65deg); }
+    }
+    @keyframes ring3 {
+      from { transform: rotate(0deg) rotateX(40deg) rotateZ(25deg); }
+      to   { transform: rotate(360deg) rotateX(40deg) rotateZ(25deg); }
+    }
+
+    /* Audio wave bars below orb */
+    .vess-wave {
+      display: flex;
+      align-items: flex-end;
+      gap: 2px;
+      height: 14px;
+      padding: 0 4px;
+    }
+    .vess-bar {
+      width: 2px;
+      border-radius: 1px;
+      background: var(--gold);
+      opacity: 0.6;
+      animation: waveBar 1.2s ease-in-out infinite;
+    }
+    .vess-bar:nth-child(1) { animation-delay: 0s; }
+    .vess-bar:nth-child(2) { animation-delay: 0.15s; }
+    .vess-bar:nth-child(3) { animation-delay: 0.3s; }
+    .vess-bar:nth-child(4) { animation-delay: 0.1s; }
+    .vess-bar:nth-child(5) { animation-delay: 0.25s; }
+    .vess-bar:nth-child(6) { animation-delay: 0.4s; }
+    .vess-bar:nth-child(7) { animation-delay: 0.05s; }
+    @keyframes waveBar {
+      0%, 100% { height: 3px; }
+      50% { height: 14px; }
+    }
+
+    @media (max-width: 480px) {
+      .vess-orb-container { bottom: 20px; right: 20px; }
     }
   </style>
 </head>
@@ -478,22 +626,23 @@
     <section class="hero">
       <div class="hero-line-top"></div>
 
-      <div class="hero-overline">Creator Growth &amp; Brand Partnership</div>
+      <div class="hero-overline">Brands · Creators · AI Infrastructure · Nonprofits</div>
 
       <h1 class="hero-title">
         <span id="scramble-word">Vessels</span><span class="title-period">.</span>
       </h1>
 
-      <p class="hero-sub">We build brands. We build creators.<br>Choose your path below.</p>
+      <p class="hero-sub">We build brands. We build creators. We deploy AI. We multiply missions.<br>Four paths. One team. Choose yours.</p>
 
       <div class="paths-wrap">
         <div class="paths">
 
-          <a href="/brands" class="path-card" id="card-brands">
+          <!-- BRANDS -->
+          <a href="/brands" class="path-card card-brands" id="card-brands">
             <div class="card-inner-glow"></div>
             <div class="card-tag">For Brands</div>
             <h2 class="card-title">Grow Through<br><em>Creators</em></h2>
-            <p class="card-desc">End-to-end influencer programs that turn creator partnerships into measurable revenue for ecommerce brands.</p>
+            <p class="card-desc">End-to-end influencer programs that turn creator partnerships into measurable, compounding revenue for ecommerce brands.</p>
             <div class="card-features">
               <div class="card-feature"><div class="card-feature-dot"></div>Creator recruitment &amp; seeding</div>
               <div class="card-feature"><div class="card-feature-dot"></div>Affiliate &amp; UGC programs</div>
@@ -502,42 +651,70 @@
             <div class="card-cta">Explore for Brands <span class="card-arrow">→</span></div>
           </a>
 
-          <a href="/creators" class="path-card" id="card-creators">
+          <!-- CREATORS -->
+          <a href="/creators" class="path-card card-creators" id="card-creators">
             <div class="card-inner-glow"></div>
             <div class="card-tag">For Creators</div>
             <h2 class="card-title">Build More Than<br><em>an Audience</em></h2>
-            <p class="card-desc">From 50k to 1M+ — we help you monetize your platform, launch your own products, and plug into our network.</p>
+            <p class="card-desc">A full-stack partnership for creators ready to build beyond brand deals — products, speaking, community, and real business infrastructure.</p>
             <div class="card-features">
-              <div class="card-feature"><div class="card-feature-dot"></div>Platform &amp; website builds</div>
+              <div class="card-feature"><div class="card-feature-dot"></div>Brand deal strategy &amp; management</div>
               <div class="card-feature"><div class="card-feature-dot"></div>Product &amp; brand launches</div>
-              <div class="card-feature"><div class="card-feature-dot"></div>Network access &amp; partnerships</div>
+              <div class="card-feature"><div class="card-feature-dot"></div>Platform builds &amp; monetization</div>
             </div>
             <div class="card-cta">Explore for Creators <span class="card-arrow">→</span></div>
           </a>
 
-        </div>
+          <!-- AI SOLUTIONS -->
+          <a href="/ai-solutions" class="path-card card-ai" id="card-ai">
+            <div class="card-inner-glow"></div>
+            <div class="card-tag">For Businesses</div>
+            <h2 class="card-title">Deploy <em>AI</em> That<br>Actually Works</h2>
+            <p class="card-desc">Full-deployment AI engineering — voice agents, workflow automation, lead systems — built into your operations and trained to your team.</p>
+            <div class="card-features">
+              <div class="card-feature"><div class="card-feature-dot"></div>Custom AI voice agents</div>
+              <div class="card-feature"><div class="card-feature-dot"></div>Agentic workflow automation</div>
+              <div class="card-feature"><div class="card-feature-dot"></div>Full deployment &amp; team training</div>
+            </div>
+            <div class="card-cta">Explore AI Solutions <span class="card-arrow">→</span></div>
+          </a>
 
-        <div class="path-divider">
-          <div class="div-line"></div>
-          <div class="div-or">or</div>
-          <div class="div-line"></div>
+          <!-- NONPROFITS -->
+          <a href="/nonprofits" class="path-card card-nonprofit" id="card-nonprofit">
+            <div class="card-inner-glow"></div>
+            <div class="card-tag">For Nonprofits</div>
+            <h2 class="card-title">Technology Built<br>Around Your <em>Mission</em></h2>
+            <p class="card-desc">AI solutions, donor automation, and digital infrastructure built around what nonprofits actually need — not what most tech firms think they need.</p>
+            <div class="card-features">
+              <div class="card-feature"><div class="card-feature-dot"></div>Donor engagement automation</div>
+              <div class="card-feature"><div class="card-feature-dot"></div>AI phone agent for inquiries</div>
+              <div class="card-feature"><div class="card-feature-dot"></div>Mission-aligned pricing</div>
+            </div>
+            <div class="card-cta">Explore for Nonprofits <span class="card-arrow">→</span></div>
+          </a>
+
         </div>
       </div>
 
       <div class="stats">
         <div class="stat-item">
-          <div class="stat-num">50k+</div>
-          <div class="stat-lbl">Min Followers</div>
+          <div class="stat-num">10k+</div>
+          <div class="stat-lbl">Creators Activated</div>
+        </div>
+        <div class="stat-sep"></div>
+        <div class="stat-item">
+          <div class="stat-num">$4M+</div>
+          <div class="stat-lbl">Revenue Generated</div>
+        </div>
+        <div class="stat-sep"></div>
+        <div class="stat-item">
+          <div class="stat-num">4</div>
+          <div class="stat-lbl">Service Paths</div>
         </div>
         <div class="stat-sep"></div>
         <div class="stat-item">
           <div class="stat-num">Full</div>
-          <div class="stat-lbl">Service Model</div>
-        </div>
-        <div class="stat-sep"></div>
-        <div class="stat-item">
-          <div class="stat-num">1M+</div>
-          <div class="stat-lbl">Creator Reach</div>
+          <div class="stat-lbl">Deployment Model</div>
         </div>
         <div class="stat-sep"></div>
         <div class="stat-item">
@@ -548,7 +725,7 @@
     </section>
 
     <div class="manifesto">
-      <p class="manifesto-text">"We don't just manage talent. We build <em>empires</em>."</p>
+      <p class="manifesto-text">"We are the conduit, not the source. A vessel carries something <em>greater than itself</em>."</p>
       <p class="manifesto-attr">— The Vessels Philosophy</p>
     </div>
 
@@ -559,10 +736,34 @@
     <div class="footer-links">
       <a href="/brands">For Brands</a>
       <a href="/creators">For Creators</a>
+      <a href="/ai-solutions">AI Solutions</a>
+      <a href="/nonprofits">For Nonprofits</a>
+      <a href="https://vssls.co/book">Book a Call</a>
       <a href="mailto:hello@vssls.co">hello@vssls.co</a>
     </div>
-    <div class="footer-copy">© 2025 Vessels</div>
+    <div class="footer-tagline">Go well.</div>
+    <div class="footer-copy">© 2026 Vessels · vssls.co</div>
   </footer>
+
+  <!-- ── VESS ORB ── -->
+  <div class="vess-orb-container" onclick="window.open('https://vapi.ai?demo=true&shareKey=55f26eb3-8cb0-453f-8975-f5f5477a14ab&assistantId=995562ba-f964-4fe4-872c-ef0c4f14bf02','_blank')" title="Talk to Vess">
+    <div class="vess-label-tag">Talk to Vess</div>
+    <div class="vess-orb">
+      <div class="vess-ring vess-ring-3"></div>
+      <div class="vess-ring vess-ring-2"></div>
+      <div class="vess-ring vess-ring-1"></div>
+      <div class="vess-sphere"></div>
+    </div>
+    <div class="vess-wave">
+      <div class="vess-bar" style="height:4px"></div>
+      <div class="vess-bar" style="height:9px"></div>
+      <div class="vess-bar" style="height:6px"></div>
+      <div class="vess-bar" style="height:12px"></div>
+      <div class="vess-bar" style="height:5px"></div>
+      <div class="vess-bar" style="height:8px"></div>
+      <div class="vess-bar" style="height:3px"></div>
+    </div>
+  </div>
 
 <script>
 /* ── Cursor glow ── */
@@ -578,7 +779,6 @@ const ctx = canvas.getContext('2d');
 let W, H, pts = [];
 let mouseX = window.innerWidth / 2;
 let mouseY = window.innerHeight / 2;
-
 const COUNT = 100, LINK = 150;
 
 function resize() {
@@ -609,21 +809,16 @@ class Pt {
   draw() {
     ctx.beginPath();
     ctx.arc(this.x, this.y, this.r, 0, 6.28);
-    ctx.fillStyle = this.gold
-      ? `rgba(184,151,90,${this.a})`
-      : `rgba(253,252,250,${this.a * .7})`;
+    ctx.fillStyle = this.gold ? `rgba(184,151,90,${this.a})` : `rgba(253,252,250,${this.a * .7})`;
     ctx.fill();
   }
 }
 
 function init() { pts = Array.from({length: COUNT}, () => new Pt()); }
-
 function loop() {
   requestAnimationFrame(loop);
   ctx.clearRect(0, 0, W, H);
   pts.forEach(p => { p.tick(); p.draw(); });
-
-  // Connections
   for (let i = 0; i < pts.length; i++) {
     for (let j = i+1; j < pts.length; j++) {
       const dx = pts[i].x - pts[j].x, dy = pts[i].y - pts[j].y;
@@ -636,16 +831,13 @@ function loop() {
         ctx.beginPath();
         ctx.moveTo(pts[i].x, pts[i].y);
         ctx.lineTo(pts[j].x, pts[j].y);
-        ctx.strokeStyle = nearMouse
-          ? `rgba(184,151,90,${t * .55})`
-          : `rgba(253,252,250,${t * .13})`;
+        ctx.strokeStyle = nearMouse ? `rgba(184,151,90,${t * .55})` : `rgba(253,252,250,${t * .13})`;
         ctx.lineWidth = nearMouse ? .7 : .35;
         ctx.stroke();
       }
     }
   }
 }
-
 document.addEventListener('mousemove', e => { mouseX = e.clientX; mouseY = e.clientY; });
 resize(); init(); loop();
 window.addEventListener('resize', () => { resize(); init(); });
@@ -653,39 +845,24 @@ window.addEventListener('resize', () => { resize(); init(); });
 /* ── Smooth letter reveal ── */
 const word = 'Vessels';
 const scramEl = document.getElementById('scramble-word');
-
-// Build letter spans
-scramEl.innerHTML = word.split('').map(c =>
-  `<span class="letter">${c}</span>`
-).join('');
-
+scramEl.innerHTML = word.split('').map(c => `<span class="letter">${c}</span>`).join('');
 const letters = scramEl.querySelectorAll('.letter');
 
 function revealLetters(startDelay) {
-  // Reset
   letters.forEach(l => l.classList.remove('visible'));
-  // Stagger each letter in
-  letters.forEach((l, i) => {
-    setTimeout(() => l.classList.add('visible'), startDelay + i * 65);
-  });
-  // Shimmer sweep after all letters are in
+  letters.forEach((l, i) => { setTimeout(() => l.classList.add('visible'), startDelay + i * 65); });
   const totalReveal = startDelay + word.length * 65 + 200;
   setTimeout(() => {
     scramEl.classList.add('shimmering');
     setTimeout(() => scramEl.classList.remove('shimmering'), 1100);
   }, totalReveal);
 }
-
-// Initial reveal
 revealLetters(750);
-
-// Replay on hover
 scramEl.closest('h1').addEventListener('mouseenter', () => revealLetters(0));
 
 /* ── 3D card tilt ── */
 document.querySelectorAll('.path-card').forEach(card => {
   const glow = card.querySelector('.card-inner-glow');
-
   card.addEventListener('mouseenter', () => {
     card.style.transition = 'transform 0.12s ease, border-color 0.35s, background 0.35s';
   });
@@ -702,8 +879,7 @@ document.querySelectorAll('.path-card').forEach(card => {
     const cy = r.height / 2;
     const rx = ((y - cy) / cy) * -9;
     const ry = ((x - cx) / cx) *  9;
-    card.style.transform =
-      `translateY(-5px) scale(1.006) perspective(900px) rotateX(${rx}deg) rotateY(${ry}deg)`;
+    card.style.transform = `translateY(-5px) scale(1.006) perspective(900px) rotateX(${rx}deg) rotateY(${ry}deg)`;
     if (glow) {
       glow.style.setProperty('--gx', (x/r.width*100)+'%');
       glow.style.setProperty('--gy', (y/r.height*100)+'%');

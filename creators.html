@@ -23,9 +23,9 @@
       --charcoal-60:  rgba(26,24,20,0.6);
       --charcoal-30:  rgba(26,24,20,0.3);
       --charcoal-10:  rgba(26,24,20,0.08);
-      --gold:         #B8975A;
-      --gold-light:   #D4B478;
-      --gold-pale:    rgba(184,151,90,0.12);
+      --gold:         #c0392b;
+      --gold-light:   #e74c3c;
+      --gold-pale:    rgba(192,57,43,0.12);
       --white:        #FDFCFA;
       --black:        #0D0C0A;
       --font-display: 'Playfair Display', Georgia, serif;
@@ -561,7 +561,7 @@
       box-shadow: 0 0 0 3px var(--gold-pale);
     }
     .form-group textarea { resize: vertical; min-height: 110px; }
-    .form-group select { background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%23B8975A' d='M6 8L1 3h10z'/%3E%3C/svg%3E"); background-repeat: no-repeat; background-position: right 1rem center; padding-right: 2.5rem; }
+    .form-group select { background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%23c0392b' d='M6 8L1 3h10z'/%3E%3C/svg%3E"); background-repeat: no-repeat; background-position: right 1rem center; padding-right: 2.5rem; }
 
     .form-submit {
       width: 100%;
@@ -646,6 +646,38 @@
     .reveal-delay-2 { transition-delay: 0.2s; }
     .reveal-delay-3 { transition-delay: 0.3s; }
     .reveal-delay-4 { transition-delay: 0.4s; }
+
+    /* ─── MOBILE NAV ─── */
+    .mobile-nav-overlay.open { display: flex !important; }
+    @media (max-width: 860px) { .hamburger-icon { display: flex !important; } }
+
+    /* ─── VESS ORB ─── */
+    .vess-orb-container { position: fixed; bottom: 28px; right: 28px; z-index: 9998; display: flex; flex-direction: column; align-items: center; gap: 10px; cursor: pointer; }
+    .vess-label-tag { font-size: 0.62rem; font-weight: 600; letter-spacing: 0.18em; text-transform: uppercase; color: rgba(26,24,20,0.35); opacity: 0; transform: translateY(4px); transition: opacity 0.3s, transform 0.3s; background: rgba(245,240,232,0.88); padding: 4px 10px; border-radius: 999px; border: 1px solid rgba(26,24,20,0.08); backdrop-filter: blur(8px); }
+    .vess-orb-container:hover .vess-label-tag { opacity: 1; transform: translateY(0); color: var(--gold); border-color: rgba(192,57,43,0.25); }
+    .vess-orb { width: 64px; height: 64px; position: relative; display: flex; align-items: center; justify-content: center; transition: transform 0.4s cubic-bezier(0.22,1,0.36,1); }
+    .vess-orb-container:hover .vess-orb { transform: scale(1.12); }
+    .vess-sphere { width: 48px; height: 48px; border-radius: 50%; position: relative; z-index: 3; background: radial-gradient(circle at 35% 30%, rgba(255,255,255,0.85) 0%, rgba(220,60,50,0.9) 20%, rgba(192,57,43,0.75) 40%, rgba(34,211,211,0.5) 65%, rgba(10,8,6,0.9) 100%); box-shadow: 0 0 18px rgba(192,57,43,0.7), 0 0 36px rgba(192,57,43,0.35), 0 0 72px rgba(34,211,211,0.15), inset 0 2px 8px rgba(255,255,255,0.3); animation: vessPulse 3s ease-in-out infinite; }
+    .vess-sphere::after { content: ''; position: absolute; top: 14%; left: 20%; width: 28%; height: 18%; background: rgba(255,255,255,0.5); border-radius: 50%; filter: blur(3px); transform: rotate(-20deg); }
+    @keyframes vessPulse { 0%, 100% { box-shadow: 0 0 18px rgba(192,57,43,0.7), 0 0 36px rgba(192,57,43,0.35), 0 0 72px rgba(34,211,211,0.15), inset 0 2px 8px rgba(255,255,255,0.3); } 50% { box-shadow: 0 0 28px rgba(192,57,43,0.9), 0 0 56px rgba(192,57,43,0.5), 0 0 100px rgba(34,211,211,0.25), inset 0 2px 8px rgba(255,255,255,0.35); } }
+    .vess-ring { position: absolute; border-radius: 50%; border: 1px solid transparent; top: 50%; left: 50%; }
+    .vess-ring-1 { width: 56px; height: 56px; margin-top: -28px; margin-left: -28px; border-color: rgba(220,60,50,0.35); animation: vr1 4s linear infinite; }
+    .vess-ring-2 { width: 62px; height: 62px; margin-top: -31px; margin-left: -31px; border-color: rgba(192,57,43,0.2); animation: vr2 7s linear infinite reverse; }
+    .vess-ring-3 { width: 68px; height: 68px; margin-top: -34px; margin-left: -34px; border-color: rgba(34,211,211,0.1); animation: vr3 11s linear infinite; }
+    @keyframes vr1 { from { transform: rotateX(72deg) rotateZ(0deg); } to { transform: rotateX(72deg) rotateZ(360deg); } }
+    @keyframes vr2 { from { transform: rotateX(65deg) rotateZ(25deg); } to { transform: rotateX(65deg) rotateZ(385deg); } }
+    @keyframes vr3 { from { transform: rotateX(40deg) rotateZ(-15deg); } to { transform: rotateX(40deg) rotateZ(345deg); } }
+    .vess-wave { display: flex; align-items: flex-end; gap: 2px; height: 14px; position: absolute; bottom: -18px; left: 50%; transform: translateX(-50%); }
+    .vess-bar { width: 2.5px; border-radius: 1.5px; background: var(--gold-light); animation: vb 1.1s ease-in-out infinite; }
+    .vess-bar:nth-child(1) { height: 40%; animation-delay: 0s; }
+    .vess-bar:nth-child(2) { height: 70%; animation-delay: 0.15s; }
+    .vess-bar:nth-child(3) { height: 100%; animation-delay: 0.3s; }
+    .vess-bar:nth-child(4) { height: 55%; animation-delay: 0.45s; }
+    .vess-bar:nth-child(5) { height: 80%; animation-delay: 0.6s; }
+    .vess-bar:nth-child(6) { height: 40%; animation-delay: 0.75s; }
+    .vess-bar:nth-child(7) { height: 65%; animation-delay: 0.9s; }
+    @keyframes vb { 0%, 100% { transform: scaleY(0.4); opacity: 0.5; } 50% { transform: scaleY(1); opacity: 1; } }
+
   </style>
 </head>
 
@@ -654,12 +686,30 @@
   <!-- ── Navigation ── -->
   <nav class="nav" id="nav">
     <div class="container nav-inner">
-      <a href="/" class="nav-logo">Vessels<span>.</span></a>
-      <div style="display:flex;align-items:center;gap:1.5rem;">
-        <a href="/brands" style="font-family:var(--font-body);font-size:0.875rem;font-weight:500;color:var(--charcoal-60);text-decoration:none;transition:color 0.2s;" onmouseover="this.style.color='var(--gold)'" onmouseout="this.style.color='var(--charcoal-60)'">For Brands</a>
-        <a href="#apply" class="btn-primary nav-cta">Apply Now →</a>
+      <a href="index.html" class="nav-logo">Vssls<span>.</span></a>
+      <ul style="display:flex;align-items:center;gap:28px;list-style:none;">
+        <li><a href="brands.html" style="font-family:var(--font-body);font-size:13.5px;font-weight:500;color:var(--charcoal-60);transition:color 0.2s;" onmouseover="this.style.color='var(--charcoal)'" onmouseout="this.style.color='var(--charcoal-60)'">Brands</a></li>
+        <li><a href="creators.html" style="font-family:var(--font-body);font-size:13.5px;font-weight:600;color:var(--gold);">Creators</a></li>
+        <li><a href="ai-solutions.html" style="font-family:var(--font-body);font-size:13.5px;font-weight:500;color:var(--charcoal-60);transition:color 0.2s;" onmouseover="this.style.color='var(--charcoal)'" onmouseout="this.style.color='var(--charcoal-60)'">AI Solutions</a></li>
+        <li><a href="nonprofits.html" style="font-family:var(--font-body);font-size:13.5px;font-weight:500;color:var(--charcoal-60);transition:color 0.2s;" onmouseover="this.style.color='var(--charcoal)'" onmouseout="this.style.color='var(--charcoal-60)'">Nonprofits</a></li>
+      </ul>
+      <a href="https://vssls.co/book" class="btn-primary nav-cta">Book a Call</a>
+      <div id="hamburgerCreators" onclick="document.getElementById('mobileNavCreators').classList.toggle('open')" style="display:none;flex-direction:column;gap:5px;cursor:pointer;padding:4px;" class="hamburger-icon">
+        <span style="display:block;width:22px;height:1.5px;background:var(--charcoal);transition:0.3s;"></span>
+        <span style="display:block;width:22px;height:1.5px;background:var(--charcoal);transition:0.3s;"></span>
+        <span style="display:block;width:22px;height:1.5px;background:var(--charcoal);transition:0.3s;"></span>
       </div>
     </div>
+  </nav>
+
+  <!-- Mobile Nav -->
+  <nav style="display:none;position:fixed;top:0;left:0;right:0;bottom:0;background:rgba(245,240,232,0.97);backdrop-filter:blur(20px);z-index:490;flex-direction:column;align-items:center;justify-content:center;gap:32px;" id="mobileNavCreators" class="mobile-nav-overlay">
+    <button onclick="document.getElementById('mobileNavCreators').classList.remove('open')" style="position:absolute;top:24px;right:28px;font-size:28px;cursor:pointer;color:var(--charcoal-60);background:none;border:none;">&#x2715;</button>
+    <a href="brands.html" style="font-family:var(--font-display);font-size:28px;font-weight:600;color:var(--charcoal);">Brands</a>
+    <a href="creators.html" style="font-family:var(--font-display);font-size:28px;font-weight:600;color:var(--charcoal);">Creators</a>
+    <a href="ai-solutions.html" style="font-family:var(--font-display);font-size:28px;font-weight:600;color:var(--charcoal);">AI Solutions</a>
+    <a href="nonprofits.html" style="font-family:var(--font-display);font-size:28px;font-weight:600;color:var(--charcoal);">Nonprofits</a>
+    <a href="https://vssls.co/book" style="font-family:var(--font-display);font-size:28px;font-weight:600;color:var(--charcoal);">Book a Call</a>
   </nav>
 
   <!-- ── Hero ── -->
@@ -1090,13 +1140,16 @@
   <footer class="footer">
     <div class="container">
       <div class="footer-inner">
-        <div class="footer-logo">Vessels<span>.</span></div>
-        <div class="footer-links">
-          <a href="/brands">For Brands</a>
-          <a href="/creators">For Creators</a>
+        <div class="footer-logo">Vssls<span>.</span></div>
+        <div class="footer-links" style="display:flex;flex-wrap:wrap;gap:20px;">
+          <a href="brands.html">Brands</a>
+          <a href="creators.html">Creators</a>
+          <a href="ai-solutions.html">AI Solutions</a>
+          <a href="nonprofits.html">Nonprofits</a>
+          <a href="https://vssls.co/book">Book a Call</a>
           <a href="mailto:hello@vssls.co">hello@vssls.co</a>
         </div>
-        <div class="footer-copy">© 2025 Vessels. All rights reserved.</div>
+        <div class="footer-copy">&#169; 2026 Vessels &#183; vssls.co &#183; Texas &nbsp;&nbsp;<em style="font-family:var(--font-display);font-style:italic;opacity:0.5;">Go well.</em></div>
       </div>
     </div>
   </footer>
@@ -1171,5 +1224,22 @@
       }
     });
   </script>
+
+  <!-- ── VESS ORB ── -->
+  <div class="vess-orb-container" onclick="window.open('https://vapi.ai?demo=true&shareKey=55f26eb3-8cb0-453f-8975-f5f5477a14ab&assistantId=995562ba-f964-4fe4-872c-ef0c4f14bf02','_blank')" title="Talk to Vess">
+    <div class="vess-label-tag">Talk to Vess</div>
+    <div class="vess-orb">
+      <div class="vess-ring vess-ring-3"></div>
+      <div class="vess-ring vess-ring-2"></div>
+      <div class="vess-ring vess-ring-1"></div>
+      <div class="vess-sphere"></div>
+      <div class="vess-wave">
+        <div class="vess-bar"></div><div class="vess-bar"></div><div class="vess-bar"></div>
+        <div class="vess-bar"></div><div class="vess-bar"></div><div class="vess-bar"></div>
+        <div class="vess-bar"></div>
+      </div>
+    </div>
+  </div>
+
 </body>
 </html>

@@ -1510,6 +1510,44 @@
     .form-success p { font-size: 14px; color: var(--charcoal-50); margin: 0; }
     @media(max-width:540px){ .form-row { grid-template-columns: 1fr; } }
 
+
+    /* ─── MOBILE NAV OVERLAY ─── */
+    .mobile-nav {
+      display: none; position: fixed; top: 0; left: 0; right: 0; bottom: 0;
+      background: rgba(245,240,232,0.97); backdrop-filter: blur(20px);
+      z-index: 490; flex-direction: column; align-items: center; justify-content: center; gap: 32px;
+    }
+    .mobile-nav.open { display: flex; }
+    .mobile-nav a { font-family: var(--font-display); font-size: 28px; font-weight: 600; color: var(--charcoal); }
+    .mobile-nav .mobile-close { position: absolute; top: 24px; right: 28px; font-size: 28px; cursor: pointer; color: var(--charcoal-60); background: none; border: none; }
+
+    /* ─── VESS ORB ─── */
+    .vess-orb-container { position: fixed; bottom: 28px; right: 28px; z-index: 9998; display: flex; flex-direction: column; align-items: center; gap: 10px; cursor: pointer; }
+    .vess-label-tag { font-size: 0.62rem; font-weight: 600; letter-spacing: 0.18em; text-transform: uppercase; color: rgba(26,24,20,0.35); opacity: 0; transform: translateY(4px); transition: opacity 0.3s, transform 0.3s; background: rgba(245,240,232,0.88); padding: 4px 10px; border-radius: 999px; border: 1px solid rgba(26,24,20,0.08); backdrop-filter: blur(8px); }
+    .vess-orb-container:hover .vess-label-tag { opacity: 1; transform: translateY(0); color: var(--gold); border-color: rgba(184,151,90,0.25); }
+    .vess-orb { width: 64px; height: 64px; position: relative; display: flex; align-items: center; justify-content: center; transition: transform 0.4s cubic-bezier(0.22,1,0.36,1); }
+    .vess-orb-container:hover .vess-orb { transform: scale(1.12); }
+    .vess-sphere { width: 48px; height: 48px; border-radius: 50%; position: relative; z-index: 3; background: radial-gradient(circle at 35% 30%, rgba(255,255,255,0.85) 0%, rgba(212,180,120,0.9) 20%, rgba(184,151,90,0.75) 40%, rgba(34,211,211,0.5) 65%, rgba(10,8,6,0.9) 100%); box-shadow: 0 0 18px rgba(184,151,90,0.7), 0 0 36px rgba(184,151,90,0.35), 0 0 72px rgba(34,211,211,0.15), inset 0 2px 8px rgba(255,255,255,0.3); animation: vessPulse 3s ease-in-out infinite; }
+    .vess-sphere::after { content: ''; position: absolute; top: 14%; left: 20%; width: 28%; height: 18%; background: rgba(255,255,255,0.5); border-radius: 50%; filter: blur(3px); transform: rotate(-20deg); }
+    @keyframes vessPulse { 0%, 100% { box-shadow: 0 0 18px rgba(184,151,90,0.7), 0 0 36px rgba(184,151,90,0.35), 0 0 72px rgba(34,211,211,0.15), inset 0 2px 8px rgba(255,255,255,0.3); } 50% { box-shadow: 0 0 28px rgba(184,151,90,0.9), 0 0 56px rgba(184,151,90,0.5), 0 0 100px rgba(34,211,211,0.25), inset 0 2px 8px rgba(255,255,255,0.35); } }
+    .vess-ring { position: absolute; border-radius: 50%; border: 1px solid transparent; top: 50%; left: 50%; }
+    .vess-ring-1 { width: 56px; height: 56px; margin-top: -28px; margin-left: -28px; border-color: rgba(212,180,120,0.35); animation: vr1 4s linear infinite; }
+    .vess-ring-2 { width: 62px; height: 62px; margin-top: -31px; margin-left: -31px; border-color: rgba(184,151,90,0.2); animation: vr2 7s linear infinite reverse; }
+    .vess-ring-3 { width: 68px; height: 68px; margin-top: -34px; margin-left: -34px; border-color: rgba(34,211,211,0.1); animation: vr3 11s linear infinite; }
+    @keyframes vr1 { from { transform: rotateX(72deg) rotateZ(0deg); } to { transform: rotateX(72deg) rotateZ(360deg); } }
+    @keyframes vr2 { from { transform: rotateX(65deg) rotateZ(25deg); } to { transform: rotateX(65deg) rotateZ(385deg); } }
+    @keyframes vr3 { from { transform: rotateX(40deg) rotateZ(-15deg); } to { transform: rotateX(40deg) rotateZ(345deg); } }
+    .vess-wave { display: flex; align-items: flex-end; gap: 2px; height: 14px; position: absolute; bottom: -18px; left: 50%; transform: translateX(-50%); }
+    .vess-bar { width: 2.5px; border-radius: 1.5px; background: var(--gold-light); animation: vb 1.1s ease-in-out infinite; }
+    .vess-bar:nth-child(1) { height: 40%; animation-delay: 0s; }
+    .vess-bar:nth-child(2) { height: 70%; animation-delay: 0.15s; }
+    .vess-bar:nth-child(3) { height: 100%; animation-delay: 0.3s; }
+    .vess-bar:nth-child(4) { height: 55%; animation-delay: 0.45s; }
+    .vess-bar:nth-child(5) { height: 80%; animation-delay: 0.6s; }
+    .vess-bar:nth-child(6) { height: 40%; animation-delay: 0.75s; }
+    .vess-bar:nth-child(7) { height: 65%; animation-delay: 0.9s; }
+    @keyframes vb { 0%, 100% { transform: scaleY(0.4); opacity: 0.5; } 50% { transform: scaleY(1); opacity: 1; } }
+
   </style>
 </head>
 <body>
@@ -1517,19 +1555,28 @@
   <!-- ──────────────── NAV ──────────────── -->
   <nav id="navbar">
     <div class="container nav-inner">
-      <a href="/" class="nav-logo">Vessels<span>.</span></a>
+      <a href="index.html" class="nav-logo">Vssls<span>.</span></a>
       <ul class="nav-links">
-        <li><a href="#how">How It Works</a></li>
-        <li><a href="#results">Results</a></li>
-        <li><a href="#pricing">Pricing</a></li>
-        <li><a href="#faq">FAQ</a></li>
-        <li><a href="/creators" style="color:var(--gold);font-weight:600;">For Creators →</a></li>
+        <li><a href="brands.html" style="color:var(--gold);font-weight:600;">Brands</a></li>
+        <li><a href="creators.html">Creators</a></li>
+        <li><a href="ai-solutions.html">AI Solutions</a></li>
+        <li><a href="nonprofits.html">Nonprofits</a></li>
       </ul>
-      <a href="#final-cta" class="btn-nav">Book a Call</a>
-      <div class="hamburger" id="hamburger">
+      <a href="https://vssls.co/book" class="btn-nav">Book a Call</a>
+      <div class="hamburger" id="hamburger" onclick="document.getElementById('mobileNav').classList.toggle('open')">
         <span></span><span></span><span></span>
       </div>
     </div>
+  </nav>
+
+  <!-- Mobile Nav -->
+  <nav class="mobile-nav" id="mobileNav">
+    <button class="mobile-close" onclick="document.getElementById('mobileNav').classList.remove('open')">&#x2715;</button>
+    <a href="brands.html">Brands</a>
+    <a href="creators.html">Creators</a>
+    <a href="ai-solutions.html">AI Solutions</a>
+    <a href="nonprofits.html">Nonprofits</a>
+    <a href="https://vssls.co/book">Book a Call</a>
   </nav>
 
   <!-- ──────────────── HERO ──────────────── -->
@@ -2012,8 +2059,17 @@
     <div class="container">
       <div class="footer-top">
         <div class="footer-brand">
-          <span class="nav-logo">Vessels<span>.</span></span>
-          <p>We build creator ecosystems for modern ecommerce brands — turning influencer marketing from chaos into a compounding growth channel.</p>
+          <span class="nav-logo">Vssls<span>.</span>
+          <p>We build brands. We build creators. We deploy AI. We multiply missions. Four paths. One team. Built from Texas.</p>
+        </div>
+        <div class="footer-col">
+          <h5>Paths</h5>
+          <ul>
+            <li><a href="brands.html">Brands</a></li>
+            <li><a href="creators.html">Creators</a></li>
+            <li><a href="ai-solutions.html">AI Solutions</a></li>
+            <li><a href="nonprofits.html">Nonprofits</a></li>
+          </ul>
         </div>
         <div class="footer-col">
           <h5>Services</h5>
@@ -2026,37 +2082,21 @@
           </ul>
         </div>
         <div class="footer-col">
-          <h5>Company</h5>
+          <h5>Connect</h5>
           <ul>
-            <li><a href="#why">Why Vessels</a></li>
-            <li><a href="#results">Results</a></li>
-            <li><a href="#how">How It Works</a></li>
-            <li><a href="#faq">FAQ</a></li>
-            <li><a href="/creators">For Creators</a></li>
-          </ul>
-        </div>
-        <div class="footer-col">
-          <h5>Contact</h5>
-          <ul>
+            <li><a href="https://vssls.co/book">Book a Call</a></li>
             <li><a href="mailto:hello@vssls.co">hello@vssls.co</a></li>
-            <li><a href="#final-cta">Book a Call</a></li>
-            <li><a href="https://instagram.com" target="_blank">Instagram</a></li>
-            <li><a href="https://linkedin.com" target="_blank">LinkedIn</a></li>
-            <li><a href="https://twitter.com" target="_blank">Twitter / X</a></li>
+            <li><a href="https://instagram.com/vssls.co" target="_blank">Instagram</a></li>
+            <li><a href="https://linkedin.com/company/vessels" target="_blank">LinkedIn</a></li>
           </ul>
         </div>
       </div>
       <div class="footer-bottom">
-        <p class="footer-copy">© 2025 Vessels. All rights reserved.</p>
-        <div class="footer-social">
-          <a href="https://instagram.com" target="_blank">Instagram</a>
-          <a href="https://linkedin.com" target="_blank">LinkedIn</a>
-          <a href="https://twitter.com" target="_blank">Twitter</a>
-        </div>
+        <p class="footer-copy">&#169; 2026 Vessels &#183; vssls.co &#183; Texas</p>
+        <p class="footer-signoff" style="font-family:var(--font-display);font-style:italic;color:rgba(26,24,20,0.3)">Go well.</p>
       </div>
     </div>
   </footer>
-
   <script>
     // ── Navbar scroll ──
     const navbar = document.getElementById('navbar');
@@ -2142,5 +2182,22 @@
     }
 
   </script>
+
+  <!-- ──────────────── VESS ORB ──────────────── -->
+  <div class="vess-orb-container" onclick="window.open('https://vapi.ai?demo=true&shareKey=55f26eb3-8cb0-453f-8975-f5f5477a14ab&assistantId=995562ba-f964-4fe4-872c-ef0c4f14bf02','_blank')" title="Talk to Vess">
+    <div class="vess-label-tag">Talk to Vess</div>
+    <div class="vess-orb">
+      <div class="vess-ring vess-ring-3"></div>
+      <div class="vess-ring vess-ring-2"></div>
+      <div class="vess-ring vess-ring-1"></div>
+      <div class="vess-sphere"></div>
+      <div class="vess-wave">
+        <div class="vess-bar"></div><div class="vess-bar"></div><div class="vess-bar"></div>
+        <div class="vess-bar"></div><div class="vess-bar"></div><div class="vess-bar"></div>
+        <div class="vess-bar"></div>
+      </div>
+    </div>
+  </div>
+
 </body>
 </html>
