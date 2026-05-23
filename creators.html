@@ -1393,12 +1393,13 @@
   var ASS_ID  = '995562ba-f964-4fe4-872c-ef0c4f14bf02';
   var vapiInst = null;
   var callActive = false;
+  var sdkLoading = false;
 
-  function $modal()  { return document.getElementById('vessChatModal'); }
-  function $body()   { return document.getElementById('vessChatBody'); }
-  function $dot()    { return document.getElementById('vessLiveDot'); }
-  function setState(t) { document.getElementById('vessChatState').textContent = t; }
-  function setDot(on)  { $dot().classList.toggle('on', on); }
+  function $modal()    { return document.getElementById('vessChatModal'); }
+  function $body()     { return document.getElementById('vessChatBody'); }
+  function $dot()      { return document.getElementById('vessLiveDot'); }
+  function setState(t) { var el = document.getElementById('vessChatState'); if (el) el.textContent = t; }
+  function setDot(on)  { var d = $dot(); if (d) d.classList.toggle('on', on); }
 
   function addBubble(role, text) {
     var b = document.createElement('div');
@@ -1415,41 +1416,13 @@
     $body().scrollTop = $body().scrollHeight;
   }
 
-  function loadSDK(cb) {
-    if (window.vapiSDK) { cb(); return; }
-    var s = document.createElement('script');
-    s.src = 'https://cdn.jsdelivr.net/gh/VapiAI/html-script-tag@latest/dist/assets/index.js';
-    s.defer = true;
-    s.onload = function () { setTimeout(cb, 100); };
-    s.onerror = function () {
-      setState('Could not load');
-      addLine('Network error — please try again.');
-    };
-    document.head.appendChild(s);
-  }
-
-  function initVapi() {
-    if (vapiInst) {
-      if (!callActive) vapiInst.start(ASS_ID);
-      return;
-    }
-    vapiInst = window.vapiSDK.run({
-      apiKey: PUB_KEY,
-      assistant: ASS_ID,
-      config: { position: 'bottom-right', offset: '-9999px', width: '1px', height: '1px' }
-    });
-
+  function attachEvents() {
     vapiInst.on('call-start', function () {
-      callActive = true;
-      setDot(true);
-      setState('Connected');
-      $body().innerHTML = '';
-      addLine('Call started — speak naturally');
+      callActive = true; setDot(true); setState('Connected');
+      $body().innerHTML = ''; addLine('Call started — speak naturally');
     });
     vapiInst.on('call-end', function () {
-      callActive = false;
-      setDot(false);
-      setState('Call ended');
+      callActive = false; setDot(false); setState('Call ended');
       addLine('Call ended');
     });
     vapiInst.on('speech-start', function () { setState('Speaking…'); });
@@ -1461,32 +1434,60 @@
     });
     vapiInst.on('error', function (err) {
       console.error('Vapi error:', err);
-      setDot(false);
-      setState('Error');
+      setDot(false); setState('Error');
       addLine('Connection error — please try again.');
       callActive = false;
     });
   }
 
+  function createInst() {
+    if (vapiInst) return;
+    vapiInst = window.vapiSDK.run({
+      apiKey: PUB_KEY,
+      assistant: ASS_ID,
+      config: { position: 'bottom-right', offset: '-9999px', width: '1px', height: '1px' }
+    });
+    attachEvents();
+  }
+
+  function loadSDK(cb) {
+    if (window.vapiSDK) { cb(); return; }
+    if (sdkLoading) { setTimeout(function() { loadSDK(cb); }, 200); return; }
+    sdkLoading = true;
+    var s = document.createElement('script');
+    s.src = 'https://cdn.jsdelivr.net/gh/VapiAI/html-script-tag@latest/dist/assets/index.js';
+    s.onload = function () { sdkLoading = false; setTimeout(cb, 80); };
+    s.onerror = function () {
+      sdkLoading = false;
+      setState('Could not load'); addLine('Network error — please try again.');
+    };
+    document.head.appendChild(s);
+  }
+
+  // Pre-warm: load SDK + create instance silently 1.5s after page load
+  // so it’s ready before the user clicks
+  window.addEventListener('load', function () {
+    setTimeout(function () { loadSDK(createInst); }, 1500);
+  });
+
   window.openVess = function () {
     $modal().classList.add('open');
-    if (!callActive) {
-      $body().innerHTML = '<div class="vess-state-line">Connecting…</div>';
-      setState('Connecting…');
-      setDot(false);
-      loadSDK(initVapi);
-    }
+    if (callActive) return;
+    $body().innerHTML = '<div class="vess-state-line">Connecting…</div>';
+    setState('Connecting…'); setDot(false);
+    // If already pre-warmed: createInst is a no-op, then start immediately
+    loadSDK(function () {
+      createInst();
+      vapiInst.start(ASS_ID);
+    });
   };
 
   window.closeVess = function () {
     $modal().classList.remove('open');
     if (vapiInst && callActive) { vapiInst.stop(); }
-    callActive = false;
-    setDot(false);
-    setState('AI Voice Agent');
+    callActive = false; setDot(false); setState('AI Voice Agent');
   };
 
-  // Close modal on overlay click (clicking outside the modal box)
   document.addEventListener('keydown', function (e) {
     if (e.key === 'Escape') window.closeVess();
   });
