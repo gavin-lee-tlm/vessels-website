@@ -808,6 +808,124 @@
       .footer-bottom { flex-direction: column; gap: 12px; text-align: center; }
       #hero { padding: 120px 24px 80px; }
     }
+
+    /* ── Vess Chat Modal ── */
+    .vess-chat-modal {
+      position: fixed;
+      bottom: 110px;
+      right: 28px;
+      width: 320px;
+      max-height: 440px;
+      background: rgba(13,12,10,0.97);
+      border: 1px solid rgba(184,151,90,0.18);
+      border-radius: 20px;
+      display: none;
+      flex-direction: column;
+      z-index: 9997;
+      box-shadow: 0 24px 60px rgba(0,0,0,0.65), 0 0 40px rgba(184,151,90,0.07);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      overflow: hidden;
+    }
+    .vess-chat-modal.open {
+      display: flex;
+      animation: vessChatIn 0.3s cubic-bezier(0.22,1,0.36,1) forwards;
+    }
+    @keyframes vessChatIn {
+      from { opacity: 0; transform: translateY(14px) scale(0.97); }
+      to   { opacity: 1; transform: translateY(0) scale(1); }
+    }
+    .vess-chat-hdr {
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 0.875rem 1rem;
+      border-bottom: 1px solid rgba(255,255,255,0.06);
+      flex-shrink: 0;
+    }
+    .vess-chat-name {
+      font-size: 0.85rem; font-weight: 600; color: rgba(255,255,255,0.9);
+      display: flex; align-items: center; gap: 0.45rem;
+    }
+    .vess-live-dot {
+      width: 7px; height: 7px; border-radius: 50%;
+      background: #2a2a2a; transition: background 0.3s, box-shadow 0.3s;
+    }
+    .vess-live-dot.on {
+      background: #22c55e;
+      box-shadow: 0 0 7px rgba(34,197,94,0.7);
+    }
+    .vess-chat-state {
+      font-size: 0.65rem; color: rgba(255,255,255,0.22);
+      letter-spacing: 0.08em; margin-top: 2px;
+    }
+    .vess-chat-x {
+      background: none; border: none;
+      color: rgba(255,255,255,0.22); cursor: pointer;
+      font-size: 1rem; line-height: 1; padding: 4px;
+      transition: color 0.2s;
+    }
+    .vess-chat-x:hover { color: rgba(255,255,255,0.7); }
+    .vess-chat-body {
+      flex: 1; overflow-y: auto;
+      padding: 0.875rem;
+      display: flex; flex-direction: column; gap: 0.55rem;
+      min-height: 100px;
+    }
+    .vess-chat-body::-webkit-scrollbar { width: 3px; }
+    .vess-chat-body::-webkit-scrollbar-thumb {
+      background: rgba(255,255,255,0.08); border-radius: 3px;
+    }
+    .vess-bubble {
+      max-width: 88%; padding: 0.5rem 0.8rem;
+      border-radius: 14px; font-size: 0.82rem; line-height: 1.55;
+      word-break: break-word;
+    }
+    .vess-bubble.assistant {
+      background: color-mix(in srgb, var(--gold) 12%, transparent);
+      border: 1px solid color-mix(in srgb, var(--gold) 18%, transparent);
+      color: rgba(255,255,255,0.82);
+      align-self: flex-start; border-bottom-left-radius: 4px;
+    }
+    .vess-bubble.user {
+      background: rgba(255,255,255,0.065);
+      color: rgba(255,255,255,0.6);
+      align-self: flex-end; border-bottom-right-radius: 4px;
+    }
+    .vess-state-line {
+      text-align: center; font-size: 0.68rem;
+      color: rgba(255,255,255,0.16);
+      letter-spacing: 0.09em; text-transform: uppercase; padding: 0.2rem 0;
+    }
+    .vess-chat-ftr {
+      padding: 0.7rem 1rem;
+      border-top: 1px solid rgba(255,255,255,0.05);
+      display: flex; align-items: center; justify-content: space-between;
+      flex-shrink: 0;
+    }
+    .vess-wave-mini {
+      display: flex; align-items: flex-end; gap: 2px; height: 18px;
+    }
+    .vess-wave-mini span {
+      width: 2px; border-radius: 1px;
+      background: var(--gold);
+      opacity: 0.45;
+      animation: vmBar 1.1s ease-in-out infinite;
+    }
+    .vess-wave-mini span:nth-child(1){animation-delay:0s}
+    .vess-wave-mini span:nth-child(2){animation-delay:.15s}
+    .vess-wave-mini span:nth-child(3){animation-delay:.3s}
+    .vess-wave-mini span:nth-child(4){animation-delay:.1s}
+    .vess-wave-mini span:nth-child(5){animation-delay:.25s}
+    @keyframes vmBar { 0%,100%{height:3px} 50%{height:16px} }
+    .vess-end-btn {
+      background: rgba(192,57,43,0.12);
+      border: 1px solid rgba(192,57,43,0.28);
+      color: #e74c3c; font-size: 0.72rem; font-weight: 600;
+      letter-spacing: 0.07em; padding: 0.38rem 0.85rem;
+      border-radius: 999px; cursor: pointer; transition: background 0.2s;
+    }
+    .vess-end-btn:hover { background: rgba(192,57,43,0.22); }
+    /* Hide the default VAPI injected button */
+    #vapi-support-btn { position: fixed !important; left: -9999px !important; visibility: hidden !important; pointer-events: none !important; }
   </style>
 </head>
 <body>
@@ -1400,5 +1518,139 @@
       });
     }
   </script>
+  <!-- ── Vess Chat Modal ── -->
+  <div class="vess-chat-modal" id="vessChatModal">
+    <div class="vess-chat-hdr">
+      <div>
+        <div class="vess-chat-name">
+          <span class="vess-live-dot" id="vessLiveDot"></span>
+          Vess<span style="color:var(--gold)">.</span>
+        </div>
+        <div class="vess-chat-state" id="vessChatState">AI Voice Agent</div>
+      </div>
+      <button class="vess-chat-x" onclick="closeVess()">&#10005;</button>
+    </div>
+    <div class="vess-chat-body" id="vessChatBody">
+      <div class="vess-state-line">Tap the orb to begin</div>
+    </div>
+    <div class="vess-chat-ftr">
+      <div class="vess-wave-mini">
+        <span style="height:4px"></span>
+        <span style="height:8px"></span>
+        <span style="height:5px"></span>
+        <span style="height:11px"></span>
+        <span style="height:6px"></span>
+      </div>
+      <button class="vess-end-btn" onclick="closeVess()">End Call</button>
+    </div>
+  </div>
+
+<script>
+/* ── Vess VAPI Integration ── */
+(function () {
+  var PUB_KEY = '55f26eb3-8cb0-453f-8975-f5f5477a14ab';
+  var ASS_ID  = '995562ba-f964-4fe4-872c-ef0c4f14bf02';
+  var vapiInst = null;
+  var callActive = false;
+
+  function $modal()  { return document.getElementById('vessChatModal'); }
+  function $body()   { return document.getElementById('vessChatBody'); }
+  function $dot()    { return document.getElementById('vessLiveDot'); }
+  function setState(t) { document.getElementById('vessChatState').textContent = t; }
+  function setDot(on)  { $dot().classList.toggle('on', on); }
+
+  function addBubble(role, text) {
+    var b = document.createElement('div');
+    b.className = 'vess-bubble ' + role;
+    b.textContent = text;
+    $body().appendChild(b);
+    $body().scrollTop = $body().scrollHeight;
+  }
+  function addLine(text) {
+    var el = document.createElement('div');
+    el.className = 'vess-state-line';
+    el.textContent = text;
+    $body().appendChild(el);
+    $body().scrollTop = $body().scrollHeight;
+  }
+
+  function loadSDK(cb) {
+    if (window.vapiSDK) { cb(); return; }
+    var s = document.createElement('script');
+    s.src = 'https://cdn.jsdelivr.net/gh/VapiAI/html-script-tag@latest/dist/assets/index.js';
+    s.defer = true;
+    s.onload = function () { setTimeout(cb, 100); };
+    s.onerror = function () {
+      setState('Could not load');
+      addLine('Network error — please try again.');
+    };
+    document.head.appendChild(s);
+  }
+
+  function initVapi() {
+    if (vapiInst) {
+      if (!callActive) vapiInst.start(ASS_ID);
+      return;
+    }
+    vapiInst = window.vapiSDK.run({
+      apiKey: PUB_KEY,
+      assistant: ASS_ID,
+      config: { position: 'bottom-right', offset: '-9999px', width: '1px', height: '1px' }
+    });
+
+    vapiInst.on('call-start', function () {
+      callActive = true;
+      setDot(true);
+      setState('Connected');
+      $body().innerHTML = '';
+      addLine('Call started — speak naturally');
+    });
+    vapiInst.on('call-end', function () {
+      callActive = false;
+      setDot(false);
+      setState('Call ended');
+      addLine('Call ended');
+    });
+    vapiInst.on('speech-start', function () { setState('Speaking…'); });
+    vapiInst.on('speech-end',   function () { setState('Listening…'); });
+    vapiInst.on('message', function (msg) {
+      if (msg.type === 'transcript' && msg.transcriptType === 'final') {
+        addBubble(msg.role, msg.transcript);
+      }
+    });
+    vapiInst.on('error', function (err) {
+      console.error('Vapi error:', err);
+      setDot(false);
+      setState('Error');
+      addLine('Connection error — please try again.');
+      callActive = false;
+    });
+  }
+
+  window.openVess = function () {
+    $modal().classList.add('open');
+    if (!callActive) {
+      $body().innerHTML = '<div class="vess-state-line">Connecting…</div>';
+      setState('Connecting…');
+      setDot(false);
+      loadSDK(initVapi);
+    }
+  };
+
+  window.closeVess = function () {
+    $modal().classList.remove('open');
+    if (vapiInst && callActive) { vapiInst.stop(); }
+    callActive = false;
+    setDot(false);
+    setState('AI Voice Agent');
+  };
+
+  // Close modal on overlay click (clicking outside the modal box)
+  document.addEventListener('keydown', function (e) {
+    if (e.key === 'Escape') window.closeVess();
+  });
+}());
+</script>
+
 </body>
 </html>
