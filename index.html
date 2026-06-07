@@ -438,6 +438,23 @@
     }
     .footer-links a:hover { color: var(--gold); }
     .footer-copy { font-size: 0.72rem; color: rgba(255,255,255,0.15); }
+    .footer-legal {
+      width: 100%;
+      display: flex;
+      gap: 1.25rem;
+      justify-content: center;
+      padding-top: 0.75rem;
+      margin-top: 0.25rem;
+      border-top: 1px solid rgba(255,255,255,0.04);
+    }
+    .footer-legal a {
+      font-size: 0.7rem;
+      color: rgba(255,255,255,0.18);
+      text-decoration: none;
+      transition: color 0.2s;
+      letter-spacing: 0.03em;
+    }
+    .footer-legal a:hover { color: var(--gold); }
 
     @keyframes fadeUp {
       from { opacity: 0; transform: translateY(22px); }
@@ -861,6 +878,11 @@
     </div>
     <div class="footer-tagline">Go well.</div>
     <div class="footer-copy">© 2026 Vessels · vssls.co</div>
+    <div class="footer-legal">
+      <a href="/privacy">Privacy Policy</a>
+      <a href="/terms">Terms of Service</a>
+      <a href="/accessibility">Accessibility</a>
+    </div>
   </footer>
 
   <!-- ── VESS ORB ── -->
@@ -1113,7 +1135,7 @@ document.querySelectorAll('.path-card').forEach(card => {
   }
 
   // Pre-warm: load SDK + create instance silently 1.5s after page load
-  // so it’s ready before the user clicks
+  // so it's ready before the user clicks
   window.addEventListener('load', function () {
     setTimeout(function () { loadSDK(createInst); }, 1500);
   });
