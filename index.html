@@ -7,7 +7,7 @@
   <meta name="description" content="Vessels is a full-service creative and technology agency. We build creator ecosystems for brands, full partnerships for creators, AI infrastructure for businesses, and mission technology for nonprofits." />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,600&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,600&family=DM+Sans:wght@300;400;500;600&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet" />
 
   <style>
     :root {
@@ -744,6 +744,143 @@
     .vess-end-btn:hover { background: rgba(192,57,43,0.22); }
     /* Hide the default VAPI injected button */
     #vapi-support-btn { position: fixed !important; left: -9999px !important; visibility: hidden !important; pointer-events: none !important; }
+
+    /* ─────────────────────────────────────────
+       VSSLS-GROW SECTION (dark inset between paths & stats)
+    ───────────────────────────────────────── */
+    .vssls-grow{
+      --near:#0c0d10;--surf:#111318;--raised:#161a20;
+      --border:#1d2128;--line:#252b34;--muted:#4a5566;
+      --dim:#7a8899;--text:#b8c4d0;--white:#eef2f6;--gold:#c8a96e;
+      --gold-d:rgba(200,169,110,0.12);--gold-g:rgba(200,169,110,0.06);
+      --gold-b:rgba(200,169,110,0.3);
+      background:var(--near);
+      border-top:1px solid var(--border);
+      border-bottom:1px solid var(--border);
+      padding:110px 0;
+      position:relative;
+      overflow:hidden;
+    }
+    .vssls-grow-grid{
+      position:absolute;inset:0;
+      background-image:linear-gradient(var(--border) 1px,transparent 1px),linear-gradient(90deg,var(--border) 1px,transparent 1px);
+      background-size:70px 70px;
+      opacity:0.12;
+      mask-image:radial-gradient(ellipse 90% 80% at 50% 50%,black,transparent);
+      pointer-events:none;
+    }
+    .vssls-grow-inner{max-width:1000px;margin:0 auto;padding:0 48px;}
+    .vssls-grow-top{text-align:center;margin-bottom:72px;}
+    .vssls-grow-eyebrow{
+      display:inline-flex;align-items:center;gap:8px;
+      border:1px solid var(--gold-b);background:var(--gold-d);
+      border-radius:100px;padding:7px 18px;margin-bottom:24px;
+      font-family:'DM Mono',monospace;font-size:10px;letter-spacing:2.5px;
+      text-transform:uppercase;color:var(--gold);
+    }
+    .vssls-grow-eyebrow::before{
+      content:'';width:6px;height:6px;border-radius:50%;
+      background:var(--gold);animation:eyeBlink 2.5s infinite;
+    }
+    @keyframes eyeBlink{0%,100%{opacity:1;}50%{opacity:0.3;}}
+    .vssls-grow-top h2{
+      font-family:'Playfair Display',serif;
+      font-size:clamp(32px,4.5vw,56px);font-weight:700;color:var(--white);
+      line-height:1.1;letter-spacing:-0.5px;margin-bottom:16px;
+    }
+    .vssls-grow-top h2 em{font-style:italic;color:var(--gold);}
+    .vssls-grow-top p{font-size:17px;color:var(--dim);max-width:520px;margin:0 auto;font-weight:300;line-height:1.7;}
+    .vssls-grow-guide{
+      background:var(--surf);border:1px solid var(--border);
+      border-radius:16px;padding:48px 52px;
+      display:grid;grid-template-columns:1fr 1fr;
+      gap:56px;align-items:center;margin-bottom:20px;
+      position:relative;overflow:hidden;
+    }
+    .vssls-grow-guide::before{
+      content:'';position:absolute;top:0;left:0;right:0;height:1px;
+      background:linear-gradient(90deg,transparent,var(--gold-b),transparent);
+    }
+    .guide-left-label{font-family:'DM Mono',monospace;font-size:10px;letter-spacing:3px;text-transform:uppercase;color:var(--gold);margin-bottom:16px;}
+    .guide-left h3{font-family:'Playfair Display',serif;font-size:clamp(24px,3vw,36px);font-weight:700;color:var(--white);line-height:1.1;letter-spacing:-0.3px;margin-bottom:14px;}
+    .guide-left h3 em{font-style:italic;color:var(--gold);}
+    .guide-left p{font-size:15px;color:var(--dim);line-height:1.7;margin-bottom:28px;font-weight:300;}
+    .guide-chapters-mini{display:flex;flex-direction:column;gap:8px;margin-bottom:32px;}
+    .guide-ch-mini{display:flex;align-items:center;gap:10px;font-size:13px;color:var(--text);}
+    .guide-ch-mini-num{font-family:'DM Mono',monospace;font-size:10px;color:var(--muted);width:20px;flex-shrink:0;}
+    .guide-ch-mini-dot{color:var(--gold);font-size:11px;flex-shrink:0;}
+    .btn-quiz{
+      display:inline-flex;align-items:center;gap:10px;
+      background:var(--gold);color:#07080a;
+      padding:14px 28px;border-radius:6px;font-size:15px;font-weight:700;
+      text-decoration:none;border:none;cursor:pointer;
+      font-family:'DM Sans',sans-serif;transition:all 0.2s;
+    }
+    .btn-quiz:hover{background:#d4b87a;transform:translateY(-2px);box-shadow:0 6px 24px rgba(200,169,110,0.3);}
+    .btn-quiz-sub{font-size:12px;color:var(--muted);margin-top:10px;font-family:'DM Mono',monospace;letter-spacing:0.5px;}
+    .guide-right{display:flex;justify-content:center;align-items:center;}
+    .guide-book{
+      background:linear-gradient(145deg,var(--raised),var(--surf));
+      border:1px solid var(--border);border-radius:12px;
+      padding:36px 32px;width:100%;max-width:280px;position:relative;
+    }
+    .guide-book::after{
+      content:'';position:absolute;left:-4px;top:8px;bottom:8px;width:4px;
+      background:linear-gradient(180deg,var(--gold),rgba(200,169,110,0.3));
+      border-radius:4px 0 0 4px;
+    }
+    .guide-book-label{font-family:'DM Mono',monospace;font-size:9px;letter-spacing:3px;text-transform:uppercase;color:var(--muted);margin-bottom:10px;}
+    .guide-book-title{font-family:'Playfair Display',serif;font-size:22px;font-weight:700;color:var(--white);line-height:1.15;margin-bottom:4px;}
+    .guide-book-title em{font-style:italic;color:var(--gold);}
+    .guide-book-sub{font-family:'Playfair Display',serif;font-style:italic;font-size:13px;color:var(--dim);margin-bottom:24px;}
+    .guide-book-divider{height:1px;background:var(--border);margin-bottom:20px;}
+    .guide-book-sections{display:flex;flex-direction:column;gap:7px;}
+    .guide-book-sec{display:flex;align-items:center;gap:8px;font-size:12px;color:var(--muted);}
+    .guide-book-sec-num{font-family:'DM Mono',monospace;font-size:10px;color:var(--line);width:16px;}
+    .guide-book-badge{
+      display:inline-block;margin-top:20px;
+      background:var(--gold-d);border:1px solid var(--gold-b);
+      border-radius:100px;padding:5px 14px;
+      font-family:'DM Mono',monospace;font-size:10px;letter-spacing:1.5px;text-transform:uppercase;color:var(--gold);
+    }
+    .vssls-grow-ctas{display:grid;grid-template-columns:1fr 1fr;gap:16px;}
+    .grow-cta-card{
+      background:var(--surf);border:1px solid var(--border);
+      border-radius:12px;padding:32px 36px;display:flex;flex-direction:column;
+      transition:border-color 0.2s,transform 0.2s;
+    }
+    .grow-cta-card:hover{border-color:var(--line);transform:translateY(-2px);}
+    .grow-cta-card.featured{border-color:var(--gold);background:linear-gradient(135deg,var(--gold-g),var(--surf));}
+    .grow-cta-label{font-family:'DM Mono',monospace;font-size:10px;letter-spacing:2.5px;text-transform:uppercase;color:var(--muted);margin-bottom:12px;}
+    .grow-cta-card h3{font-family:'Playfair Display',serif;font-size:22px;font-weight:700;color:var(--white);margin-bottom:10px;}
+    .grow-cta-card h3 em{font-style:italic;color:var(--gold);}
+    .grow-cta-card p{font-size:14px;color:var(--dim);line-height:1.65;margin-bottom:24px;flex:1;}
+    .btn-grow-primary{
+      display:block;text-align:center;background:var(--gold);color:#07080a;
+      padding:13px 24px;border-radius:5px;font-size:14px;font-weight:700;
+      text-decoration:none;transition:background 0.2s;font-family:'DM Sans',sans-serif;
+    }
+    .btn-grow-primary:hover{background:#d4b87a;}
+    .btn-grow-ghost{
+      display:block;text-align:center;background:transparent;color:var(--white);
+      border:1px solid var(--line);padding:12px 24px;border-radius:5px;
+      font-size:14px;font-weight:500;text-decoration:none;transition:all 0.2s;font-family:'DM Sans',sans-serif;
+    }
+    .btn-grow-ghost:hover{border-color:var(--gold);color:var(--gold);}
+    .vssls-grow-proof{
+      display:flex;justify-content:center;align-items:center;
+      gap:40px;flex-wrap:wrap;margin-top:40px;padding-top:40px;
+      border-top:1px solid var(--border);
+    }
+    .proof-item{display:flex;align-items:center;gap:8px;font-size:13px;color:var(--muted);}
+    .proof-dot{width:6px;height:6px;border-radius:50%;background:var(--gold);flex-shrink:0;}
+    @media(max-width:900px){
+      .vssls-grow-inner{padding:0 24px;}
+      .vssls-grow-guide{grid-template-columns:1fr;gap:36px;padding:36px 28px;}
+      .guide-right{display:none;}
+      .vssls-grow-ctas{grid-template-columns:1fr;}
+      .vssls-grow-proof{gap:20px;}
+    }
   </style>
 </head>
 
@@ -831,6 +968,84 @@
         </div>
       </div>
 
+      <!-- ─── VSSLS GROW ─── -->
+      <section class="vssls-grow" id="grow">
+        <div class="vssls-grow-grid"></div>
+        <div class="vssls-grow-inner">
+
+          <!-- TOP TEXT -->
+          <div class="vssls-grow-top">
+            <div class="vssls-grow-eyebrow">Free — No Commitment</div>
+            <h2>Not sure where to start?<br><em>Take the free quiz.</em></h2>
+            <p>Answer 12 questions about your business, your goals, and where you are right now. We will send you The Digital Frontier — a personalized guide to growing online — completely free.</p>
+          </div>
+
+          <!-- GUIDE TEASER -->
+          <div class="vssls-grow-guide">
+            <div class="guide-left">
+              <div class="guide-left-label">The Digital Frontier — Free Guide</div>
+              <h3>A masterclass on <em>growing your business online.</em></h3>
+              <p>AI, SEO, lead generation, customer retention, referrals — 10 sections of real, actionable strategy. Built from the same playbooks we use with clients generating 6–8 figures.</p>
+              <div class="guide-chapters-mini">
+                <div class="guide-ch-mini"><span class="guide-ch-mini-num">01</span><span class="guide-ch-mini-dot">+</span>Why most businesses are invisible online</div>
+                <div class="guide-ch-mini"><span class="guide-ch-mini-num">02</span><span class="guide-ch-mini-dot">+</span>The four levers that drive every type of growth</div>
+                <div class="guide-ch-mini"><span class="guide-ch-mini-num">04</span><span class="guide-ch-mini-dot">+</span>AI is already here — are you using it?</div>
+                <div class="guide-ch-mini"><span class="guide-ch-mini-num">06</span><span class="guide-ch-mini-dot">+</span>The lead machine: build it once, run forever</div>
+                <div class="guide-ch-mini"><span class="guide-ch-mini-num">10</span><span class="guide-ch-mini-dot">+</span>Your next step — personalized to your path</div>
+              </div>
+              <a href="vessels-quiz.html" class="btn-quiz">Take the Free Quiz</a>
+              <div class="btn-quiz-sub">12 questions · 6–8 minutes · Unlock your free guide</div>
+            </div>
+            <div class="guide-right">
+              <div class="guide-book">
+                <div class="guide-book-label">Exclusive Guide</div>
+                <div class="guide-book-title">The Digital<br><em>Frontier.</em></div>
+                <div class="guide-book-sub">A Vessels Growth Guide</div>
+                <div class="guide-book-divider"></div>
+                <div class="guide-book-sections">
+                  <div class="guide-book-sec"><span class="guide-book-sec-num">01</span>Visibility</div>
+                  <div class="guide-book-sec"><span class="guide-book-sec-num">02</span>The Four Levers</div>
+                  <div class="guide-book-sec"><span class="guide-book-sec-num">03</span>SEO</div>
+                  <div class="guide-book-sec"><span class="guide-book-sec-num">04</span>AI</div>
+                  <div class="guide-book-sec"><span class="guide-book-sec-num">05</span>Paid Ads</div>
+                  <div class="guide-book-sec"><span class="guide-book-sec-num">06</span>Lead Machine</div>
+                  <div class="guide-book-sec"><span class="guide-book-sec-num">07</span>Retention</div>
+                  <div class="guide-book-sec"><span class="guide-book-sec-num">08</span>Referrals</div>
+                  <div class="guide-book-sec"><span class="guide-book-sec-num">09</span>Case Files</div>
+                  <div class="guide-book-sec"><span class="guide-book-sec-num">10</span>Your Next Step</div>
+                </div>
+                <div class="guide-book-badge">Free — Unlocked by Quiz</div>
+              </div>
+            </div>
+          </div>
+
+          <!-- DUAL CTA ROW -->
+          <div class="vssls-grow-ctas">
+            <div class="grow-cta-card featured">
+              <div class="grow-cta-label">Not sure where to start</div>
+              <h3>Book a <em>Free Consultation</em></h3>
+              <p>Jump on a free call with the Vessels team. We'll hear where you are, map what makes sense for your business, and point you toward the right path — no cost, no commitment.</p>
+              <a href="https://vssls.co/book" class="btn-grow-primary">Book a Free Consultation</a>
+            </div>
+            <div class="grow-cta-card">
+              <div class="grow-cta-label">Ready to get online today</div>
+              <h3>View the <em>Starter Kits</em></h3>
+              <p>A professional website, CRM, missed-call text-back, and automated follow-up — live in 48 hours, no setup fee, no contract. Starting at $197 per month.</p>
+              <a href="ai-solutions.html#starter-kits" class="btn-grow-ghost">View Starter Kits →</a>
+            </div>
+          </div>
+
+          <!-- SOCIAL PROOF STRIP -->
+          <div class="vssls-grow-proof">
+            <div class="proof-item"><div class="proof-dot"></div>Free — no credit card required</div>
+            <div class="proof-item"><div class="proof-dot"></div>Personalized to your business type</div>
+            <div class="proof-item"><div class="proof-dot"></div>Routes to the right Vessels path</div>
+            <div class="proof-item"><div class="proof-dot"></div>Same playbooks used with 6–8 figure clients</div>
+          </div>
+
+        </div>
+      </section>
+
       <div class="stats">
         <div class="stat-item">
           <div class="stat-num">10k+</div>
@@ -876,7 +1091,7 @@
       <a href="https://vssls.co/book">Book a Call</a>
       <a href="mailto:hello@vssls.co">hello@vssls.co</a>
     </div>
-    <div class="footer-tagline">Go well.</div>
+
     <div class="footer-copy">© 2026 Vessels · vssls.co</div>
     <div class="footer-legal">
       <a href="/privacy">Privacy Policy</a>

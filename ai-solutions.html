@@ -595,57 +595,21 @@
     .vess-display-label strong { color: var(--accent-light); display: block; font-size: 15px; margin-bottom: 4px; letter-spacing: 0.06em; }
 
     /* ─────────────────────────────────────────
-       CASE STUDY — FREEDOM ELECTRICAL
+       STARTER KITS
     ───────────────────────────────────────── */
-    #case-study {
+    #starter-kits {
       background: var(--cream-mid);
     }
-    .case-study-inner {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 80px;
-      align-items: start;
+    #starter-kits .section-title { margin-bottom: 12px; }
+    .starter-note {
+      font-size: 13px;
+      font-family: var(--font-mono);
+      letter-spacing: 0.04em;
+      color: var(--charcoal-40);
+      text-align: center;
+      margin-bottom: 8px;
     }
-    .case-label {
-      font-size: 11px;
-      font-weight: 600;
-      letter-spacing: 0.16em;
-      text-transform: uppercase;
-      color: var(--accent);
-      margin-bottom: 16px;
-      display: flex;
-      align-items: center;
-      gap: 10px;
-    }
-    .case-label::before { content: ''; display: block; width: 28px; height: 1px; background: var(--accent); }
-    .case-study-copy h2 { font-size: clamp(28px, 3vw, 42px); color: var(--charcoal); margin-bottom: 20px; }
-    .case-study-copy h2 em { font-style: italic; color: var(--accent); }
-    .case-study-copy p { font-size: 16px; color: var(--charcoal-60); margin-bottom: 20px; max-width: 480px; }
-    .case-results {
-      display: flex;
-      flex-direction: column;
-      gap: 20px;
-    }
-    .result-card {
-      background: var(--white);
-      border: 1px solid var(--charcoal-10);
-      border-radius: var(--radius-md);
-      padding: 24px 28px;
-      display: flex;
-      align-items: flex-start;
-      gap: 20px;
-    }
-    .result-number {
-      font-family: var(--font-display);
-      font-size: 36px;
-      font-weight: 700;
-      color: var(--accent);
-      line-height: 1;
-      flex-shrink: 0;
-      letter-spacing: -0.03em;
-    }
-    .result-desc h4 { font-size: 15px; font-weight: 600; color: var(--charcoal); margin-bottom: 4px; font-family: var(--font-body); letter-spacing: 0; }
-    .result-desc p { font-size: 13.5px; color: var(--charcoal-60); line-height: 1.6; }
+    .starter-note strong { color: var(--accent); }
 
     /* ─────────────────────────────────────────
        HOW IT WORKS
@@ -1085,7 +1049,6 @@
       .stat-item:nth-child(even) { border-right: none; }
       .how-it-works .steps-grid { grid-template-columns: 1fr 1fr; }
       .pricing-grid { grid-template-columns: 1fr; }
-      .case-study-inner,
       .contact-inner,
       .problem-grid,
       .why-grid,
@@ -1303,28 +1266,28 @@
       <div class="problem-grid">
         <div class="problem-pains">
           <div class="pain-item reveal">
-            <div class="pain-icon">📵</div>
+            <div class="pain-icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M10.68 13.31a16 16 0 0 0 3.41 2.6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7 2 2 0 0 1 1.72 2v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.42 19.42 0 0 1 4.43 9.88a19.79 19.79 0 0 1-3.07-8.68A2 2 0 0 1 3.34 1h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L7.32 8.9"/><line x1="23" y1="1" x2="1" y2="23"/></svg></div>
             <div class="pain-text">
               <h4>Missed calls after hours</h4>
               <p>Every ring that goes unanswered after 5pm is a lead handed to your competitor. No exceptions.</p>
             </div>
           </div>
           <div class="pain-item reveal reveal-delay-1">
-            <div class="pain-icon">🐌</div>
+            <div class="pain-icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg></div>
             <div class="pain-text">
               <h4>Slow follow-up kills deals</h4>
               <p>A lead that waits 24 hours for a callback converts at a fraction of one followed up in 5 minutes.</p>
             </div>
           </div>
           <div class="pain-item reveal reveal-delay-2">
-            <div class="pain-icon">🔁</div>
+            <div class="pain-icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="17 1 21 5 17 9"/><path d="M3 11V9a4 4 0 0 1 4-4h14"/><polyline points="7 23 3 19 7 15"/><path d="M21 13v2a4 4 0 0 1-4 4H3"/></svg></div>
             <div class="pain-text">
               <h4>Repetitive tasks consuming your team</h4>
               <p>Scheduling, intake, qualification, follow-up — your people are doing work that systems should be doing.</p>
             </div>
           </div>
           <div class="pain-item reveal reveal-delay-3">
-            <div class="pain-icon">📊</div>
+            <div class="pain-icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="12" width="4" height="9" rx="1"/><rect x="10" y="7" width="4" height="14" rx="1"/><rect x="17" y="3" width="4" height="18" rx="1"/></svg></div>
             <div class="pain-text">
               <h4>No visibility into what's falling through</h4>
               <p>Without tracking, you can't see what you're losing. Which means it keeps happening.</p>
@@ -1354,37 +1317,37 @@
       </div>
       <div class="services-grid">
         <div class="service-card reveal">
-          <div class="service-icon">🎙️</div>
+          <div class="service-icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="2" width="6" height="11" rx="3"/><path d="M5 10a7 7 0 0 0 14 0"/><line x1="12" y1="21" x2="12" y2="17"/><line x1="8" y1="21" x2="16" y2="21"/></svg></div>
           <h3>AI Voice Agents</h3>
           <p>Custom-built voice agents that handle inbound calls, qualify leads, book appointments, and answer FAQs — in your brand's voice, 24 hours a day.</p>
           <span class="service-tag">Core System</span>
         </div>
         <div class="service-card reveal reveal-delay-1">
-          <div class="service-icon">⚙️</div>
+          <div class="service-icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83-2.83l.06-.06A1.65 1.65 0 0 0 4.68 15a1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 2.83-2.83l.06.06A1.65 1.65 0 0 0 9 4.68a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 2.83l-.06.06A1.65 1.65 0 0 0 19.4 9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg></div>
           <h3>Agentic Workflow Automation</h3>
           <p>We map your repeatable operations and automate them. Intake flows, CRM updates, notifications, follow-up sequences — all running without human input.</p>
           <span class="service-tag">Operations</span>
         </div>
         <div class="service-card reveal reveal-delay-2">
-          <div class="service-icon">🎯</div>
+          <div class="service-icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2"/></svg></div>
           <h3>AI Lead Systems</h3>
           <p>Qualification pipelines that route, score, and respond to every inbound lead within seconds — so no opportunity sits cold while your team is busy.</p>
           <span class="service-tag">Revenue</span>
         </div>
         <div class="service-card reveal">
-          <div class="service-icon">📡</div>
+          <div class="service-icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg></div>
           <h3>Operations Intelligence</h3>
           <p>Live dashboards and alerts that give you clarity into what your AI systems are doing — calls handled, leads converted, workflows triggered. No black boxes.</p>
           <span class="service-tag">Visibility</span>
         </div>
         <div class="service-card reveal reveal-delay-1">
-          <div class="service-icon">🏗️</div>
+          <div class="service-icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/></svg></div>
           <h3>Custom AI Builds</h3>
           <p>Your operation is specific. We build around it. From outbound calling campaigns to internal knowledge assistants — scoped, built, and shipped to your environment.</p>
           <span class="service-tag">Bespoke</span>
         </div>
         <div class="service-card reveal reveal-delay-2">
-          <div class="service-icon">🧑‍🏫</div>
+          <div class="service-icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg></div>
           <h3>Implementation &amp; Training</h3>
           <p>We don't hand you a login and walk away. We deploy into your stack, run live testing, and train your team until the system runs without us.</p>
           <span class="service-tag">Full-Service</span>
@@ -1406,7 +1369,7 @@
           <p>This is not a demo environment. This is a deployed production agent doing real work, right now.</p>
           <div class="vess-quote">"The best AI systems are the ones you forget are AI — because they just work."</div>
           <a href="#" onclick="openVess(); return false;" class="btn-vess">
-            <span>🎙️</span> Talk to Vess Now
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:middle;margin-right:6px;"><rect x="9" y="2" width="6" height="11" rx="3"/><path d="M5 10a7 7 0 0 0 14 0"/><line x1="12" y1="21" x2="12" y2="17"/><line x1="8" y1="21" x2="16" y2="21"/></svg> Talk to Vess Now
           </a>
         </div>
         <div class="vess-display reveal reveal-delay-2">
@@ -1427,44 +1390,6 @@
               Tap to connect
             </div>
           </a>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ─── CASE STUDY ─── -->
-  <section id="case-study">
-    <div class="container">
-      <div class="case-study-inner">
-        <div class="case-study-copy reveal">
-          <div class="case-label">Case Study</div>
-          <h2>Freedom Electrical Services:<br><em>The missing ring</em> problem, solved.</h2>
-          <p>Freedom Electrical was running a growing operation — skilled crews, strong reputation, consistent demand. But leads were slipping. Calls after hours went to voicemail. Follow-ups were slow. The owner was spending real hours every week doing intake work that a well-built system could handle in seconds.</p>
-          <p>Vessels scoped the full workflow. We built a voice agent that handles every inbound call, qualifies the job type, books the appointment, and logs the lead in their CRM — without the owner touching anything.</p>
-          <p>Deployed in 60 days. Running live. No missed calls.</p>
-        </div>
-        <div class="case-results">
-          <div class="result-card reveal">
-            <div class="result-number">100%</div>
-            <div class="result-desc">
-              <h4>Call Coverage</h4>
-              <p>Every inbound call answered — during business hours, after hours, and on weekends. Zero voicemails for new leads.</p>
-            </div>
-          </div>
-          <div class="result-card reveal reveal-delay-1">
-            <div class="result-number">60d</div>
-            <div class="result-desc">
-              <h4>Full Deployment</h4>
-              <p>Scoped, built, tested, and live in under 60 days. CRM integrated. Team trained. Owner hands-off.</p>
-            </div>
-          </div>
-          <div class="result-card reveal reveal-delay-2">
-            <div class="result-number">14h</div>
-            <div class="result-desc">
-              <h4>Weekly Hours Recovered</h4>
-              <p>Hours per week returned to the owner — hours previously spent on intake, scheduling, and follow-up calls.</p>
-            </div>
-          </div>
         </div>
       </div>
     </div>
@@ -1551,13 +1476,63 @@
           </div>
         </div>
         <div class="why-callout reveal reveal-delay-2">
-          <div class="why-callout-icon">⚡</div>
+          <div class="why-callout-icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg></div>
           <h3>This is not<br><em>a SaaS product.</em></h3>
           <p>You're not buying a subscription to a platform. You're working with a team that builds the infrastructure specific to your operation — and makes sure it runs.</p>
           <br>
           <p>When the system is live, your team is trained, and the calls are being handled — that's the deliverable. Not a dashboard. Not a login screen. A working system.</p>
         </div>
       </div>
+    </div>
+  </section>
+
+  <!-- ─── STARTER KITS ─── -->
+  <section id="starter-kits">
+    <div class="container">
+      <div class="section-eyebrow reveal"><span class="label">Starter Kits</span></div>
+      <h2 class="section-title reveal">Start lean. <em>Grow from there.</em></h2>
+      <p class="section-sub reveal">Everything a local business needs to show up online, capture leads, and follow up automatically — live in 48 hours. No setup fee. No long-term contract.</p>
+      <div class="pricing-grid">
+        <div class="price-card reveal">
+          <div class="price-name">Launch</div>
+          <div class="price-headline">Get Online</div>
+          <div class="price-range">$197 <small>/mo</small></div>
+          <div class="price-divider"></div>
+          <ul class="price-features">
+            <li>Custom-built website tailored to your business</li>
+            <li>Managed hosting &amp; maintenance</li>
+            <li>No setup fee · No contract</li>
+          </ul>
+          <p class="price-note">A professional website built around how your business actually operates.</p>
+        </div>
+        <div class="price-card featured reveal reveal-delay-1">
+          <div class="price-name">Operate</div>
+          <div class="price-headline">Show Up &amp; Get Booked</div>
+          <div class="price-range">$297 <small>/mo</small></div>
+          <div class="price-divider"></div>
+          <ul class="price-features">
+            <li>Everything in Launch</li>
+            <li>Google Business Profile integration</li>
+            <li>Appointment booking integration</li>
+            <li>No setup fee · No contract</li>
+          </ul>
+          <p class="price-note">Your website plus the integrations that turn visitors into booked appointments.</p>
+        </div>
+        <div class="price-card reveal reveal-delay-2">
+          <div class="price-name">Scale</div>
+          <div class="price-headline">Follow Up &amp; Convert</div>
+          <div class="price-range">$497 <small>/mo</small></div>
+          <div class="price-divider"></div>
+          <ul class="price-features">
+            <li>Everything in Operate</li>
+            <li>Automated email &amp; text follow-ups</li>
+            <li>AI chatbot widget to help book customers on-site</li>
+            <li>No setup fee · No contract</li>
+          </ul>
+          <p class="price-note">Automated follow-up and a chatbot that books customers while you focus on the work.</p>
+        </div>
+      </div>
+      <p class="pricing-footer-note reveal"><strong>All kits go live in 48 hours.</strong> No setup fee, no contract — cancel anytime. Questions? <a href="https://vssls.co/book" style="color:var(--accent);">Book a free call →</a></p>
     </div>
   </section>
 
@@ -1730,11 +1705,11 @@
               <textarea name="message" placeholder="Describe your business and the problem you most want to solve. The more context, the better."></textarea>
             </div>
             <button type="submit" class="btn-submit">Request a Scope Call →</button>
-            <p class="form-disclaimer">We respond within one business day. Go well.</p>
+            <p class="form-disclaimer">We respond within one business day.</p>
           </form>
           <div class="form-success" id="formSuccess">
             <h3>We have it.</h3>
-            <p>Expect to hear from the Vessels team within one business day.<br>Go well.</p>
+            <p>Expect to hear from the Vessels team within one business day.</p>
           </div>
         </div>
       </div>
@@ -1770,7 +1745,6 @@
       </div>
       <div class="footer-bottom">
         <p>© 2026 Vessels · vssls.co · Texas</p>
-        <p class="footer-signoff">Go well.</p>
       </div>
     </div>
   </footer>
