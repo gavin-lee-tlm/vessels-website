@@ -1,0 +1,101 @@
+/* ═══════════════════════════════════════════════════════════
+   VESSELS — Logo lockups
+   The brand mark is VSSLS (pulse waveform + wordmark).
+   "Vessels" stays the spoken/written name in body copy.
+
+   The lockup is painted with `currentColor` through a CSS mask
+   rather than shipped as a fixed-colour image. That means it
+   inherits whatever colour each page already gave its logo —
+   charcoal on the cream track pages, white on the dark homepage
+   hero — and it keeps up with navs that change background on
+   scroll (creators.html) instead of going invisible in one state.
+
+   To revert to the old Playfair "Vessels." text wordmark:
+     git checkout pre-logo-unify -- .
+   ═══════════════════════════════════════════════════════════ */
+
+/* Neutralise the type styles these containers carried when they
+   held text, so they cannot distort the mark. */
+.nav-logo,
+.footer-logo,
+header .logo a {
+  font-size: 0 !important;
+  letter-spacing: 0 !important;
+  line-height: 0 !important;
+  text-decoration: none;
+}
+
+/* ── Colour ────────────────────────────────────────────────
+   Do NOT inherit. These containers used to hold
+   `Vessels<span>.</span>`, and each page styles that inner span
+   differently to colour the full stop — gold here, 35% white
+   there. Inheriting reproduced four different footer logos
+   across five pages, and on brands.html put a charcoal mark on
+   a charcoal footer (invisible).
+
+   So the lockup gets exactly two states, set explicitly.
+   `!important` is deliberate: it has to beat legacy per-page
+   rules like `.footer-brand .footer-logo span` (0,3,0).
+   ──────────────────────────────────────────────────────── */
+.brand-lockup           { color: #1A1814 !important; }  /* on cream */
+.brand-lockup--light    { color: #FDFCFA !important; }  /* on charcoal */
+
+/* Every footer on this site runs on the dark band, so light wins
+   there regardless of what the page's own CSS wanted. */
+.footer-logo .brand-lockup,
+.footer-brand .brand-lockup { color: #FDFCFA !important; }
+
+.brand-lockup {
+  display: inline-block;
+  height: 28px;
+  width: 137px;              /* 489 x 100 source, kept in ratio */
+  background-color: currentColor;
+  -webkit-mask-image: url('/assets/brand/lockup-h.png');
+          mask-image: url('/assets/brand/lockup-h.png');
+  -webkit-mask-repeat: no-repeat;
+          mask-repeat: no-repeat;
+  -webkit-mask-position: center;
+          mask-position: center;
+  -webkit-mask-size: contain;
+          mask-size: contain;
+  vertical-align: middle;
+  transition: opacity 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* Mark only — for tight spots. */
+.brand-lockup.is-mark {
+  width: 50px;
+  -webkit-mask-image: url('/assets/brand/mark.png');
+          mask-image: url('/assets/brand/mark.png');
+}
+
+a:hover > .brand-lockup { opacity: 0.66; }
+
+/* Footers: slightly larger so the mark holds against the dark band. */
+.footer-logo .brand-lockup { height: 34px; width: 166px; }
+
+/* Centred footers (index, book) vs left-aligned footer-brand columns. */
+.footer-logo { display: block; }
+.footer-brand .nav-logo,
+.footer-brand .footer-logo { display: block; text-align: left; }
+
+@media (max-width: 640px) {
+  .brand-lockup { height: 24px; width: 117px; }
+  .footer-logo .brand-lockup { height: 30px; width: 147px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .brand-lockup { transition: none; }
+}
+
+/* If a browser cannot do masks, fall back to the image so the
+   logo never disappears entirely. */
+@supports not ((-webkit-mask-image: url('')) or (mask-image: url(''))) {
+  .brand-lockup {
+    background-color: transparent;
+    background-image: url('/assets/brand/lockup-h.png');
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: contain;
+  }
+}
