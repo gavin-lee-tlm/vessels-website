@@ -166,8 +166,18 @@
        compositing context on every letter, and the shimmer below
        paints with background-clip:text on the parent. Clipping text
        across that boundary is what made the glyphs ghost and overlap.
-       Removing the filter lets the sweep paint cleanly. */
-    #scramble-word.revealed .letter { filter: none; }
+
+       `transition: none` is load-bearing, not tidying. `filter` is in
+       the transition list above, so without this the browser
+       INTERPOLATES blur(0px) -> none over 0.6s and keeps the
+       compositing layer alive for that whole window — measured at
+       ~760ms of shimmer painting over live filters, which is the bug
+       this rule exists to kill. The reveal transitions are already
+       finished by the time `revealed` is set, so nothing is lost. */
+    #scramble-word.revealed .letter {
+      filter: none;
+      transition: none;
+    }
 
     @media (prefers-reduced-motion: reduce) {
       #scramble-word .letter {
@@ -1265,12 +1275,16 @@ function revealLetters(startDelay) {
 
   const totalReveal = startDelay + word.length * 65 + 200;
   later(() => {
-    scramEl.classList.add('revealed');   // clears the per-letter filter first
-    scramEl.classList.add('shimmering');
-    later(() => {
-      scramEl.classList.remove('shimmering');
-      running = false;
-    }, 1100);
+    // Drop the per-letter filters, then let a frame land so the layers
+    // are actually gone before background-clip:text starts painting.
+    scramEl.classList.add('revealed');
+    requestAnimationFrame(() => requestAnimationFrame(() => {
+      scramEl.classList.add('shimmering');
+      later(() => {
+        scramEl.classList.remove('shimmering');
+        running = false;
+      }, 1100);
+    }));
   }, totalReveal);
 }
 
