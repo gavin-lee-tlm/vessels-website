@@ -161,6 +161,23 @@
       transform: translateY(0);
       filter: blur(0);
     }
+    /* Once the reveal has finished, drop the filter entirely.
+       `blur(0)` is NOT the same as `none` — it still creates a
+       compositing context on every letter, and the shimmer below
+       paints with background-clip:text on the parent. Clipping text
+       across that boundary is what made the glyphs ghost and overlap.
+       Removing the filter lets the sweep paint cleanly. */
+    #scramble-word.revealed .letter { filter: none; }
+
+    @media (prefers-reduced-motion: reduce) {
+      #scramble-word .letter {
+        opacity: 1;
+        transform: none;
+        filter: none;
+        transition: none;
+      }
+      #scramble-word.shimmering { animation: none; }
+    }
     @keyframes shimmerSweep {
       0%   { background-position: -300% center; }
       100% { background-position: 300% center; }
@@ -1225,17 +1242,49 @@ const scramEl = document.getElementById('scramble-word');
 scramEl.innerHTML = word.split('').map(c => `<span class="letter">${c}</span>`).join('');
 const letters = scramEl.querySelectorAll('.letter');
 
+/* Every call schedules ~9 timeouts. The original never cancelled the
+   previous run, so each hover stacked another chain on top of the one
+   still in flight — old timers added `visible` right after a new run
+   stripped it, and the shimmer class was toggled off and back on inside
+   the same frame, restarting a 1s CSS animation mid-sweep. That is the
+   flicker. Track the timers, clear them on every entry, and ignore
+   hovers while a reveal is already running. */
+let timers = [];
+let running = false;
+const later = (fn, ms) => timers.push(setTimeout(fn, ms));
+
 function revealLetters(startDelay) {
+  timers.forEach(clearTimeout);
+  timers = [];
+  running = true;
+
+  scramEl.classList.remove('shimmering', 'revealed');
   letters.forEach(l => l.classList.remove('visible'));
-  letters.forEach((l, i) => { setTimeout(() => l.classList.add('visible'), startDelay + i * 65); });
+
+  letters.forEach((l, i) => later(() => l.classList.add('visible'), startDelay + i * 65));
+
   const totalReveal = startDelay + word.length * 65 + 200;
-  setTimeout(() => {
+  later(() => {
+    scramEl.classList.add('revealed');   // clears the per-letter filter first
     scramEl.classList.add('shimmering');
-    setTimeout(() => scramEl.classList.remove('shimmering'), 1100);
+    later(() => {
+      scramEl.classList.remove('shimmering');
+      running = false;
+    }, 1100);
   }, totalReveal);
 }
-revealLetters(750);
-scramEl.closest('h1').addEventListener('mouseenter', () => revealLetters(0));
+
+const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+if (reduceMotion) {
+  letters.forEach(l => l.classList.add('visible'));
+  scramEl.classList.add('revealed');
+} else {
+  revealLetters(750);
+  scramEl.closest('h1').addEventListener('mouseenter', () => {
+    if (!running) revealLetters(0);
+  });
+}
 
 /* ── 3D card tilt ── */
 document.querySelectorAll('.path-card').forEach(card => {
