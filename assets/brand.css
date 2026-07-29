@@ -98,18 +98,9 @@ a:hover > .brand-lockup { opacity: 0.66; }
   .footer-logo .brand-lockup { height: 30px; width: 147px; }
 }
 
-/* creators.html ships a working hamburger and overlay like its
-   sibling track pages, but its desktop link list carries an
-   inline `display:flex`, which no media query can beat. So on a
-   phone the desktop links, the CTA button and the hamburger all
-   rendered at once, on top of each other. brands, nonprofits and
-   ai-solutions all correctly hide theirs — creators was the only
-   outlier. `!important` is the only way past an inline style.
-   Harmless on the pages that already hide these. */
-@media (max-width: 700px) {
-  .nav-inner > ul { display: none !important; }
-  .nav-inner > .nav-cta { display: none !important; }
-}
+/* (creators.html's mobile nav is handled in its own stylesheet —
+   the inline display:flex that used to force the desktop links
+   over the hamburger has been removed at source.) */
 
 @media (prefers-reduced-motion: reduce) {
   .brand-lockup { transition: none; }
