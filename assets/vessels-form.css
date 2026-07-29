@@ -450,11 +450,40 @@
    ═══════════════════════════════════════════════════════════ */
 
 .vf-section {
+  position: relative;
   padding: 92px 24px;
   background: linear-gradient(180deg, #F0EBE0 0%, #F5F0E8 100%);
   border-top: 1px solid rgba(26, 24, 20, 0.06);
   border-bottom: 1px solid rgba(26, 24, 20, 0.06);
+  overflow: hidden;
 }
+
+/* Track artifact behind the qualification form. The form card itself
+   is opaque, so legibility is untouched — this only adds depth to the
+   surrounding band. Masked to fade out well before the card edge. */
+.vf-section::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image: var(--vf-art);
+  background-size: cover;
+  background-position: center 38%;
+  opacity: 0.16;
+  pointer-events: none;
+  -webkit-mask-image: radial-gradient(ellipse 78% 68% at 50% 42%, transparent 38%, #000 100%);
+          mask-image: radial-gradient(ellipse 78% 68% at 50% 42%, transparent 38%, #000 100%);
+}
+
+.vf-section[data-art="brands"]       { --vf-art: url('/assets/art/brands.jpg'); }
+.vf-section[data-art="creators"]     { --vf-art: url('/assets/art/creators.jpg'); }
+.vf-section[data-art="ai-solutions"] { --vf-art: url('/assets/art/ai-solutions.jpg'); }
+.vf-section[data-art="nonprofits"]   { --vf-art: url('/assets/art/nonprofits.jpg'); }
+.vf-section:not([data-art])::before  { display: none; }
+
+/* Keep the heading and card above the artwork. */
+.vf-section-head,
+.vf-section .vf,
+.vf-section .vf-recall { position: relative; z-index: 1; }
 
 @media (max-width: 640px) { .vf-section { padding: 60px 18px; } }
 

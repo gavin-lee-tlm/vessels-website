@@ -312,6 +312,37 @@
     }
     .path-card:hover .card-inner-glow { opacity: 1; }
 
+    /* ── Track artifact behind each card ──
+       The generated art is cream on cream, so on these dark glass
+       cards it reads as a ghosted relic rather than a photo. Masked
+       so it fades out before it reaches the copy, and lifted slightly
+       on hover so the card rewards attention. */
+    .card-art {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: 72% center;
+      opacity: 0.13;
+      z-index: 0;
+      pointer-events: none;
+      border-radius: 22px;
+      transition: opacity 0.45s cubic-bezier(0.22,1,0.36,1),
+                  transform 0.6s cubic-bezier(0.22,1,0.36,1);
+      -webkit-mask-image: linear-gradient(105deg, transparent 22%, rgba(0,0,0,.55) 55%, #000 100%);
+              mask-image: linear-gradient(105deg, transparent 22%, rgba(0,0,0,.55) 55%, #000 100%);
+    }
+    .path-card:hover .card-art { opacity: 0.24; transform: scale(1.045); }
+
+    /* Keep the copy above the artwork. */
+    .path-card > *:not(.card-art):not(.card-inner-glow) { position: relative; z-index: 1; }
+
+    @media (prefers-reduced-motion: reduce) {
+      .card-art { transition: none; }
+      .path-card:hover .card-art { transform: none; }
+    }
+
     .card-tag {
       display: inline-block;
       font-size: 0.68rem;
@@ -961,6 +992,7 @@
           <!-- BRANDS -->
           <a href="/brands" class="path-card card-brands" id="card-brands">
             <div class="card-inner-glow"></div>
+            <img class="card-art" src="/assets/art/brands-sm.jpg" alt="" aria-hidden="true" loading="lazy" decoding="async">
             <div class="card-tag">For Brands</div>
             <h2 class="card-title">Grow Through<br><em>Creators</em></h2>
             <p class="card-desc">End-to-end influencer programs that turn creator partnerships into measurable, compounding revenue for ecommerce brands.</p>
@@ -975,6 +1007,7 @@
           <!-- CREATORS -->
           <a href="/creators" class="path-card card-creators" id="card-creators">
             <div class="card-inner-glow"></div>
+            <img class="card-art" src="/assets/art/creators-sm.jpg" alt="" aria-hidden="true" loading="lazy" decoding="async">
             <div class="card-tag">For Creators</div>
             <h2 class="card-title">Build More Than<br><em>an Audience</em></h2>
             <p class="card-desc">A full-stack partnership for creators ready to build beyond brand deals — products, speaking, community, and real business infrastructure.</p>
@@ -989,6 +1022,7 @@
           <!-- AI SOLUTIONS -->
           <a href="/ai-solutions" class="path-card card-ai" id="card-ai">
             <div class="card-inner-glow"></div>
+            <img class="card-art" src="/assets/art/ai-solutions-sm.jpg" alt="" aria-hidden="true" loading="lazy" decoding="async">
             <div class="card-tag">For Businesses</div>
             <h2 class="card-title">Deploy <em>AI</em> That<br>Actually Works</h2>
             <p class="card-desc">Full-deployment AI engineering — voice agents, workflow automation, lead systems — built into your operations and trained to your team.</p>
@@ -1003,6 +1037,7 @@
           <!-- NONPROFITS -->
           <a href="/nonprofits" class="path-card card-nonprofit" id="card-nonprofit">
             <div class="card-inner-glow"></div>
+            <img class="card-art" src="/assets/art/nonprofits-sm.jpg" alt="" aria-hidden="true" loading="lazy" decoding="async">
             <div class="card-tag">For Nonprofits</div>
             <h2 class="card-title">Technology Built<br>Around Your <em>Mission</em></h2>
             <p class="card-desc">AI solutions, donor automation, and digital infrastructure built around what nonprofits actually need — not what most tech firms think they need.</p>
