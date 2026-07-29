@@ -79,9 +79,36 @@ a:hover > .brand-lockup { opacity: 0.66; }
 .footer-brand .nav-logo,
 .footer-brand .footer-logo { display: block; text-align: left; }
 
-@media (max-width: 640px) {
-  .brand-lockup { height: 24px; width: 117px; }
+/* ── Small screens ─────────────────────────────────────────
+   Navs collapse to the pulse mark alone. The full lockup is
+   117px wide, which on creators.html (whose nav has no mobile
+   breakpoint and lays the links out inline) ran straight into
+   the first link. Mark-only is the conventional responsive
+   logo move and buys back ~70px. Footers keep the full lockup
+   — they are stacked and have the room.
+   ──────────────────────────────────────────────────────── */
+@media (max-width: 700px) {
+  .nav-logo .brand-lockup,
+  header .logo .brand-lockup {
+    height: 22px;
+    width: 40px;
+    -webkit-mask-image: url('/assets/brand/mark.png');
+            mask-image: url('/assets/brand/mark.png');
+  }
   .footer-logo .brand-lockup { height: 30px; width: 147px; }
+}
+
+/* creators.html ships a working hamburger and overlay like its
+   sibling track pages, but its desktop link list carries an
+   inline `display:flex`, which no media query can beat. So on a
+   phone the desktop links, the CTA button and the hamburger all
+   rendered at once, on top of each other. brands, nonprofits and
+   ai-solutions all correctly hide theirs — creators was the only
+   outlier. `!important` is the only way past an inline style.
+   Harmless on the pages that already hide these. */
+@media (max-width: 700px) {
+  .nav-inner > ul { display: none !important; }
+  .nav-inner > .nav-cta { display: none !important; }
 }
 
 @media (prefers-reduced-motion: reduce) {

@@ -1070,20 +1070,24 @@
       .stats-grid { grid-template-columns: 1fr 1fr; }
       .stat-item { border-right: none; border-bottom: 1px solid rgba(255,255,255,0.08); }
       .stat-item:nth-child(even) { border-right: none; }
-      .how-it-works .steps-grid { grid-template-columns: 1fr 1fr; }
-      .pricing-grid { grid-template-columns: 1fr; }
+      /* These grids are declared ID-scoped above (#problem .problem-grid
+         etc.), so the bare class selectors here never won and the layouts
+         stayed multi-column on phones — pushing the page 37px wider than
+         the viewport. Match the original specificity so they collapse. */
+      #how-it-works .steps-grid { grid-template-columns: 1fr 1fr; }
+      #pricing .pricing-grid { grid-template-columns: 1fr; }
       .contact-inner,
-      .problem-grid,
-      .why-grid,
+      #problem .problem-grid,
+      #why-vessels .why-grid,
       .vess-demo-inner { grid-template-columns: 1fr; gap: 48px; }
-      .services-header { grid-template-columns: 1fr; }
+      #services .services-header { grid-template-columns: 1fr; }
       .footer-inner { grid-template-columns: 1fr 1fr; }
       .nav-links, .btn-nav { display: none; }
       .hamburger { display: flex; }
     }
     @media (max-width: 640px) {
       .services-grid { grid-template-columns: 1fr; }
-      .steps-grid { grid-template-columns: 1fr; }
+      #how-it-works .steps-grid { grid-template-columns: 1fr; }
       .form-row { grid-template-columns: 1fr; }
       .footer-inner { grid-template-columns: 1fr; }
       .footer-bottom { flex-direction: column; gap: 12px; text-align: center; }
