@@ -4,10 +4,32 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Vessels — Technology for Nonprofits &amp; Mission-Driven Organizations</title>
+
+  <link rel="icon" href="/favicon.ico" sizes="any" />
+  <link rel="icon" type="image/png" sizes="32x32" href="/assets/brand/favicon-32.png" />
+  <link rel="icon" type="image/png" sizes="16x16" href="/assets/brand/favicon-16.png" />
+  <link rel="apple-touch-icon" href="/assets/brand/apple-touch-icon.png" />
+  <meta name="theme-color" content="#F5F0E8" />
+
+  <link rel="canonical" href="https://vssls.co/nonprofits" />
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="Vessels" />
+  <meta property="og:title" content="For Nonprofits — Technology Built Around Your Mission | Vessels" />
+  <meta property="og:description" content="Donor automation, AI phone agents, and digital infrastructure built around what nonprofits actually need." />
+  <meta property="og:url" content="https://vssls.co/nonprofits" />
+  <meta property="og:image" content="https://vssls.co/assets/og/og-nonprofits.jpg" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta property="og:image:alt" content="For Nonprofits — Technology Built Around Your Mission | Vessels" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="For Nonprofits — Technology Built Around Your Mission | Vessels" />
+  <meta name="twitter:description" content="Donor automation, AI phone agents, and digital infrastructure built around what nonprofits actually need." />
+  <meta name="twitter:image" content="https://vssls.co/assets/og/og-nonprofits.jpg" />
   <meta name="description" content="Vessels builds AI infrastructure, donor systems, and operational tools for nonprofits. Technology built around your mission — not the other way around." />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="/assets/vessels-form.css" />
 
   <style>
     /* ─────────────────────────────────────────
@@ -941,7 +963,7 @@
           <li><a href="ai-solutions.html">AI Solutions</a></li>
           <li><a href="nonprofits.html" class="active">Nonprofits</a></li>
         </ul>
-        <a href="https://vssls.co/book" class="btn-nav">Start the Conversation</a>
+        <a href="#start" class="btn-nav">Start the Conversation</a>
         <div class="hamburger" id="hamburger" onclick="document.getElementById('mobileNav').classList.toggle('open')">
           <span></span><span></span><span></span>
         </div>
@@ -956,7 +978,7 @@
     <a href="creators.html" onclick="document.getElementById('mobileNav').classList.remove('open')">Creators</a>
     <a href="ai-solutions.html" onclick="document.getElementById('mobileNav').classList.remove('open')">AI Solutions</a>
     <a href="nonprofits.html" onclick="document.getElementById('mobileNav').classList.remove('open')">Nonprofits</a>
-    <a href="https://vssls.co/book" onclick="document.getElementById('mobileNav').classList.remove('open')">Start the Conversation →</a>
+    <a href="#start" onclick="document.getElementById('mobileNav').classList.remove('open')">Start the Conversation →</a>
   </nav>
 
   <!-- ─── HERO ─── -->
@@ -965,7 +987,7 @@
     <h1 class="reveal">The work you're carrying<br><em>deserves better tools.</em></h1>
     <p class="hero-sub reveal reveal-delay-1">Vessels builds technology for nonprofits the way nonprofits actually operate. Constrained budgets. Volunteer teams. A mission that cannot wait for a perfect infrastructure moment. We start from where you are.</p>
     <div class="hero-ctas reveal reveal-delay-2">
-      <a href="https://vssls.co/book" class="btn-primary">
+      <a href="#start" class="btn-primary">
         Start the Conversation
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M3 10a.75.75 0 01.75-.75h10.638L10.23 5.29a.75.75 0 111.04-1.08l5.5 5.25a.75.75 0 010 1.08l-5.5 5.25a.75.75 0 11-1.04-1.08l4.158-3.96H3.75A.75.75 0 013 10z" clip-rule="evenodd" /></svg>
       </a>
@@ -1169,14 +1191,22 @@
   </section>
 
   <!-- ─── MID CTA ─── -->
-  <section id="mid-cta">
-    <div class="container">
-      <div class="mid-cta-inner">
-        <h2>The mission matters.<br><em>The infrastructure should match it.</em></h2>
-        <a href="https://vssls.co/book" class="btn-primary" style="white-space:nowrap;">Start the Conversation →</a>
-      </div>
+    <!-- ──────────────── QUALIFY / LEAD FORM ──────────────── -->
+  <section class="vf-section" id="start" data-accent="green">
+    <div class="vf-section-head">
+      <span class="vf-eyebrow">Start Here</span>
+      <h2>Tell us about your <em>mission.</em></h2>
+      <p>We scope and price nonprofit work differently — which means we need the real picture, not the version in the grant application.</p>
     </div>
+    <div class="vf" data-track="nonprofits"></div>
+    <noscript>
+      <p style="text-align:center;max-width:520px;margin:24px auto 0;font-family:'DM Sans',sans-serif;color:rgba(26,24,20,.6)">
+        This form needs JavaScript. Email us directly at
+        <a href="mailto:hello@vssls.co" style="color:#B8975A">hello@vssls.co</a> and we will take it from there.
+      </p>
+    </noscript>
   </section>
+
 
   <!-- ─── WHY VESSELS ─── -->
   <section id="why-vessels">
@@ -1279,7 +1309,7 @@
           <p class="price-note">For organizations committed to building durable infrastructure over time — not just solving one problem at a time.</p>
         </div>
       </div>
-      <p class="pricing-footer-note reveal"><strong>We always start with a free conversation.</strong> Not a sales call — a real conversation about what you're carrying and what it would take to carry it further. From there, we'll tell you exactly what we think is worth building first. <a href="https://vssls.co/book" style="color:var(--accent);">vssls.co/book</a></p>
+      <p class="pricing-footer-note reveal"><strong>We always start with a free conversation.</strong> Not a sales call — a real conversation about what you're carrying and what it would take to carry it further. From there, we'll tell you exactly what we think is worth building first. <a href="#start" style="color:var(--accent);">vssls.co/book</a></p>
     </div>
   </section>
 
@@ -1336,84 +1366,16 @@
   </section>
 
   <!-- ─── CONTACT ─── -->
-  <section id="contact">
-    <div class="container">
-      <div class="contact-inner">
-        <div class="contact-copy reveal">
-          <div class="section-eyebrow" style="margin-bottom:20px;">
-            <span class="label" style="color:rgba(255,255,255,0.35);">Let's Talk</span>
-          </div>
-          <h2>Tell us what<br><em>you're carrying.</em></h2>
-          <p>There's no pitch on the other side of this form. Just a real conversation about what you're building, what's getting in the way, and what it would take to carry it further.</p>
-          <div class="contact-promise">
-            <div class="promise-line">Free conversation — no commitment required</div>
-            <div class="promise-line">We assess before we propose anything</div>
-            <div class="promise-line">Mission-aligned pricing discussed honestly</div>
-            <div class="promise-line">Response within one business day</div>
-          </div>
-        </div>
-        <div class="scope-form reveal reveal-delay-2">
-          <h3 class="form-title">Start here.</h3>
-          <p class="form-sub">Tell us about your organization and what you're trying to solve.</p>
-          <form id="nonprofitForm" onsubmit="submitForm(event)">
-            <input type="hidden" name="_subject" value="Vessels Nonprofit Inquiry" />
-            <input type="hidden" name="_next" value="https://vssls.co/thanks" />
-            <input type="hidden" name="_captcha" value="false" />
-            <div class="form-row">
-              <div class="form-group">
-                <label>First Name</label>
-                <input type="text" name="first_name" placeholder="Jordan" required />
-              </div>
-              <div class="form-group">
-                <label>Last Name</label>
-                <input type="text" name="last_name" placeholder="Rivera" required />
-              </div>
-            </div>
-            <div class="form-group">
-              <label>Email</label>
-              <input type="email" name="email" placeholder="jordan@yourorg.org" required />
-            </div>
-            <div class="form-group">
-              <label>Organization Name</label>
-              <input type="text" name="org_name" placeholder="Your Nonprofit" required />
-            </div>
-            <div class="form-group">
-              <label>Organization Size</label>
-              <select name="org_size">
-                <option value="" disabled selected>Select one</option>
-                <option>Under 5 staff / mostly volunteer</option>
-                <option>5–20 staff</option>
-                <option>20–50 staff</option>
-                <option>50+ staff</option>
-              </select>
-            </div>
-            <div class="form-group">
-              <label>Where is the biggest gap right now?</label>
-              <select name="gap">
-                <option value="" disabled selected>Select one</option>
-                <option>Donor follow-up &amp; retention</option>
-                <option>Volunteer coordination</option>
-                <option>Inbound calls &amp; intake</option>
-                <option>Impact tracking &amp; reporting</option>
-                <option>Systems and data are disconnected</option>
-                <option>Something specific — I'll explain below</option>
-              </select>
-            </div>
-            <div class="form-group">
-              <label>Tell us what you're carrying</label>
-              <textarea name="message" placeholder="Share what your organization does and what's making the work harder than it needs to be. No need to have it figured out — just tell us where you are."></textarea>
-            </div>
-            <button type="submit" class="btn-submit">Send It Our Way →</button>
-            <p class="form-disclaimer">We respond within one business day.</p>
-          </form>
-          <div class="form-success" id="formSuccess">
-            <h3>We have it.</h3>
-            <p>The Vessels team will be in touch within one business day.<br>May what you're building carry further than you expect.</p>
-          </div>
-        </div>
-      </div>
+    <!-- ──────────────── FINAL CTA (anchors to form) ──────────────── -->
+  <section class="vf-section" id="final-cta">
+    <div class="vf-recall">
+      <h2>The mission matters. <em>So should the tools.</em></h2>
+      <p>Tell us where you are. If a mission-aligned rate or one of our pro bono builds fits your situation, we will say so on the call.</p>
+      <a href="#start" class="vf-recall-btn">Start the Conversation →</a>
+      <p class="vf-recall-note">Mission-aligned pricing · We reply within 1 business day</p>
     </div>
   </section>
+
 
   <!-- ─── FOOTER ─── -->
   <footer>
@@ -1435,7 +1397,7 @@
         <div class="footer-col">
           <h5>Connect</h5>
           <ul>
-            <li><a href="https://vssls.co/book">Start the Conversation</a></li>
+            <li><a href="#start">Start the Conversation</a></li>
             <li><a href="mailto:hello@vssls.co">hello@vssls.co</a></li>
             <li><a href="https://instagram.com/vssls.co" target="_blank">Instagram</a></li>
             <li><a href="https://linkedin.com/company/vessels" target="_blank">LinkedIn</a></li>
@@ -1496,26 +1458,7 @@
       }
     }
 
-    /* Form submit */
-    function submitForm(e) {
-      e.preventDefault();
-      const form = e.target;
-      const data = new FormData(form);
-      fetch('https://formsubmit.co/ajax/3d6e21d74712a6047b69ba5e2aff79d9', {
-        method: 'POST',
-        headers: { 'Accept': 'application/json' },
-        body: data
-      })
-      .then(r => r.json())
-      .then(() => {
-        form.style.display = 'none';
-        document.getElementById('formSuccess').style.display = 'block';
-      })
-      .catch(() => {
-        form.style.display = 'none';
-        document.getElementById('formSuccess').style.display = 'block';
-      });
-    }
+
   </script>
   <!-- ── Vess Chat Modal ── -->
   <div class="vess-chat-modal" id="vessChatModal">
@@ -1652,5 +1595,6 @@
 }());
 </script>
 
+  <script src="/assets/vessels-form.js" defer></script>
 </body>
 </html>

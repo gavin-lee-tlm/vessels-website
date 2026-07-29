@@ -4,10 +4,32 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Vessels — AI & Agentic Solutions for Business</title>
+
+  <link rel="icon" href="/favicon.ico" sizes="any" />
+  <link rel="icon" type="image/png" sizes="32x32" href="/assets/brand/favicon-32.png" />
+  <link rel="icon" type="image/png" sizes="16x16" href="/assets/brand/favicon-16.png" />
+  <link rel="apple-touch-icon" href="/assets/brand/apple-touch-icon.png" />
+  <meta name="theme-color" content="#F5F0E8" />
+
+  <link rel="canonical" href="https://vssls.co/ai-solutions" />
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="Vessels" />
+  <meta property="og:title" content="AI Solutions for Business — Deploy AI That Actually Works | Vessels" />
+  <meta property="og:description" content="Voice agents, workflow automation, and lead systems built into your operation and trained to your team." />
+  <meta property="og:url" content="https://vssls.co/ai-solutions" />
+  <meta property="og:image" content="https://vssls.co/assets/og/og-ai-solutions.jpg" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta property="og:image:alt" content="AI Solutions for Business — Deploy AI That Actually Works | Vessels" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="AI Solutions for Business — Deploy AI That Actually Works | Vessels" />
+  <meta name="twitter:description" content="Voice agents, workflow automation, and lead systems built into your operation and trained to your team." />
+  <meta name="twitter:image" content="https://vssls.co/assets/og/og-ai-solutions.jpg" />
   <meta name="description" content="Vessels builds and deploys AI voice agents, workflow automation, and intelligent lead systems for businesses. Full-deployment engineering — not consulting." />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="/assets/vessels-form.css" />
 
   <style>
     /* ─────────────────────────────────────────
@@ -1200,7 +1222,7 @@
           <li><a href="ai-solutions.html" class="active">AI Solutions</a></li>
           <li><a href="nonprofits.html">Nonprofits</a></li>
         </ul>
-        <a href="https://vssls.co/book" class="btn-nav">Book a Scope Call</a>
+        <a href="#start" class="btn-nav">Book a Scope Call</a>
         <div class="hamburger" id="hamburger" onclick="document.getElementById('mobileNav').classList.toggle('open')">
           <span></span><span></span><span></span>
         </div>
@@ -1215,7 +1237,7 @@
     <a href="creators.html" onclick="document.getElementById('mobileNav').classList.remove('open')">Creators</a>
     <a href="ai-solutions.html" onclick="document.getElementById('mobileNav').classList.remove('open')">AI Solutions</a>
     <a href="nonprofits.html" onclick="document.getElementById('mobileNav').classList.remove('open')">Nonprofits</a>
-    <a href="https://vssls.co/book" onclick="document.getElementById('mobileNav').classList.remove('open')">Book a Call →</a>
+    <a href="#start" onclick="document.getElementById('mobileNav').classList.remove('open')">Book a Call →</a>
   </nav>
 
   <!-- ─── HERO ─── -->
@@ -1224,7 +1246,7 @@
     <h1 class="reveal">Your business is losing calls, leads, and revenue.<br><em>Every single day.</em></h1>
     <p class="hero-sub reveal reveal-delay-1">You're not understaffed. You're under-automated. Vessels builds the AI voice agents, lead systems, and agentic workflows that change that. We don't consult. We engineer.</p>
     <div class="hero-ctas reveal reveal-delay-2">
-      <a href="https://vssls.co/book" class="btn-primary">
+      <a href="#start" class="btn-primary">
         Request an AI Scope Call
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M3 10a.75.75 0 01.75-.75h10.638L10.23 5.29a.75.75 0 111.04-1.08l5.5 5.25a.75.75 0 010 1.08l-5.5 5.25a.75.75 0 11-1.04-1.08l4.158-3.96H3.75A.75.75 0 013 10z" clip-rule="evenodd" /></svg>
       </a>
@@ -1430,14 +1452,22 @@
   </section>
 
   <!-- ─── MID CTA ─── -->
-  <section id="mid-cta">
-    <div class="container">
-      <div class="mid-cta-inner">
-        <h2>Not consulting. Not a software subscription.<br><em>Engineering, built around your operation.</em></h2>
-        <a href="https://vssls.co/book" class="btn-primary" style="white-space:nowrap;">Book a Scope Call →</a>
-      </div>
+    <!-- ──────────────── QUALIFY / LEAD FORM ──────────────── -->
+  <section class="vf-section" id="start" data-accent="teal">
+    <div class="vf-section-head">
+      <span class="vf-eyebrow">Start Here</span>
+      <h2>Tell us what you <em>actually do.</em></h2>
+      <p>The more we know about how your operation runs — what you sell, how leads reach you, what software you already pay for — the less of our first call gets spent on questions you have already answered.</p>
     </div>
+    <div class="vf" data-track="ai-solutions"></div>
+    <noscript>
+      <p style="text-align:center;max-width:520px;margin:24px auto 0;font-family:'DM Sans',sans-serif;color:rgba(26,24,20,.6)">
+        This form needs JavaScript. Email us directly at
+        <a href="mailto:hello@vssls.co" style="color:#B8975A">hello@vssls.co</a> and we will take it from there.
+      </p>
+    </noscript>
   </section>
+
 
   <!-- ─── WHY VESSELS ─── -->
   <section id="why-vessels">
@@ -1532,7 +1562,7 @@
           <p class="price-note">Automated follow-up and a chatbot that books customers while you focus on the work.</p>
         </div>
       </div>
-      <p class="pricing-footer-note reveal"><strong>All kits go live in 48 hours.</strong> No setup fee, no contract — cancel anytime. Questions? <a href="https://vssls.co/book" style="color:var(--accent);">Book a free call →</a></p>
+      <p class="pricing-footer-note reveal"><strong>All kits go live in 48 hours.</strong> No setup fee, no contract — cancel anytime. Questions? <a href="#start" style="color:var(--accent);">Book a free call →</a></p>
     </div>
   </section>
 
@@ -1590,7 +1620,7 @@
           <p class="price-note">For operations with complex workflows, multiple systems, or enterprise-scale requirements.</p>
         </div>
       </div>
-      <p class="pricing-footer-note reveal"><strong>All engagements begin with a free scope call.</strong> We'll assess your operation and tell you exactly what we'd build — before you commit to anything. <a href="https://vssls.co/book" style="color:var(--accent);">vssls.co/book</a></p>
+      <p class="pricing-footer-note reveal"><strong>All engagements begin with a free scope call.</strong> We'll assess your operation and tell you exactly what we'd build — before you commit to anything. <a href="#start" style="color:var(--accent);">vssls.co/book</a></p>
     </div>
   </section>
 
@@ -1647,74 +1677,16 @@
   </section>
 
   <!-- ─── CONTACT ─── -->
-  <section id="contact">
-    <div class="container">
-      <div class="contact-inner">
-        <div class="contact-copy reveal">
-          <div class="section-eyebrow" style="margin-bottom:20px;">
-            <span class="label" style="color:rgba(255,255,255,0.4);">Get Started</span>
-          </div>
-          <h2>Request an<br><em>AI Scope Call.</em></h2>
-          <p>Tell us what you're building. We'll assess your operation, identify the highest-leverage AI deployment, and tell you exactly what we'd build — and what it would take.</p>
-          <div class="contact-promise">
-            <div class="promise-line">Free 45-minute scope call, no commitment</div>
-            <div class="promise-line">We assess before we propose — no templates</div>
-            <div class="promise-line">Full deployment timeline given before signing</div>
-            <div class="promise-line">Expect a response within one business day</div>
-          </div>
-        </div>
-        <div class="scope-form reveal reveal-delay-2">
-          <h3 class="form-title">Tell us about your operation.</h3>
-          <p class="form-sub">The more specific you are, the better the conversation will be.</p>
-          <form id="aiForm" onsubmit="submitForm(event)">
-            <input type="hidden" name="_subject" value="Vessels AI Solutions Inquiry" />
-            <input type="hidden" name="_next" value="https://vssls.co/thanks" />
-            <input type="hidden" name="_captcha" value="false" />
-            <div class="form-row">
-              <div class="form-group">
-                <label>First Name</label>
-                <input type="text" name="first_name" placeholder="Alex" required />
-              </div>
-              <div class="form-group">
-                <label>Last Name</label>
-                <input type="text" name="last_name" placeholder="Rivera" required />
-              </div>
-            </div>
-            <div class="form-group">
-              <label>Business Email</label>
-              <input type="email" name="email" placeholder="alex@company.com" required />
-            </div>
-            <div class="form-group">
-              <label>Business Name</label>
-              <input type="text" name="business_name" placeholder="Your Company" required />
-            </div>
-            <div class="form-group">
-              <label>What's your biggest operational gap?</label>
-              <select name="gap">
-                <option value="" disabled selected>Select one</option>
-                <option>Missed calls / after-hours coverage</option>
-                <option>Slow lead follow-up</option>
-                <option>Repetitive intake / scheduling tasks</option>
-                <option>No visibility into what's falling through</option>
-                <option>Multiple of the above</option>
-                <option>Something specific — I'll explain below</option>
-              </select>
-            </div>
-            <div class="form-group">
-              <label>Tell us what you're building</label>
-              <textarea name="message" placeholder="Describe your business and the problem you most want to solve. The more context, the better."></textarea>
-            </div>
-            <button type="submit" class="btn-submit">Request a Scope Call →</button>
-            <p class="form-disclaimer">We respond within one business day.</p>
-          </form>
-          <div class="form-success" id="formSuccess">
-            <h3>We have it.</h3>
-            <p>Expect to hear from the Vessels team within one business day.</p>
-          </div>
-        </div>
-      </div>
+    <!-- ──────────────── FINAL CTA (anchors to form) ──────────────── -->
+  <section class="vf-section" id="final-cta">
+    <div class="vf-recall">
+      <h2>Let us look at your <em>operation.</em></h2>
+      <p>A free scope call. We map what is possible, what it would cost, and what we would build first — whether or not you hire us.</p>
+      <a href="#start" class="vf-recall-btn">Start the Conversation →</a>
+      <p class="vf-recall-note">No commitment · We reply within 1 business day</p>
     </div>
   </section>
+
 
   <!-- ─── FOOTER ─── -->
   <footer>
@@ -1736,7 +1708,7 @@
         <div class="footer-col">
           <h5>Connect</h5>
           <ul>
-            <li><a href="https://vssls.co/book">Book a Call</a></li>
+            <li><a href="/book?for=ai-solutions">Book a Call</a></li>
             <li><a href="mailto:hello@vssls.co">hello@vssls.co</a></li>
             <li><a href="https://instagram.com/vssls.co" target="_blank">Instagram</a></li>
             <li><a href="https://linkedin.com/company/vessels" target="_blank">LinkedIn</a></li>
@@ -1797,26 +1769,7 @@
       }
     }
 
-    /* Form submit */
-    function submitForm(e) {
-      e.preventDefault();
-      const form = e.target;
-      const data = new FormData(form);
-      fetch('https://formsubmit.co/ajax/3d6e21d74712a6047b69ba5e2aff79d9', {
-        method: 'POST',
-        headers: { 'Accept': 'application/json' },
-        body: data
-      })
-      .then(r => r.json())
-      .then(() => {
-        form.style.display = 'none';
-        document.getElementById('formSuccess').style.display = 'block';
-      })
-      .catch(() => {
-        form.style.display = 'none';
-        document.getElementById('formSuccess').style.display = 'block';
-      });
-    }
+
   </script>
   <!-- ── Vess Chat Modal ── -->
   <div class="vess-chat-modal" id="vessChatModal">
@@ -1953,5 +1906,6 @@
 }());
 </script>
 
+  <script src="/assets/vessels-form.js" defer></script>
 </body>
 </html>

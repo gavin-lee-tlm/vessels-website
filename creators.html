@@ -4,10 +4,32 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>For Creators — Vessels</title>
+
+  <link rel="icon" href="/favicon.ico" sizes="any" />
+  <link rel="icon" type="image/png" sizes="32x32" href="/assets/brand/favicon-32.png" />
+  <link rel="icon" type="image/png" sizes="16x16" href="/assets/brand/favicon-16.png" />
+  <link rel="apple-touch-icon" href="/assets/brand/apple-touch-icon.png" />
+  <meta name="theme-color" content="#F5F0E8" />
+
+  <link rel="canonical" href="https://vssls.co/creators" />
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="Vessels" />
+  <meta property="og:title" content="For Creators — Build More Than an Audience | Vessels" />
+  <meta property="og:description" content="A full-stack partnership for creators ready to build beyond brand deals — products, community, and real business infrastructure." />
+  <meta property="og:url" content="https://vssls.co/creators" />
+  <meta property="og:image" content="https://vssls.co/assets/og/og-creators.jpg" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta property="og:image:alt" content="For Creators — Build More Than an Audience | Vessels" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="For Creators — Build More Than an Audience | Vessels" />
+  <meta name="twitter:description" content="A full-stack partnership for creators ready to build beyond brand deals — products, community, and real business infrastructure." />
+  <meta name="twitter:image" content="https://vssls.co/assets/og/og-creators.jpg" />
   <meta name="description" content="Vessels works with creators from 50k to 1M+ followers — not just for brand deals, but to build and monetize your own platform, product, and brand." />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="/assets/vessels-form.css" />
 
   <style>
     /* ── Reset & Base ── */
@@ -811,7 +833,7 @@
         <li><a href="ai-solutions.html" style="font-family:var(--font-body);font-size:13.5px;font-weight:500;color:var(--charcoal-60);transition:color 0.2s;" onmouseover="this.style.color='var(--charcoal)'" onmouseout="this.style.color='var(--charcoal-60)'">AI Solutions</a></li>
         <li><a href="nonprofits.html" style="font-family:var(--font-body);font-size:13.5px;font-weight:500;color:var(--charcoal-60);transition:color 0.2s;" onmouseover="this.style.color='var(--charcoal)'" onmouseout="this.style.color='var(--charcoal-60)'">Nonprofits</a></li>
       </ul>
-      <a href="https://vssls.co/book" class="btn-primary nav-cta">Book a Call</a>
+      <a href="#start" class="btn-primary nav-cta">Book a Call</a>
       <div id="hamburgerCreators" onclick="document.getElementById('mobileNavCreators').classList.toggle('open')" style="display:none;flex-direction:column;gap:5px;cursor:pointer;padding:4px;" class="hamburger-icon">
         <span style="display:block;width:22px;height:1.5px;background:var(--charcoal);transition:0.3s;"></span>
         <span style="display:block;width:22px;height:1.5px;background:var(--charcoal);transition:0.3s;"></span>
@@ -827,7 +849,7 @@
     <a href="creators.html" style="font-family:var(--font-display);font-size:28px;font-weight:600;color:var(--charcoal);">Creators</a>
     <a href="ai-solutions.html" style="font-family:var(--font-display);font-size:28px;font-weight:600;color:var(--charcoal);">AI Solutions</a>
     <a href="nonprofits.html" style="font-family:var(--font-display);font-size:28px;font-weight:600;color:var(--charcoal);">Nonprofits</a>
-    <a href="https://vssls.co/book" style="font-family:var(--font-display);font-size:28px;font-weight:600;color:var(--charcoal);">Book a Call</a>
+    <a href="#start" style="font-family:var(--font-display);font-size:28px;font-weight:600;color:var(--charcoal);">Book a Call</a>
   </nav>
 
   <!-- ── Hero ── -->
@@ -844,7 +866,7 @@
         Vessels works with creators from 50k to 1M+ followers — not just to land brand deals, but to help you build and monetize your own platform, plug into our network, and launch products or brands that are truly yours.
       </p>
       <div class="hero-actions reveal reveal-delay-3">
-        <a href="#apply" class="btn-primary">Apply to Work With Us →</a>
+        <a href="#start" class="btn-primary">Apply to Work With Us →</a>
         <a href="#how-it-works" class="btn-ghost">See How It Works</a>
       </div>
       <div class="reveal reveal-delay-4" style="display:flex;gap:2rem;flex-wrap:wrap;margin-top:2rem;">
@@ -995,7 +1017,23 @@
   </section>
 
   <!-- ── Why Vessels ── -->
-  <section class="section why-vessels">
+    <!-- ──────────────── QUALIFY / LEAD FORM ──────────────── -->
+  <section class="vf-section" id="start" data-accent="red">
+    <div class="vf-section-head">
+      <span class="vf-eyebrow">Apply</span>
+      <h2>Tell us what you are <em>building.</em></h2>
+      <p>We take on a limited number of creator partnerships. These questions tell us fast whether there is a real business hiding inside your audience — and whether we are the right people to help you build it.</p>
+    </div>
+    <div class="vf" data-track="creators"></div>
+    <noscript>
+      <p style="text-align:center;max-width:520px;margin:24px auto 0;font-family:'DM Sans',sans-serif;color:rgba(26,24,20,.6)">
+        This form needs JavaScript. Email us directly at
+        <a href="mailto:hello@vssls.co" style="color:#B8975A">hello@vssls.co</a> and we will take it from there.
+      </p>
+    </noscript>
+  </section>
+
+<section class="section why-vessels">
     <div class="container">
       <div class="text-center">
         <span class="label-overline reveal">Why Vessels</span>
@@ -1134,108 +1172,7 @@
   </section>
 
   <!-- ── Apply Form ── -->
-  <section class="section apply" id="apply">
-    <div class="container">
-      <div class="apply-inner">
-        <div class="apply-copy">
-          <span class="label-overline reveal">Apply Now</span>
-          <span class="gold-rule gold-rule-left reveal"></span>
-          <h2 class="display-lg reveal">Ready to Build<br>Something Real?</h2>
-          <p class="reveal" style="margin-top:1rem;margin-bottom:2rem;">
-            Fill out the form and we'll be in touch within a few business days. Every application is reviewed personally — no auto-responders, no form letters.
-          </p>
-          <div class="apply-proof">
-            <div class="proof-item reveal">
-              <div class="proof-check">✓</div>
-              <span>Platform builds — website, email, community infrastructure</span>
-            </div>
-            <div class="proof-item reveal reveal-delay-1">
-              <div class="proof-check">✓</div>
-              <span>Product and brand launches from concept to market</span>
-            </div>
-            <div class="proof-item reveal reveal-delay-2">
-              <div class="proof-check">✓</div>
-              <span>Access to the Vessels brand and creator network</span>
-            </div>
-            <div class="proof-item reveal reveal-delay-3">
-              <div class="proof-check">✓</div>
-              <span>Deal strategy and monetization beyond brand deals</span>
-            </div>
-            <div class="proof-item reveal reveal-delay-4">
-              <div class="proof-check">✓</div>
-              <span>Long-term partnership — we grow when you grow</span>
-            </div>
-          </div>
-        </div>
-
-        <div class="apply-form-wrap reveal">
-          <div class="form-title">Creator Application</div>
-          <div class="form-subtitle">Tell us about yourself and your goals.</div>
-
-          <form class="contact-form" id="creator-form">
-            <div class="form-row">
-              <div class="form-group">
-                <label for="c-name">Your Name</label>
-                <input type="text" id="c-name" name="name" placeholder="Alex Johnson" required />
-              </div>
-              <div class="form-group">
-                <label for="c-email">Email</label>
-                <input type="email" id="c-email" name="email" placeholder="alex@example.com" required />
-              </div>
-            </div>
-            <div class="form-row">
-              <div class="form-group">
-                <label for="c-platform">Primary Platform</label>
-                <select id="c-platform" name="primary_platform">
-                  <option value="" disabled selected>Select platform</option>
-                  <option>Instagram</option>
-                  <option>TikTok</option>
-                  <option>YouTube</option>
-                  <option>X / Twitter</option>
-                  <option>LinkedIn</option>
-                  <option>Substack / Newsletter</option>
-                  <option>Podcast</option>
-                  <option>Multiple Platforms</option>
-                </select>
-              </div>
-              <div class="form-group">
-                <label for="c-handle">Your Handle / Channel</label>
-                <input type="text" id="c-handle" name="handle" placeholder="@yourhandle" />
-              </div>
-            </div>
-            <div class="form-row">
-              <div class="form-group">
-                <label for="c-followers">Follower Count</label>
-                <select id="c-followers" name="follower_count">
-                  <option value="" disabled selected>Select range</option>
-                  <option>50k – 100k</option>
-                  <option>100k – 250k</option>
-                  <option>250k – 500k</option>
-                  <option>500k – 1M</option>
-                  <option>1M+</option>
-                </select>
-              </div>
-              <div class="form-group">
-                <label for="c-niche">Content Niche</label>
-                <input type="text" id="c-niche" name="content_niche" placeholder="e.g. fitness, finance, lifestyle" />
-              </div>
-            </div>
-            <div class="form-group">
-              <label for="c-goals">What do you want to build?</label>
-              <textarea id="c-goals" name="message" placeholder="Tell us about your goals — whether that's launching a product, building a website, monetizing your audience, or something else entirely." required></textarea>
-            </div>
-            <button type="submit" class="btn-primary form-submit">Submit Application →</button>
-          </form>
-
-          <div class="form-success" id="form-success">
-            <div class="form-success-icon">✓</div>
-            <h3>Application Received</h3>
-            <p>We'll review your application and reach out within a few business days. Talk soon.</p>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
+  
 
   <!-- ── Final CTA ── -->
   <section class="section final-cta">
@@ -1249,7 +1186,7 @@
         Your audience is waiting for more from you. Let's give it to them.
       </p>
       <div class="reveal">
-        <a href="#apply" class="btn-primary" style="font-size:1rem;padding:1rem 2.25rem;">Apply to Work With Vessels →</a>
+        <a href="#start" class="btn-primary" style="font-size:1rem;padding:1rem 2.25rem;">Apply to Work With Vessels →</a>
       </div>
     </div>
   </section>
@@ -1264,7 +1201,7 @@
           <a href="creators.html">Creators</a>
           <a href="ai-solutions.html">AI Solutions</a>
           <a href="nonprofits.html">Nonprofits</a>
-          <a href="https://vssls.co/book">Book a Call</a>
+          <a href="/book?for=creators">Book a Call</a>
           <a href="mailto:hello@vssls.co">hello@vssls.co</a>
         </div>
         <div class="footer-copy">&#169; 2026 Vessels &#183; vssls.co &#183; Texas</div>
@@ -1309,38 +1246,7 @@
       });
     });
 
-    // ── Form Submission ──
-    const form = document.getElementById('creator-form');
-    const successEl = document.getElementById('form-success');
 
-    form.addEventListener('submit', async (e) => {
-      e.preventDefault();
-      const btn = form.querySelector('.form-submit');
-      btn.textContent = 'Submitting…';
-      btn.disabled = true;
-
-      const data = new FormData(form);
-      data.append('_subject', '[CREATOR] New Creator Application – Vessels');
-      data.append('_captcha', 'false');
-
-      try {
-        const res = await fetch('https://formsubmit.co/ajax/3d6e21d74712a6047b69ba5e2aff79d9', {
-          method: 'POST',
-          headers: { 'Accept': 'application/json' },
-          body: data
-        });
-        const json = await res.json();
-        if (json.success === 'true' || json.success === true) {
-          form.style.display = 'none';
-          successEl.style.display = 'block';
-        } else {
-          throw new Error('Submission failed');
-        }
-      } catch {
-        btn.textContent = 'Something went wrong — try again';
-        btn.disabled = false;
-      }
-    });
   </script>
 
   <!-- ── VESS ORB ── -->
@@ -1494,5 +1400,6 @@
 }());
 </script>
 
+  <script src="/assets/vessels-form.js" defer></script>
 </body>
 </html>

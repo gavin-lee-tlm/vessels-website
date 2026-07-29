@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Thank You — Vessels</title>
+
+  <link rel="icon" href="/favicon.ico" sizes="any" />
+  <link rel="icon" type="image/png" sizes="32x32" href="/assets/brand/favicon-32.png" />
+  <link rel="icon" type="image/png" sizes="16x16" href="/assets/brand/favicon-16.png" />
+  <link rel="apple-touch-icon" href="/assets/brand/apple-touch-icon.png" />
+  <meta name="theme-color" content="#F5F0E8" />
+
+  <link rel="canonical" href="https://vssls.co/thanks" />
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="Vessels" />
+  <meta property="og:title" content="Thank You — Vessels" />
+  <meta property="og:description" content="We received your inquiry." />
+  <meta property="og:url" content="https://vssls.co/thanks" />
+  <meta property="og:image" content="https://vssls.co/assets/og/og-home.jpg" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta property="og:image:alt" content="Thank You — Vessels" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Thank You — Vessels" />
+  <meta name="twitter:description" content="We received your inquiry." />
+  <meta name="twitter:image" content="https://vssls.co/assets/og/og-home.jpg" />
+  <meta name="description" content="We received your inquiry. We'll be in touch within one business day." />
+  <meta name="robots" content="noindex" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet" />
+
+  <style>
+    :root {
+      --cream: #F5F0E8; --charcoal: #1A1814; --charcoal-60: rgba(26,24,20,0.6);
+      --charcoal-30: rgba(26,24,20,0.3); --gold: #B8975A; --gold-light: #D4B478;
+      --white: #FDFCFA; --black: #0D0C0A;
+      --font-display: 'Playfair Display', Georgia, serif;
+      --font-body: 'DM Sans', system-ui, sans-serif;
+    }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      background: var(--cream); font-family: var(--font-body); color: var(--charcoal);
+      min-height: 100vh; display: flex; flex-direction: column; -webkit-font-smoothing: antialiased;
+    }
+    .nav { padding: 26px 32px; max-width: 1200px; margin: 0 auto; width: 100%; }
+    .nav-logo { font-family: var(--font-display); font-size: 24px; color: var(--charcoal); text-decoration: none; }
+    .nav-logo span { color: var(--gold); }
+
+    main { flex: 1; display: flex; align-items: center; justify-content: center; padding: 50px 24px 80px; }
+    .card { max-width: 600px; text-align: center; }
+
+    .mark {
+      width: 66px; height: 66px; margin: 0 auto 28px; border-radius: 50%;
+      background: rgba(184,151,90,.12); border: 1.5px solid var(--gold);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 28px; color: var(--gold);
+    }
+    h1 { font-family: var(--font-display); font-size: clamp(34px, 5.5vw, 50px); font-weight: 500; line-height: 1.15; margin-bottom: 18px; }
+    h1 em { font-style: italic; color: var(--gold); }
+    .lede { font-size: 17px; line-height: 1.68; color: var(--charcoal-60); margin-bottom: 34px; }
+
+    .next {
+      background: var(--white); border: 1px solid rgba(26,24,20,.1); border-radius: 16px;
+      padding: 26px 28px; text-align: left; margin-bottom: 32px;
+    }
+    .next h2 {
+      font-size: 12px; font-weight: 600; letter-spacing: .12em; text-transform: uppercase;
+      color: var(--gold); margin-bottom: 16px;
+    }
+    .next ol { list-style: none; counter-reset: s; }
+    .next li {
+      counter-increment: s; position: relative; padding-left: 34px; margin-bottom: 14px;
+      font-size: 15px; line-height: 1.6; color: var(--charcoal-60);
+    }
+    .next li:last-child { margin-bottom: 0; }
+    .next li::before {
+      content: counter(s); position: absolute; left: 0; top: 1px;
+      width: 22px; height: 22px; border-radius: 50%; background: rgba(184,151,90,.14);
+      color: var(--gold); font-size: 11.5px; font-weight: 600;
+      display: flex; align-items: center; justify-content: center;
+    }
+    .next strong { color: var(--charcoal); font-weight: 600; }
+
+    .btn {
+      display: inline-block; padding: 15px 34px; background: var(--charcoal); color: var(--cream);
+      font-size: 15px; font-weight: 600; text-decoration: none; border-radius: 999px;
+      transition: all .25s cubic-bezier(.16,1,.3,1);
+    }
+    .btn:hover { background: var(--gold); color: var(--white); transform: translateY(-2px); }
+    .note { margin-top: 22px; font-size: 13.5px; color: var(--charcoal-30); line-height: 1.6; }
+    .note a { color: var(--gold); }
+
+    .footer { background: var(--black); color: rgba(255,255,255,.4); padding: 30px; text-align: center; font-size: 13px; }
+    .footer a { color: rgba(255,255,255,.55); text-decoration: none; }
+    .footer a:hover { color: var(--gold-light); }
+
+    @media (prefers-reduced-motion: reduce) { .btn:hover { transform: none; } }
+  </style>
+</head>
+<body>
+
+  <nav class="nav"><a href="/" class="nav-logo">Vessels<span>.</span></a></nav>
+
+  <main>
+    <div class="card">
+      <div class="mark">✓</div>
+      <h1>We have got it — <em>all of it.</em></h1>
+      <p class="lede">
+        You just told us more in a few minutes than most discovery calls surface in thirty.
+        That means when we talk, we can skip the interview and get to the actual work.
+      </p>
+
+      <div class="next">
+        <h2>What happens now</h2>
+        <ol>
+          <li><strong>We read it properly.</strong> A real person goes through your answers — your site, your numbers, your constraints.</li>
+          <li><strong>We come back within one business day.</strong> Usually sooner. We will take one of the meeting windows you gave us and send the invite.</li>
+          <li><strong>We tell you honestly if we are not a fit.</strong> If your budget, timing, or capacity does not match what you want, we will say so before you spend a call finding out.</li>
+        </ol>
+      </div>
+
+      <a href="/" class="btn">Back to Vessels →</a>
+
+      <p class="note">
+        Watch for an email from <a href="mailto:hello@vssls.co">hello@vssls.co</a> — check spam if it does not appear.
+      </p>
+    </div>
+  </main>
+
+  <footer class="footer">© 2026 Vessels · <a href="https://vssls.co">vssls.co</a></footer>
+
+</body>
+</html>
