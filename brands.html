@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+  <script>document.documentElement.classList.add('js-enabled');</script>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Vessels — Creator Growth & Influencer Marketing</title>
@@ -30,6 +31,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="/assets/brand.css" />
+  <link rel="stylesheet" href="/assets/sections.css" />
   <link rel="stylesheet" href="/assets/vessels-form.css" />
 
   <style>
@@ -122,12 +124,15 @@
     a { text-decoration: none; color: inherit; }
 
     /* Fade-in on scroll */
-    .reveal {
+    /* Visible by default. The hidden state applies only once JS has
+       confirmed it can un-hide it — otherwise a JS failure, a crawler, or
+       a social scraper renders these sections blank. */
+    .js-enabled .reveal {
       opacity: 0;
       transform: translateY(28px);
       transition: opacity 0.7s var(--ease-out), transform 0.7s var(--ease-out);
     }
-    .reveal.visible {
+    .js-enabled .reveal.visible {
       opacity: 1;
       transform: translateY(0);
     }
@@ -1757,7 +1762,7 @@
   </section>
 
   <!-- ──────────────── PROBLEM ──────────────── -->
-  <section id="problem">
+  <section id="problem" class="tone-deep">
     <div class="container">
       <div class="problem-layout">
         <div class="problem-left reveal">
@@ -1882,7 +1887,19 @@
   </section>
 
   <!-- ──────────────── CREATOR ENGINE ──────────────── -->
-  <section id="engine">
+  
+  <!-- ──────────────── CINEMATIC BAND ──────────────── -->
+  <section class="band" data-accent="gold" aria-label="Vessels philosophy">
+    <img class="band-img" src="/assets/art/band-brands.jpg"
+         srcset="/assets/art/band-brands-sm.jpg 1100w, /assets/art/band-brands.jpg 2000w"
+         sizes="100vw" alt="" aria-hidden="true" loading="lazy" decoding="async">
+    <div class="band-inner">
+      <p class="band-quote">One brand. <em>A hundred voices carrying it.</em></p>
+      <p class="band-attr">A creator program is not a campaign you run. It is an asset that compounds every month you keep it alive.</p>
+    </div>
+  </section>
+
+<section id="engine" class="tone-deep">
     <div class="container">
       <div class="engine-layout">
         <div class="engine-left reveal">
@@ -2027,7 +2044,7 @@
   </section>
 
   <!-- ──────────────── PRICING ──────────────── -->
-  <section id="pricing">
+  <section id="pricing" class="tone-deep">
     <div class="container">
       <div class="pricing-header reveal">
         <div class="section-eyebrow" style="justify-content:center">
